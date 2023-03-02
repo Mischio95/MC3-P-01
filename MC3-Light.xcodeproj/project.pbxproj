@@ -13,7 +13,6 @@
 		83BC036F29AFA2E7007E8AEF /* Enemy1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC036E29AFA2E7007E8AEF /* Enemy1.swift */; };
 		83E44A6829ACFE0F00D3BD73 /* FloppyDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */; };
 		83E44A6D29AD305C00D3BD73 /* floppy-1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83E44A6C29AD305C00D3BD73 /* floppy-1.mov */; };
-		83E44A7129AE535200D3BD73 /* Foreground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E44A7029AE535200D3BD73 /* Foreground.swift */; };
 		83FA7C0C29A7A08F0064F8DC /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA7C0B29A7A08F0064F8DC /* Enemy.swift */; };
 		83FA7C1029A7A2B70064F8DC /* PickupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA7C0F29A7A2B70064F8DC /* PickupItem.swift */; };
 		A7393D3D29A6723300C47229 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3A29A6723300C47229 /* lightbulb.png */; };
@@ -27,6 +26,12 @@
 		A76F4E3C29AA6F1C008F9A05 /* GAMEOVER.png in Resources */ = {isa = PBXBuildFile; fileRef = A76F4E3B29AA6F1C008F9A05 /* GAMEOVER.png */; };
 		A76F4E3E29AA8D9A008F9A05 /* AnalogJosystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F4E3D29AA8D9A008F9A05 /* AnalogJosystick.swift */; };
 		A76F4E4029AAA093008F9A05 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F4E3F29AAA093008F9A05 /* Utilities.swift */; };
+		A7919A6329B109E30089C118 /* charge.wav in Resources */ = {isa = PBXBuildFile; fileRef = A7919A6229B109E30089C118 /* charge.wav */; };
+		A7919A6929B113830089C118 /* angoloSinistro.png in Resources */ = {isa = PBXBuildFile; fileRef = A7919A6529B113830089C118 /* angoloSinistro.png */; };
+		A7919A6A29B113830089C118 /* riempimento.png in Resources */ = {isa = PBXBuildFile; fileRef = A7919A6629B113830089C118 /* riempimento.png */; };
+		A7919A6B29B113830089C118 /* angoloDestro.png in Resources */ = {isa = PBXBuildFile; fileRef = A7919A6729B113830089C118 /* angoloDestro.png */; };
+		A7919A6C29B113830089C118 /* groundFinal.png in Resources */ = {isa = PBXBuildFile; fileRef = A7919A6829B113830089C118 /* groundFinal.png */; };
+		A7919A6E29B119E30089C118 /* SetupMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7919A6D29B119E30089C118 /* SetupMap.swift */; };
 		A797539029AB8DC60017F34E /* groundNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = A797538F29AB8DC60017F34E /* groundNormal.png */; };
 		A798AD7429A8FDBF00582B41 /* sfondo_normale.png in Resources */ = {isa = PBXBuildFile; fileRef = A798AD7329A8FDBF00582B41 /* sfondo_normale.png */; };
 		A798AD7629A8FDC600582B41 /* sfondo.png in Resources */ = {isa = PBXBuildFile; fileRef = A798AD7529A8FDC600582B41 /* sfondo.png */; };
@@ -79,7 +84,6 @@
 		83BC036E29AFA2E7007E8AEF /* Enemy1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy1.swift; sourceTree = "<group>"; };
 		83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloppyDisk.swift; sourceTree = "<group>"; };
 		83E44A6C29AD305C00D3BD73 /* floppy-1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "floppy-1.mov"; sourceTree = "<group>"; };
-		83E44A7029AE535200D3BD73 /* Foreground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foreground.swift; sourceTree = "<group>"; };
 		83FA7C0B29A7A08F0064F8DC /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		83FA7C0F29A7A2B70064F8DC /* PickupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickupItem.swift; sourceTree = "<group>"; };
 		A7393D3A29A6723300C47229 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
@@ -94,6 +98,12 @@
 		A76F4E3B29AA6F1C008F9A05 /* GAMEOVER.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GAMEOVER.png; sourceTree = "<group>"; };
 		A76F4E3D29AA8D9A008F9A05 /* AnalogJosystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJosystick.swift; sourceTree = "<group>"; };
 		A76F4E3F29AAA093008F9A05 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		A7919A6229B109E30089C118 /* charge.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = charge.wav; sourceTree = "<group>"; };
+		A7919A6529B113830089C118 /* angoloSinistro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angoloSinistro.png; sourceTree = "<group>"; };
+		A7919A6629B113830089C118 /* riempimento.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = riempimento.png; sourceTree = "<group>"; };
+		A7919A6729B113830089C118 /* angoloDestro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angoloDestro.png; sourceTree = "<group>"; };
+		A7919A6829B113830089C118 /* groundFinal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = groundFinal.png; sourceTree = "<group>"; };
+		A7919A6D29B119E30089C118 /* SetupMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupMap.swift; sourceTree = "<group>"; };
 		A797538F29AB8DC60017F34E /* groundNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = groundNormal.png; sourceTree = "<group>"; };
 		A798AD7329A8FDBF00582B41 /* sfondo_normale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sfondo_normale.png; sourceTree = "<group>"; };
 		A798AD7529A8FDC600582B41 /* sfondo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sfondo.png; sourceTree = "<group>"; };
@@ -154,6 +164,7 @@
 		839D259F29A8203600D47B57 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				A7919A6429B113740089C118 /* Ground */,
 				A7ED434F29AE856F00EDA732 /* Font */,
 				A7ED434E29AE855900EDA732 /* Video */,
 				A7393D3929A671F300C47229 /* Sprites */,
@@ -169,6 +180,7 @@
 				A79D515F29AF4CE800DB59A5 /* HitGlitch.wav */,
 				A79D515D29AF4CE200DB59A5 /* EndGameGlitch.wav */,
 				A7ED435D29AEA76D00EDA732 /* waterEffect.wav */,
+				A7919A6229B109E30089C118 /* charge.wav */,
 				839D25A329A8223000D47B57 /* Charging.mp3 */,
 			);
 			path = Songs;
@@ -229,6 +241,17 @@
 				A76F4E3929AA6B50008F9A05 /* GameOver.sks */,
 			);
 			path = "Game Over";
+			sourceTree = "<group>";
+		};
+		A7919A6429B113740089C118 /* Ground */ = {
+			isa = PBXGroup;
+			children = (
+				A7919A6829B113830089C118 /* groundFinal.png */,
+				A7919A6629B113830089C118 /* riempimento.png */,
+				A7919A6529B113830089C118 /* angoloSinistro.png */,
+				A7919A6729B113830089C118 /* angoloDestro.png */,
+			);
+			path = Ground;
 			sourceTree = "<group>";
 		};
 		A7ACB0D729AD4FDC00A5000D /* Player */ = {
@@ -313,8 +336,8 @@
 				A76F4E3D29AA8D9A008F9A05 /* AnalogJosystick.swift */,
 				A7ED434A29AE795200EDA732 /* ObjectAnimator.swift */,
 				A7ACB0D329AD336100A5000D /* ProgressBar.swift */,
-				83E44A7029AE535200D3BD73 /* Foreground.swift */,
 				83A1574529A4002A009C0537 /* Platform.swift */,
+				A7919A6D29B119E30089C118 /* SetupMap.swift */,
 			);
 			path = HUD;
 			sourceTree = "<group>";
@@ -443,6 +466,7 @@
 				A7AE5C5629A3C2F6002FDAEB /* Main.storyboard in Resources */,
 				A7DF152429A6743E00FDDBF9 /* background.png in Resources */,
 				A7393D3D29A6723300C47229 /* lightbulb.png in Resources */,
+				A7919A6C29B113830089C118 /* groundFinal.png in Resources */,
 				A798AD7629A8FDC600582B41 /* sfondo.png in Resources */,
 				A7ED435C29AEA1B400EDA732 /* sfondoGrande.png in Resources */,
 				A7DF152229A6741B00FDDBF9 /* normalTest.png in Resources */,
@@ -450,12 +474,16 @@
 				A76F4E3C29AA6F1C008F9A05 /* GAMEOVER.png in Resources */,
 				A7ED435E29AEA76D00EDA732 /* waterEffect.wav in Resources */,
 				83E44A6D29AD305C00D3BD73 /* floppy-1.mov in Resources */,
+				A7919A6A29B113830089C118 /* riempimento.png in Resources */,
 				A7FC2CC929AFCD68008C741B /* backgroundGrande.png in Resources */,
 				A76F4E3529AA56E4008F9A05 /* MainMenu.sks in Resources */,
 				839D25A429A8223000D47B57 /* Charging.mp3 in Resources */,
 				A7AE5C5829A3C2F7002FDAEB /* Assets.xcassets in Resources */,
 				A798AD7429A8FDBF00582B41 /* sfondo_normale.png in Resources */,
+				A7919A6329B109E30089C118 /* charge.wav in Resources */,
+				A7919A6B29B113830089C118 /* angoloDestro.png in Resources */,
 				A79D516229AF50B800DB59A5 /* HorrorTension.wav in Resources */,
+				A7919A6929B113830089C118 /* angoloSinistro.png in Resources */,
 				A797539029AB8DC60017F34E /* groundNormal.png in Resources */,
 				A76F4E3A29AA6B50008F9A05 /* GameOver.sks in Resources */,
 				A7AE5C5B29A3C2F7002FDAEB /* LaunchScreen.storyboard in Resources */,
@@ -497,9 +525,9 @@
 				83A1574629A4002A009C0537 /* Platform.swift in Sources */,
 				A76F4E3329AA56C8008F9A05 /* MainMenu.swift in Sources */,
 				A7ACB0D629AD4FD400A5000D /* PlayerAnimator.swift in Sources */,
-				83E44A7129AE535200D3BD73 /* Foreground.swift in Sources */,
 				833785C229A5854D00DE5263 /* Trigger.swift in Sources */,
 				83E44A6829ACFE0F00D3BD73 /* FloppyDisk.swift in Sources */,
+				A7919A6E29B119E30089C118 /* SetupMap.swift in Sources */,
 				A76F4E3829AA6B46008F9A05 /* GameOver.swift in Sources */,
 				A7C223B329A4DA2500439545 /* Player.swift in Sources */,
 				83BC036F29AFA2E7007E8AEF /* Enemy1.swift in Sources */,

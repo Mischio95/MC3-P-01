@@ -15,7 +15,13 @@
 
 //MARK: BUG DA FIXARE
 
-// Fixare vari bug relativi alla charingBox e il moving
+// CHARG BOX
+// AMBIENT DAMAGE
+// PLAYER
+// RIMETTERE MATERIALE DI FEDE PER HIT
+// FIXARE JUMP
+// INSERIRE ALTRI TRIGGER PER ALTRI SUONI ED OGETTI DI BACKGROUND
+// SPAWN POINT PER ENEMY
 
 import SpriteKit
 import GameplayKit
@@ -46,7 +52,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 10, height: 10), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
     
-    var gameBackground = Foreground()
+    var gameBackground = SetupMap()
     
     
     private var lastUpdateTime : TimeInterval = 0
@@ -80,8 +86,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
     
     // GROUND
-    var ground : SKSpriteNode!
-    var invisibleGround: SKSpriteNode!
+    var groundGameScene1 = SetupMap()
+    var invisibleGroundGameScene1 = SetupMap()
     
     // ENEMY
     var enemy = Enemy(sprite: SKSpriteNode(imageNamed: "enemyAnim1"), size: CGSize(width: 230, height: 100))
@@ -92,8 +98,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var _scale: CGFloat = 1.0
     var _screenH: CGFloat = 640.0
     var _screenW: CGFloat = 960.0
-    var backgroundGameScene1 = Foreground()
-    var backgroundGameScene2 = Foreground()
+    var backgroundGameScene1 = SetupMap()
+    var backgroundGameScene2 = SetupMap()
 //    var _backgroundSprite1: SKSpriteNode?
 //    var _backgroundSprite2: SKSpriteNode?
 //    var _foregroundSprite2: SKSpriteNode?
@@ -124,12 +130,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         enemySpownPosition = self.childNode(withName: "enemySpownPosition") // as? SKSpriteNode
         enemySpownPosition.isHidden = true
         self.lastUpdateTime = 0
-        setupGround()
+        
+        // setup - Ground and Invisible Ground
+
+        
         setupPlayer()
         setupChargingBox()
         setupItem()
         setupWinBox()
-        setupInvisibleGroundForFalling()
+       
         timerNode.isHidden = true
         addChild(playerController.touchJump)
         addChild(playerController.touchLightOnOff)
@@ -158,7 +167,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        _screenH = view.frame.height
        _screenW = view.frame.width
        _scale = _screenW / 3800
+        
+        
+        
        _ambientColor = UIColor.darkGray
+       initGround()
        initBackground()
        initLight()
        lightSprite?.position.y = player.sprite.position.y
@@ -486,12 +499,20 @@ extension GameScene
     fileprivate func initBackground()
     {
         backgroundColor = SKColor.black
-//        gameBackground.createBackgroundsArray(scene: self)
-//        _backgroundSprite1 = addBackgroundTile(spriteFile: "/Users/mischio/Documents/GitHub/MC3LC/MC3-Light/Sprites/ciccio.png");
-//        _foregroundSprite1 =  addForegroundTile(spriteFile: "backgroundGrande.png", normalsFile:"backgroundGrandeNormale.png")
-
-        backgroundGameScene1.setupForeground(scene: self, nameBackground: "backgroundGrandeSfondo1")
+        backgroundGameScene1.setupBackground(scene: self, nameBackground: "backgroundGrandeSfondo1")
 //        backgroundGameScene2.setupForeground(scene: self, nameBackground: "backgroundGrandeSfondo2")
+    }
+    
+    fileprivate func initGround()
+    {
+        invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
+        
+        for index in 0..<8
+        {
+            groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
+        }
+       
+        
     }
     
     //MARK: Light
@@ -575,7 +596,7 @@ extension GameScene
     
     func chargingPlayer()
     {
-        chargingBite = SKAudioNode(fileNamed: "Charging.mp3")
+        chargingBite = SKAudioNode(fileNamed: "charge.wav")
         player.isCharging = true
         timerNode.isPaused = false
         addChild(chargingBite)
@@ -596,8 +617,6 @@ extension GameScene
     func playerDeath()
     {
         self.removeAllChildren()
-        ground.shadowedBitMask = 0
-        ground.shadowCastBitMask = 0
 //        joystickButtonClicked = false
 //        animRunning = false
         self.removeAllActions()
@@ -648,20 +667,6 @@ extension GameScene
 extension GameScene
 {
     
-    //MARK: - setup GROUND
-    func setupGround()
-    {
-        ground = self.childNode(withName: "ground") as? SKSpriteNode
-        groundBoxCollision = CGSize(width: ground!.size.width, height: ground.size.height-30)
-        ground?.physicsBody = SKPhysicsBody(rectangleOf: groundBoxCollision)
-        ground?.name = "ground"
-        ground?.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.groundCategory
-        ground?.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-        ground?.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-        ground?.physicsBody?.isDynamic = false
-        ground?.lightingBitMask = 1
-    }
-    
     //MARK: - setup PLAYER
     func setupPlayer()
     {
@@ -704,19 +709,6 @@ extension GameScene
         item.sprite.physicsBody?.affectedByGravity = false
         item.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
 //        addChild(item.sprite)
-    }
-    
-    //MARK: - setup MURO INVISIBILE PER PERDERE QUANDO CADI
-
-    func setupInvisibleGroundForFalling()
-    {
-        invisibleGround = self.childNode(withName: "invisibleFallingCollision") as? SKSpriteNode
-        invisibleGround.name = "invisibleGroundFalling"
-        invisibleGround.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.invisibleGroundCategory
-        invisibleGround.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-        invisibleGround.physicsBody?.affectedByGravity = false
-        invisibleGround.alpha = 0
-        invisibleGround.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
     }
     
     //MARK: - setup WINBOX
