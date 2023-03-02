@@ -294,6 +294,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             enemy.sprite.position = enemySpownPosition.position
         }
+        
+        if enemy.sprite.position == enemySpownPosition.position
+        {
+            enemy.sprite.isHidden = true
+            enemy.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.enemyCategory
+        }
+        else
+        {
+            enemy.sprite.isHidden = false
+            enemy.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        }
 
         // Controllo per interrompere l'animazione di camminata dal JOYSTICK
         if !joystickButtonClicked && !player.isFalling && !player.playerHit

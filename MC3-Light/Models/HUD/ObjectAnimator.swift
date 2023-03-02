@@ -57,6 +57,9 @@ class WaterPipe: ObjectAnimator
         animationAction = SKAction(named: "AcquaDalTubo")
         spriteToAnimate.run(animationAction)
         
+        spriteToAnimate.color = .darkGray
+        spriteToAnimate.lightingBitMask = 1
+        
         soundName = "waterEffect"
         soundToPlay = SKAudioNode(fileNamed: self.soundName)
         soundToPlay.isPositional = false
