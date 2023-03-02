@@ -99,16 +99,6 @@ class Player
         self.sprite.physicsBody?.angularDamping = 0.0;
     }
     
-   
-    
-    func removeLife(light: SKLightNode)
-    {
-        print("RemoveLife")
-//        timerNode.fontSize = 30
-//        timerNode.zPosition = 30
-//        timerNode.position = CGPoint(x: sprite.position.x + 100, y: sprite.position.y + 100)
-    }
-    
     func hitAnimation(progressBar : ProgressBar)
     {
         if playerHit
@@ -122,18 +112,16 @@ class Player
         }
     }
     
+    
+    
     func countdownPlayerPointLightBattery()
     {
         if lightButtonClicked
         {
-            time -= 5
+            removeLife(light: light)
             lightButtonClicked = false
             playerHit = true
             hitAnimation(progressBar: self.progressBar)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01)
-            {
-                self.playerAnimator.startHitAnimation(player: self)
-            }
         }
         else
         {
@@ -158,13 +146,23 @@ class Player
                     {
                         if !videoIsPlaying
                         {
-                            videoToPlay = SKVideoNode(fileNamed: "glitch3.mov")
+                            videoToPlay = SKVideoNode(fileNamed: "glitch4.mov")
                             scene.addChild(videoToPlay)
                             playGlitchVideo()
                         }
                     }
                 }
             }
+        }
+    }
+    
+    
+    func removeLife(light: SKLightNode)
+    {
+        time -= 5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001)
+        {
+            self.playerAnimator.startHitAnimation(player: self)
         }
     }
     
@@ -202,7 +200,7 @@ class Player
         self.videoToPlay.zPosition = self.sprite.zPosition + 10
         self.videoToPlay.position = self.sprite.position
         self.videoIsPlaying = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
         {
             self.stopGlitchVideo()
         }
