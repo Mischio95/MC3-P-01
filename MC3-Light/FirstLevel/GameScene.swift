@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var cameraNode = SKCameraNode()
     
-    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 30, height: 30), videoToPlay: SKVideoNode(fileNamed: "glitch.mov"))
+    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 30, height: 30), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
     
     var gameBackground = SetupMap()
     
@@ -392,13 +392,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.canMove = false
             player.playerAnimator.startHitAnimation(player: player)
             enemy.despawnEnemy(player: player)
-           
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
 //            secondBody.collisionBitMask = 0
-//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.chargingBoxCategory
+            firstBody.contactTestBitMask = Utilities.CollisionBitMask.floppyDiskCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
             print(player.nearFloppy)
@@ -473,9 +472,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
 //            player.nearFloppy = false
-//            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
-//            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
+            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearFloppy = false
         }

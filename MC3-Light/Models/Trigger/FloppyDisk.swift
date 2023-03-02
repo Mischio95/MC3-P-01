@@ -23,10 +23,10 @@ class FloppyDisk: Trigger
     override func setup() {
         sprite.name = "floppy"
         sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
+        sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.floppyDiskCategory
-        sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-        sprite.physicsBody?.affectedByGravity = false
+//        sprite.physicsBody?.affectedByGravity = false
         sprite.lightingBitMask = 1
     }
     

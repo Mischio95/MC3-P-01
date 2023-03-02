@@ -12,7 +12,7 @@ import SpriteKit
 class Player
 {
     
-    var videoToPlay: SKVideoNode = SKVideoNode(fileNamed: "glitch2.mov")
+    var videoToPlay: SKVideoNode = SKVideoNode()
     var videoIsPlaying: Bool = false
     
     var sprite: SKSpriteNode
@@ -158,12 +158,9 @@ class Player
                     {
                         if !videoIsPlaying
                         {
+                            videoToPlay = SKVideoNode(fileNamed: "glitch3.mov")
                             scene.addChild(videoToPlay)
                             playGlitchVideo()
-                        }
-                        else
-                        {
-                            stopGlitchVideo()
                         }
                     }
                 }
@@ -201,12 +198,11 @@ class Player
     
     func playGlitchVideo()
     {
-        self.videoIsPlaying = true
+        self.videoToPlay.play()
         self.videoToPlay.zPosition = self.sprite.zPosition + 10
         self.videoToPlay.position = self.sprite.position
-        self.videoToPlay.play()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9)
+        self.videoIsPlaying = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8)
         {
             self.stopGlitchVideo()
         }
