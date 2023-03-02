@@ -15,9 +15,9 @@
 
 //MARK: BUG DA FIXARE
 
+// FIXARE CHE SE SUBISCO DANNO DA ACCENSIONE LUCE NON PARTE LA HITANIM DEL PLAYER SE STO FERMO MA SE CAMMINO SI, E POI FIN QUANDO NON MI FERMO NON SI STOPPA
 // CHARG BOX
 // AMBIENT DAMAGE
-// PLAYER
 // RIMETTERE MATERIALE DI FEDE PER HIT
 // FIXARE JUMP
 // INSERIRE ALTRI TRIGGER PER ALTRI SUONI ED OGETTI DI BACKGROUND
@@ -144,6 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         floppyDisk1.sprite.position.x = player.sprite.position.x - 500
         floppyDisk1.sprite.position.y = player.sprite.position.y - 55
+        
         addChild(floppyDisk1.sprite)
 
         // GESTIONE LUCI
@@ -397,7 +398,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
 //            secondBody.collisionBitMask = 0
-            firstBody.contactTestBitMask = Utilities.CollisionBitMask.floppyDiskCategory
+//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
             print(player.nearFloppy)
@@ -471,10 +472,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
-//            player.nearFloppy = false
-            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
-            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+////            player.nearFloppy = false
+//            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
+//            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearFloppy = false
         }
@@ -606,7 +607,7 @@ extension GameScene
     //MARK: - setup CHARGING BOX
     func setupChargingBox()
     {
-        chargingBox.sprite.size = CGSize(width: 150, height: 50)
+        chargingBox.sprite.size = CGSize(width: 220, height: 60)
         chargingBox.sprite.zPosition = player.sprite.zPosition - 1
         chargingBox.sprite.physicsBody!.isDynamic = true
         chargingBox.sprite.position.y = player.sprite.position.y - 100
