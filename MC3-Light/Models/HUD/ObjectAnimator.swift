@@ -22,9 +22,7 @@ class ObjectAnimator
     var animationAction: SKAction!
     var soundToPlay = SKAudioNode()
     var soundName: String = ""
-    
 
-    
     func setupAnimatorPlayerMainMenu(scene : SKScene)
     {
         playerMainMenu = (scene.childNode(withName: "PlayerAnimMainMenu") as? SKSpriteNode)!
@@ -39,9 +37,6 @@ class ObjectAnimator
         animationEndGameSceneNode = SKAction(named: "EndGame")
         endGameSceneNode.run(animationEndGameSceneNode)
     }
-    
-   
-
 }
 
 class WaterPipe: ObjectAnimator
@@ -70,8 +65,6 @@ class WaterPipe: ObjectAnimator
             scene.listener = player.sprite
         }
         soundToPlay.run(SKAction.changeVolume(by: Float(0.5), duration: 0))
-        
-       
        
         soundTriggerIn.sprite.position.x = spriteToAnimate.position.x - 2000
         soundTriggerIn.sprite.position.y = spriteToAnimate.position.y - 100

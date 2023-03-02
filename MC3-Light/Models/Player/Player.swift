@@ -158,7 +158,7 @@ class Player
         isCharging = true
         timerNode.isPaused = false
         scene.addChild(chargingBite)
-        time = 20
+        time = 30
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5)
         {
             if(self.lightIsOn)

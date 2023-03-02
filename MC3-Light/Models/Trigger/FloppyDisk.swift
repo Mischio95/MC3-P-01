@@ -25,14 +25,17 @@ class FloppyDisk: Trigger
         sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.floppyDiskCategory
-        sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+//        sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.physicsBody?.affectedByGravity = false
+        sprite.lightingBitMask = 1
     }
     
     func playFloppyVideo()
     {
         self.videoIsPlaying = true
         self.videoToPlay.play()
+        self.videoToPlay.zPosition = 10000
         DispatchQueue.main.asyncAfter(deadline: .now() + 6)
         {
             self.stopFloppyVideo()

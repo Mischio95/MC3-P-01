@@ -40,6 +40,7 @@ class ChargingBox: Trigger {
         sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.allowsRotation = false
+        sprite.lightingBitMask = 1
     }
 }
 

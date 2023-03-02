@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var cameraNode = SKCameraNode()
     
-    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 10, height: 10), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
+    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 30, height: 30), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
     
     var gameBackground = SetupMap()
     
@@ -62,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     // TRIGGER
 //    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
-    var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "charging"), size: CGSize(width: 18, height: 18))
+    var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
     var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
     var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
     
@@ -143,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // VIDEO TUTORIAL
         
         floppyDisk1.sprite.position.x = player.sprite.position.x - 100
-        floppyDisk1.sprite.position.y = player.sprite.position.y
+        floppyDisk1.sprite.position.y = player.sprite.position.y - 55
         addChild(floppyDisk1.sprite)
 
         // GESTIONE LUCI
@@ -295,6 +295,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             enemy.sprite.position = enemySpownPosition.position
         }
         
+        
+        // COSI SE IL NEMICO E' NELLA BASE DI RICARICA ED E' INVISIBILE PURE SE IL PLAYER CI PASSA SOPRA NON PRENDE DANNO
         if enemy.sprite.position == enemySpownPosition.position
         {
             enemy.sprite.isHidden = true
@@ -395,8 +397,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
-            secondBody.collisionBitMask = 0
-            firstBody.contactTestBitMask = Utilities.CollisionBitMask.chargingBoxCategory
+//            secondBody.collisionBitMask = 0
+//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.chargingBoxCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
             print(player.nearFloppy)
@@ -471,12 +473,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
 //            player.nearFloppy = false
-            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
-            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-            playerController.touchJump.texture = SKTexture(imageNamed: "jump")
+//            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
+//            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+            playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearFloppy = false
-            print("did end")
         }
     }
 }
@@ -606,11 +607,11 @@ extension GameScene
     //MARK: - setup CHARGING BOX
     func setupChargingBox()
     {
-        chargingBox.sprite.size = CGSize(width: 75, height: 75)
+        chargingBox.sprite.size = CGSize(width: 150, height: 50)
         chargingBox.sprite.zPosition = player.sprite.zPosition - 1
         chargingBox.sprite.physicsBody!.isDynamic = true
-        chargingBox.sprite.position.y = player.sprite.position.y
-        chargingBox.sprite.position.x = player.sprite.position.x + 200
+        chargingBox.sprite.position.y = player.sprite.position.y - 100
+        chargingBox.sprite.position.x = player.sprite.position.x - 300
         chargingBox.sprite.lightingBitMask = 1
         chargingBox.sprite.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.chargingBoxCategory
         chargingBox.sprite.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
