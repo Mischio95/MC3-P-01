@@ -41,8 +41,31 @@ class Player
     var canMove: Bool = true
     let velocityMultiplier: CGFloat = 0.08
   
+    //Sounds
+    var chargingBite = SKAudioNode(fileNamed: "Charging.mp3")
+
+    //TIMER
+    let timerNode : SKLabelNode = SKLabelNode(fontNamed: "")
+    var time : Int = 30
+    {
+        didSet
+        {
+            if(time >= 30)
+            {
+                timerNode.text = "\(time)"
+            }
+            else
+            {
+                timerNode.text = "0\(time)"
+            }
+        }
+    }
     
-    init(sprite: SKSpriteNode, size: CGSize)
+    var scene = SKScene()
+    var light = SKLightNode()
+    var progressBar = ProgressBar()
+    
+    init(sprite: SKSpriteNode, size: CGSize, scene: SKScene, progressBar: ProgressBar, light: SKLightNode)
     {
         self.sprite = sprite
         self.size = size
@@ -52,6 +75,9 @@ class Player
         self.sprite.lightingBitMask = 1
         self.sprite.zPosition = 2
         self.sprite.position = CGPoint(x: -960, y: -168)
+        self.scene = scene
+        self.progressBar = progressBar
+        self.light = light
         setup()
     }
     
@@ -90,6 +116,68 @@ class Player
         {
             progressBar.startPlayerIdleAnimationProgressBar()
         }
+    }
+    
+    func countdownPlayerPointLightBattery()
+    {
+        if lightButtonClicked
+        {
+            time -= 5
+            lightButtonClicked = false
+            playerHit = true
+            hitAnimation(progressBar: self.progressBar)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01)
+            {
+                self.playerAnimator.startHitAnimation(player: self)
+            }
+        }
+        else
+        {
+            progressBar.startPlayerIdleAnimationProgressBar()
+        }
+        
+        if(!isCharging)
+        {
+            time -= 1
+//            print("Time: \(time)")
+            if(time <= 0)
+            {
+                playerDeath()
+            }
+            if(time % 1 == 0)
+            {
+                light.falloff = light.falloff + 0.2
+                progressBar.updateProgressBar(time: CGFloat(time))
+            }
+        }
+    }
+    
+    func chargingPlayer()
+    {
+        chargingBite = SKAudioNode(fileNamed: "charge.wav")
+        isCharging = true
+        timerNode.isPaused = false
+        scene.addChild(chargingBite)
+        time = 20
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5)
+        {
+            if(self.lightIsOn)
+            {
+                self.timerNode.isPaused = false
+            }
+            self.chargingBite.run(SKAction.stop())
+            self.isCharging = false
+            self.chargingBite.removeFromParent()
+            self.light.falloff = 0.1
+        }
+    }
+    
+    func playerDeath()
+    {
+        let transition = SKTransition.fade(with: .black, duration: 1)
+        let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
+        restartScene.scaleMode = .aspectFill
+        scene.view?.presentScene(restartScene, transition: transition)
     }
 
 }

@@ -59,25 +59,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
         
-    //Sounds
-    var chargingBite = SKAudioNode(fileNamed: "Charging.mp3")
-
-    //TIMER
-    let timerNode : SKLabelNode = SKLabelNode(fontNamed: "")
-    var time : Int = 30
-    {
-        didSet
-        {
-            if(time >= 30)
-            {
-                timerNode.text = "\(time)"
-            }
-            else
-            {
-                timerNode.text = "0\(time)"
-            }
-        }
-    }
     
     // TRIGGER
 //    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
@@ -108,7 +89,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     // INPUT
     var playerController: PlayerController = PlayerController(touchLeft: SKSpriteNode(imageNamed: "freccia"), touchRight: SKSpriteNode(imageNamed: "freccia"), touchJump: SKSpriteNode(imageNamed: "Jump"), touchLightOnOff: SKSpriteNode(imageNamed: "LightButton"))
+    
     var playerPosx: CGFloat = 0
+    
     enum NodesZPosition: CGFloat {
       case joystick
     }
@@ -125,7 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         joystickButtonClicked = false
         animRunning = false
-        player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100))
+        player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar, light: light)
         objectAnimator.setupAnimatorWaterFall(scene: self, player: player)
         enemySpownPosition = self.childNode(withName: "enemySpownPosition") // as? SKSpriteNode
         enemySpownPosition.isHidden = true
@@ -139,11 +122,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         setupItem()
         setupWinBox()
        
-        timerNode.isHidden = true
+        player.timerNode.isHidden = true
         addChild(playerController.touchJump)
         addChild(playerController.touchLightOnOff)
         updatables.append(enemy)
-        addChild(timerNode)
+        addChild(player.timerNode)
     }
     
     //MARK: - didMove
@@ -179,7 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(player.lightIsOn)
         {
-            timerNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(countdownPlayerPointLightBattery),SKAction.wait(forDuration: 1)])))
+            player.timerNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(player.countdownPlayerPointLightBattery),SKAction.wait(forDuration: 1)])))
         }
         
         // Joystick
@@ -211,7 +194,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     {
                         player.canMove = false
                         print(player.canMove)
-                        chargingPlayer()
+                        player.chargingPlayer()
                     }
                 }
                 // Caso in cui premo il bottone jump vicino alla scala
@@ -241,13 +224,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                 {
                     player.lightButtonClicked = true
                     player.lightIsOn = true
-                    timerNode.isPaused = false
+                    player.timerNode.isPaused = false
                 }
                 else
                 {
                     player.lightButtonClicked = false
                     player.lightIsOn = false
-                    timerNode.isPaused = true
+                    player.timerNode.isPaused = true
                 }
                 checkLightIsOnOff()
             }
@@ -332,9 +315,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             }
         }
         
-        if(time <= 0)
+        if(player.time <= 0)
         {
-            playerDeath()
+            player.playerDeath()
         }
         
     }
@@ -387,18 +370,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
 //            player.sprite.removeAllActions()
 //            analogJoystick.removeFromParent()
-            playerDeath()
+            player.playerDeath()
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "enemy")
         {
-            time -= 5
+            player.time -= 5
 //            player.lightIsOn = false
             enemy.isAtacking = true
             player.playerHit = true
             player.canMove = false
             player.playerAnimator.startHitAnimation(player: player)
-            print("toccato")
             enemy.despawnEnemy(player: player)
            
         }
@@ -559,73 +541,6 @@ extension GameScene
         rangedEnemy.shooting(bullet: bullet, player: player.sprite)
     }
     
-    func countdownPlayerPointLightBattery()
-    {
-        if player.lightButtonClicked
-        {
-            time -= 5
-            player.lightButtonClicked = false
-            player.playerHit = true
-            self.player.hitAnimation(progressBar: self.progressBar)
-            DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
-            {
-                self.player.playerAnimator.startHitAnimation(player: self.player)
-            }
-            
-        }
-        else
-        {
-            progressBar.startPlayerIdleAnimationProgressBar()
-        }
-        
-        if(!player.isCharging)
-        {
-            time -= 1
-//            print("Time: \(time)")
-            if(time <= 0)
-            {
-                playerDeath()
-            }
-            if(time % 1 == 0)
-            {
-                light.falloff = light.falloff + 0.2
-                progressBar.updateProgressBar(time: CGFloat(time))
-            }
-        }
-    }
-    
-    func chargingPlayer()
-    {
-        chargingBite = SKAudioNode(fileNamed: "charge.wav")
-        player.isCharging = true
-        timerNode.isPaused = false
-        addChild(chargingBite)
-        time = 20
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5)
-        {
-            if(self.player.lightIsOn)
-            {
-                self.timerNode.isPaused = false
-            }
-            self.chargingBite.run(SKAction.stop())
-            self.player.isCharging = false
-            self.chargingBite.removeFromParent()
-            self.light.falloff = 0.1
-        }
-    }
-    
-    func playerDeath()
-    {
-        self.removeAllChildren()
-//        joystickButtonClicked = false
-//        animRunning = false
-        self.removeAllActions()
-        self.removeAllChildren()
-        let transition = SKTransition.fade(with: .black, duration: 1)
-        let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
-        restartScene.scaleMode = .aspectFill
-        self.view?.presentScene(restartScene, transition: transition)
-    }
     
     /*
         fileprivate func addBackgroundTile(spriteFile: String) -> SKSpriteNode
