@@ -39,7 +39,7 @@ class SetupMap
         ground.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         ground.physicsBody?.isDynamic = false
         ground.lightingBitMask = 1
-        ground.color = .darkGray
+        ground.color = .black
     }
     
     //MARK: - setup MURO INVISIBILE PER PERDERE QUANDO CADI

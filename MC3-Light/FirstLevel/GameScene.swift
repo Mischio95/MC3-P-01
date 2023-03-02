@@ -151,8 +151,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        _screenW = view.frame.width
        _scale = _screenW / 3800
         
-        
-        
        _ambientColor = UIColor.darkGray
        initGround()
        initBackground()
@@ -290,9 +288,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             }
             
             lightSprite?.position.y = player.sprite.position.y
-//            enemy.animEnemy()
             enemy.enemyFollowThePlayer(player: player)
-//            enemy.animEnemy()
         }
         else
         {
@@ -307,6 +303,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(player.isJumping)
         {
+            player.maxJump = 230
             player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
             player.playerAnimator.startJumpAnimation(player: player)
             DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
@@ -489,7 +486,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<8
+        for index in 0..<10
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }

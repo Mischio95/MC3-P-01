@@ -10,7 +10,6 @@ import SpriteKit
 
 class Trigger
 {
-    //Ciao Trigger
     var sprite: SKSpriteNode
     var size: CGSize
     
@@ -28,7 +27,6 @@ class Trigger
         sprite.physicsBody?.isDynamic = true
     }
 }
-
 
 class ChargingBox: Trigger {
     
@@ -74,9 +72,9 @@ class Bullet: Trigger
         self.sprite.run(moveAction)
     }
 }
+
 class SoundTrigger: Trigger
 {
-    
     override init(sprite: SKSpriteNode, size: CGSize)
     {
         super .init(sprite: sprite, size: size)
@@ -86,7 +84,7 @@ class SoundTrigger: Trigger
     }
     
     override func setup() {
-        sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width, height: sprite.size.height + 500))
+        sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width, height: sprite.size.height + 1000))
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.soundTriggerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
@@ -95,13 +93,15 @@ class SoundTrigger: Trigger
 
 class EnemyViewTrigger: Trigger
 {
-    override init(sprite: SKSpriteNode, size: CGSize) {
+    override init(sprite: SKSpriteNode, size: CGSize)
+    {
         super .init(sprite: sprite, size: size)
         self.sprite.name = "enemyView"
         setup()
     }
     
-    override func setup() {
+    override func setup()
+    {
         sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width, height: sprite.size.height + 500))
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.enemyViewCategory

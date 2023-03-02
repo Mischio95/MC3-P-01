@@ -91,8 +91,8 @@ class WaterPipe: ObjectAnimator
             isPlaying = true
             soundToPlay.run(SKAction.changeVolume(to: 0.08, duration: 0.1))
             soundToPlay.run(SKAction.play())
-            
         }
+        
         else
         {
             isPlaying = false

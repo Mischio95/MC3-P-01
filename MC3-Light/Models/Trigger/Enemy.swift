@@ -69,6 +69,7 @@ class Enemy: Trigger, Updatable {
         self.sprite.physicsBody?.linearDamping = 0.0;
         self.sprite.physicsBody?.angularDamping = 0.0;
         self.sprite.lightingBitMask = 1
+        self.sprite.zPosition = 10
 //        scene.addChild(sprite)
     }
     

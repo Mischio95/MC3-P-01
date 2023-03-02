@@ -37,7 +37,7 @@ class Player
     var isCharging = false
     
     // MOVE
-    var maxJump: Float = 230
+    var maxJump: Float = 0
     var canMove: Bool = true
     let velocityMultiplier: CGFloat = 0.08
   
