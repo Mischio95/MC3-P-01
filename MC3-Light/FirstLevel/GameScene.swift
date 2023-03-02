@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var cameraNode = SKCameraNode()
     
-    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 30, height: 30), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
+    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 30, height: 30), videoToPlay: SKVideoNode(fileNamed: "glitch.mov"))
     
     var gameBackground = SetupMap()
     
@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         // VIDEO TUTORIAL
         
-        floppyDisk1.sprite.position.x = player.sprite.position.x - 100
+        floppyDisk1.sprite.position.x = player.sprite.position.x - 500
         floppyDisk1.sprite.position.y = player.sprite.position.y - 55
         addChild(floppyDisk1.sprite)
 
@@ -498,7 +498,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<10
+        for index in 0..<11
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }

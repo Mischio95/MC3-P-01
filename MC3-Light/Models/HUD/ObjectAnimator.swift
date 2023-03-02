@@ -55,6 +55,9 @@ class WaterPipe: ObjectAnimator
         spriteToAnimate.color = .darkGray
         spriteToAnimate.lightingBitMask = 1
         
+        soundTriggerIn.sprite.isHidden = true
+        soundTriggerOut.sprite.isHidden = true
+        
         soundName = "waterEffect"
         soundToPlay = SKAudioNode(fileNamed: self.soundName)
         soundToPlay.isPositional = false

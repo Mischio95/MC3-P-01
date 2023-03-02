@@ -11,6 +11,10 @@ import SpriteKit
 
 class Player
 {
+    
+    var videoToPlay: SKVideoNode = SKVideoNode(fileNamed: "glitch2.mov")
+    var videoIsPlaying: Bool = false
+    
     var sprite: SKSpriteNode
     var size: CGSize
     var normalTexture: SKTexture!
@@ -148,6 +152,21 @@ class Player
             {
                 light.falloff = light.falloff + 0.2
                 progressBar.updateProgressBar(time: CGFloat(time))
+                if time <= 10
+                {
+                    if time % 3 == 0
+                    {
+                        if !videoIsPlaying
+                        {
+                            scene.addChild(videoToPlay)
+                            playGlitchVideo()
+                        }
+                        else
+                        {
+                            stopGlitchVideo()
+                        }
+                    }
+                }
             }
         }
     }
@@ -178,6 +197,25 @@ class Player
         let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
         restartScene.scaleMode = .aspectFill
         scene.view?.presentScene(restartScene, transition: transition)
+    }
+    
+    func playGlitchVideo()
+    {
+        self.videoIsPlaying = true
+        self.videoToPlay.zPosition = self.sprite.zPosition + 10
+        self.videoToPlay.position = self.sprite.position
+        self.videoToPlay.play()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9)
+        {
+            self.stopGlitchVideo()
+        }
+    }
+    
+    func stopGlitchVideo()
+    {
+        self.videoIsPlaying = false
+        self.videoToPlay.removeFromParent()
     }
 
 }
