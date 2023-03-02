@@ -10,7 +10,6 @@
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
-		83BC036F29AFA2E7007E8AEF /* Enemy1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BC036E29AFA2E7007E8AEF /* Enemy1.swift */; };
 		83E44A6829ACFE0F00D3BD73 /* FloppyDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */; };
 		83E44A6D29AD305C00D3BD73 /* floppy-1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83E44A6C29AD305C00D3BD73 /* floppy-1.mov */; };
 		83FA7C0C29A7A08F0064F8DC /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA7C0B29A7A08F0064F8DC /* Enemy.swift */; };
@@ -81,7 +80,6 @@
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
-		83BC036E29AFA2E7007E8AEF /* Enemy1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy1.swift; sourceTree = "<group>"; };
 		83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloppyDisk.swift; sourceTree = "<group>"; };
 		83E44A6C29AD305C00D3BD73 /* floppy-1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "floppy-1.mov"; sourceTree = "<group>"; };
 		83FA7C0B29A7A08F0064F8DC /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				A7ACB0D729AD4FDC00A5000D /* Player */,
 				A7ED434D29AE798200EDA732 /* HUD */,
 				A7ED434C29AE795D00EDA732 /* Trigger */,
-				83BC036E29AFA2E7007E8AEF /* Enemy1.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -530,7 +527,6 @@
 				A7919A6E29B119E30089C118 /* SetupMap.swift in Sources */,
 				A76F4E3829AA6B46008F9A05 /* GameOver.swift in Sources */,
 				A7C223B329A4DA2500439545 /* Player.swift in Sources */,
-				83BC036F29AFA2E7007E8AEF /* Enemy1.swift in Sources */,
 				A76F4E3E29AA8D9A008F9A05 /* AnalogJosystick.swift in Sources */,
 				83FA7C1029A7A2B70064F8DC /* PickupItem.swift in Sources */,
 				A7ACB0D429AD336100A5000D /* ProgressBar.swift in Sources */,
