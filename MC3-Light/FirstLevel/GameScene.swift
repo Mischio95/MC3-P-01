@@ -307,14 +307,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
 
         // Controllo per interrompere l'animazione di camminata dal JOYSTICK
-        if !joystickButtonClicked && !player.isFalling && !player.playerHit
-        {
-            player.playerAnimator.startIdleAnimation(player: player)
-        }
+//        if !joystickButtonClicked && !player.isFalling && !player.playerHit && !player.videoFloppyIsPlaying && !player.isCharging
+//        {
+//            player.playerAnimator.startIdleAnimation(player: player)
+//        }
         
         if(player.isJumping)
         {
-            player.maxJump = 220
+//            player.maxJump = 220
             player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
             player.playerAnimator.startJumpAnimation(player: player)
             DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
@@ -333,12 +333,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             print("sto morendo")
             player.playerAnimator.startDeathAnimation(player: player)
         }
-        
-//        if player.isCharging
-//        {
-//            player.playerAnimator.startChargeAnimation(player: player)
-//        }
-        
     }
     
     //MARK: - didBegin
