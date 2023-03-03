@@ -220,6 +220,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     player.lightButtonClicked = true
                     player.lightIsOn = true
                     player.timerNode.isPaused = false
+//                    player.playerAnimator.resetAnimationAfterTurnOnLight(player: player)
+                    player.hitAfterTurnOnLight()
                 }
                 else
                 {
@@ -277,7 +279,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 //        light2.falloff = light.falloff
         
-        if(player.lightIsOn && !player.videoFloppyIsPlaying)
+        if(player.lightIsOn && !player.videoFloppyIsPlaying && !player.isCharging)
         {
             if(!enemy.isInLife)
             {

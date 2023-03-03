@@ -119,7 +119,6 @@ class PlayerAnimator
     {
         let hit = SKAction.animate(with: playerAnimHit, timePerFrame: 0.09)
         player.sprite.run(SKAction.repeatForever(hit), withKey: "PlayerHitAnimation")
-        print("animation")
     }
     
     func startIdleAnimation(player: Player)
@@ -132,5 +131,25 @@ class PlayerAnimator
     {
         let charge = SKAction.animate(with: playerChargeAnimation, timePerFrame: 0.06)
         player.sprite.run(SKAction.repeatForever(charge), withKey: "PlayerChargeAnimation")
+    }
+    
+    func resetAnimationAfterTurnOnLight(player: Player)
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
+        {
+            player.playerAnimator.startHitAnimation(player: player)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3)
+        {
+            player.sprite.removeAllActions()
+            if(joystickButtonClicked)
+            {
+                player.playerAnimator.startRunningAnimation(player: player)
+            }
+           else
+            {
+               player.playerAnimator.startIdleAnimation(player: player)
+           }
+        }
     }
 }

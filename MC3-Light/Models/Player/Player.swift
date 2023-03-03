@@ -156,8 +156,8 @@ class Player
             {
                 playerDeath()
             }
-            if(time % 1 == 0)
-            {
+//            if(time % 1 == 0)
+//            {
                 light.falloff = light.falloff + 0.2
                 progressBar.updateProgressBar(time: CGFloat(time))
                 if time <= 10
@@ -174,22 +174,19 @@ class Player
                             playGlitchVideo()
                         }
                     }
-                }
+//                }
             }
         }
     }
     
     func removeLife(light: SKLightNode)
     {
-        if(!videoFloppyIsPlaying)
+        if(!videoFloppyIsPlaying && !isCharging)
         {
             time -= 5
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
-            {
-                self.playerAnimator.startHitAnimation(player: self)
-            }
         }
     }
+    
     
     func chargingPlayer()
     {
@@ -242,6 +239,23 @@ class Player
     {
         self.videoGlitchIsPlaying = false
         self.videoToPlay.removeFromParent()
+    }
+    
+    func hitAfterTurnOnLight()
+    {
+        self.playerAnimator.startHitAnimation(player: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+        {
+            if(joystickButtonClicked)
+            {
+                self.playerAnimator.startRunningAnimation(player: self)
+            }
+            else
+            {
+                self.playerAnimator.startIdleAnimation(player: self)
+            }
+           
+        }
     }
 
 //    func playerWin()

@@ -114,7 +114,6 @@ class Enemy: Trigger, Updatable {
             {
                 player.playerAnimator.startIdleAnimation(player: player)
             }
-           
         }
     }
     
