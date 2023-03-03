@@ -187,33 +187,6 @@ class Player
         }
     }
     
-    
-    func chargingPlayer()
-    {
-        sprite.removeAllActions()
-        playerAnimator.startChargeAnimation(player: self)
-        isCharging = true
-        chargingBite = SKAudioNode(fileNamed: "charge.wav")
-        isCharging = true
-        timerNode.isPaused = false
-        scene.addChild(chargingBite)
-        time = 30
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.5)
-        {
-            if(self.lightIsOn)
-            {
-                self.timerNode.isPaused = false
-                self.sprite.removeAllActions()
-            }
-            self.chargingBite.run(SKAction.stop())
-            self.isCharging = false
-            self.chargingBite.removeFromParent()
-            self.light.falloff = 0.1
-            self.light.lightColor = .white
-            self.isCharging = false
-        }
-    }
-    
     func playerDeath()
     {
         let transition = SKTransition.fade(with: .black, duration: 1)
@@ -243,21 +216,64 @@ class Player
     
     func hitAfterTurnOnLight()
     {
-        self.playerAnimator.startHitAnimation(player: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+        if(!self.isCharging && !self.videoFloppyIsPlaying)
         {
-            if(joystickButtonClicked)
+            self.playerAnimator.startHitAnimation(player: self)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1)
             {
-                self.playerAnimator.startRunningAnimation(player: self)
+                if(joystickButtonClicked)
+                {
+                    self.playerAnimator.startRunningAnimation(player: self)
+                }
+                else
+                {
+                    self.playerAnimator.startIdleAnimation(player: self)
+                }
             }
-            else
-            {
-                self.playerAnimator.startIdleAnimation(player: self)
-            }
-           
         }
     }
+    
+    func chargingPlayer()
+    {
+        if(!self.isCharging && !self.videoFloppyIsPlaying)
+        {
+            self.canMove = false
+            self.isCharging = true
+            self.playerAnimator.startChargeAnimation(player: self)
+            chargingBite = SKAudioNode(fileNamed: "charge.wav")
+            
+             timerNode.isPaused = false
+             scene.addChild(chargingBite)
+             time = 30
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3)
+            {
+                if(self.lightIsOn)
+                {
+                    self.timerNode.isPaused = false
+                }
+                self.chargingBite.run(SKAction.stop())
+                self.isCharging = false
+                self.chargingBite.removeFromParent()
+                self.light.falloff = 0.1
+                self.light.lightColor = .white
+                self.isCharging = false
+                
+                if(joystickButtonClicked)
+                {
+                    self.playerAnimator.startRunningAnimation(player: self)
+                }
+                else
+                {
+                    self.playerAnimator.startIdleAnimation(player: self)
+                }
+                self.canMove = true
+            }
 
+        }
+    }
+    
+    
 //    func playerWin()
 //    {
 //        let transition = SKTransition.fade(with: .black, duration: 1)

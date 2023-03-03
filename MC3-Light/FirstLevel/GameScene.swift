@@ -191,13 +191,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                 {
                     if(!player.isCharging)
                     {
-                        player.canMove = false
-                        print(player.canMove)
                         player.chargingPlayer()
                     }
                 }
                 // Quando effettivamente effettua il salto
-                if(!player.isFalling && !player.nearBoxCharge && player.canJump)
+                if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy)
                 {
                     player.isJumping = true
                     player.isFalling = true
@@ -237,10 +235,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     //MARK: - touchesEnded
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5)
-        {
-            self.player.canMove = true
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5)
+//        {
+//            self.player.canMove = true
+//        }
     }
     
     
@@ -308,11 +306,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             enemy.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         }
 
-        // Controllo per interrompere l'animazione di camminata dal JOYSTICK
-//        if !joystickButtonClicked && !player.isFalling && !player.playerHit && !player.videoFloppyIsPlaying && !player.isCharging
-//        {
-//            player.playerAnimator.startIdleAnimation(player: player)
-//        }
+//         Controllo per interrompere l'animazione di camminata dal JOYSTICK
+        if(!joystickButtonClicked && !player.isFalling && !player.playerHit && !player.isCharging)
+        {
+            player.playerAnimator.startIdleAnimation(player: player)
+        }
         
         if(player.isJumping)
         {
