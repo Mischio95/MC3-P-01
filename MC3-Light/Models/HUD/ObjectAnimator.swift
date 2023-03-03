@@ -22,6 +22,12 @@ class ObjectAnimator
     var animationAction: SKAction!
     var soundToPlay = SKAudioNode()
     var soundName: String = ""
+    
+    var gasNode: SKSpriteNode!
+    var gasNodeAnimation: SKAction!
+    
+    var waterGreenNode: SKSpriteNode!
+    var waterGreenNodeAnimation: SKAction!
 
     func setupAnimatorPlayerMainMenu(scene : SKScene)
     {
@@ -36,6 +42,22 @@ class ObjectAnimator
         endGameSceneNode = (scene.childNode(withName: "EndGameSceneNode") as? SKSpriteNode)!
         animationEndGameSceneNode = SKAction(named: "EndGame")
         endGameSceneNode.run(animationEndGameSceneNode)
+    }
+    
+    func setupAnimatorGas(scene: SKScene, nodeNameInTheScene: String)
+    {
+        gasNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
+        gasNode.lightingBitMask = 1
+        gasNodeAnimation = SKAction(named: "TuboConFumo")
+        gasNode.run(gasNodeAnimation)
+    }
+    
+    func setupAnimatorWaterGreen(scene: SKScene, nodeNameInTheScene: String)
+    {
+        waterGreenNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
+        waterGreenNode.lightingBitMask = 1
+        waterGreenNodeAnimation = SKAction(named: "WaterGreen")
+        waterGreenNode.run(waterGreenNodeAnimation)
     }
 }
 

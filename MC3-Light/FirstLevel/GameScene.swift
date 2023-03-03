@@ -44,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var background: SKSpriteNode!
     var progressBar = ProgressBar()
     var objectAnimator = WaterPipe()
+    var objectAnimatorScene = ObjectAnimator()
     var bottonClicked = true
     
     private var updatables = [Updatable]()
@@ -142,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         // VIDEO TUTORIAL
         
-        floppyDisk1.sprite.position.x = player.sprite.position.x - 500
+        floppyDisk1.sprite.position.x = player.sprite.position.x - 3000
         floppyDisk1.sprite.position.y = player.sprite.position.y - 70
         addChild(floppyDisk1.sprite)
         
@@ -155,6 +156,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        initGround()
        initBackground()
        initLight()
+       initGasObjectScene()
+       initWaterGreenScene()
        lightSprite?.position.y = player.sprite.position.y
        lightSprite?.position.x = player.sprite.position.x
         
@@ -483,20 +486,39 @@ extension GameScene
     fileprivate func initBackground()
     {
         backgroundColor = SKColor.black
-        backgroundGameScene1.setupBackground(scene: self, nameBackground: "backgroundGrandeSfondo1")
-//        backgroundGameScene2.setupForeground(scene: self, nameBackground: "backgroundGrandeSfondo2")
+        
+        for index in 0..<2
+        {
+            backgroundGameScene1.setupBackground(scene: self, nameBackground: "backgroundGrandeSfondo\(index)")
+        }
     }
     
     fileprivate func initGround()
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<11
+        for index in 0..<16
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
        
         
+    }
+    
+    fileprivate func initGasObjectScene()
+    {
+        for index in 0..<4
+        {
+            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
+        }
+    }
+    
+    fileprivate func initWaterGreenScene()
+    {
+        for index in 0..<8
+        {
+            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
+        }
     }
     
     //MARK: Light
