@@ -31,7 +31,7 @@ class SetupMap
     func setupGround(scene: SKScene, nameGround: String)
     {
         ground = (scene.childNode(withName: nameGround) as? SKSpriteNode)
-        let groundBoxCollision = CGSize(width: ground!.size.width, height: ground.size.height-40)
+        let groundBoxCollision = CGSize(width: ground!.size.width, height: ground.size.height-50)
         ground.physicsBody = SKPhysicsBody(rectangleOf: groundBoxCollision)
         ground.name = "ground"
         ground.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.groundCategory
