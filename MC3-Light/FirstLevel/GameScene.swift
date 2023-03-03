@@ -144,9 +144,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         floppyDisk1.sprite.position.x = player.sprite.position.x - 500
         floppyDisk1.sprite.position.y = player.sprite.position.y - 55
-        
         addChild(floppyDisk1.sprite)
-
+        
         // GESTIONE LUCI
        _screenH = view.frame.height
        _screenW = view.frame.width
@@ -196,24 +195,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                         player.chargingPlayer()
                     }
                 }
-                // Caso in cui premo il bottone jump vicino alla scala
-                if (player.nearLadder)
-                {
-                    print("nearLadder")
-                }
                 // Quando effettivamente effettua il salto
-                else if(!player.isFalling && !player.nearBoxCharge)
+                if(!player.isFalling && !player.nearBoxCharge && player.canJump)
                 {
                     player.isJumping = true
                     player.isFalling = true
                 }
-                else if(player.nearFloppy)
+                
+                if(player.nearFloppy)
                 {
                     floppyDisk1.videoToPlay.position = CGPoint(x: player.sprite.position.x, y:player.sprite.position.y)
                     floppyDisk1.videoToPlay.zPosition = 100
                     addChild(floppyDisk1.videoToPlay)
 //                    floppyDisk1.videoToPlay.play()
-                    floppyDisk1.playFloppyVideo()
+                    floppyDisk1.playFloppyVideo(scene: self, player: player, playerController: playerController)
+                    
                 }
             }
             
@@ -279,7 +275,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         lightSprite?.position.x = player.sprite.position.x
 
-        
+//        light2.falloff = light.falloff
         
         if(player.lightIsOn)
         {
@@ -399,6 +395,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
 //            secondBody.collisionBitMask = 0
 //            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+            player.canJump = false
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
             print(player.nearFloppy)
@@ -472,10 +469,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
-////            player.nearFloppy = false
-//            secondBody.collisionBitMask = Utilities.CollisionBitMask.floppyDiskCategory
-//            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+            player.canJump = true
             playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearFloppy = false
         }
@@ -523,7 +517,7 @@ extension GameScene
         light2.position = .zero
         light2.falloff = 1
         light2.ambientColor = _ambientColor!
-        light2.lightColor = .black
+        light2.lightColor = .red
         
         lightSprite?.addChild(light)
 //        lightSprite?.addChild(light2)

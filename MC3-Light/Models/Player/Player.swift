@@ -12,6 +12,7 @@ import SpriteKit
 class Player
 {
     
+    
     var videoToPlay: SKVideoNode = SKVideoNode()
     var videoIsPlaying: Bool = false
     
@@ -44,6 +45,7 @@ class Player
     var maxJump: Float = 0
     var canMove: Bool = true
     let velocityMultiplier: CGFloat = 0.08
+    var canJump = true
   
     //Sounds
     var chargingBite = SKAudioNode(fileNamed: "Charging.mp3")
@@ -68,6 +70,8 @@ class Player
     var scene = SKScene()
     var light = SKLightNode()
     var progressBar = ProgressBar()
+    var lightRed = SKLightNode()
+    
     
     init(sprite: SKSpriteNode, size: CGSize, scene: SKScene, progressBar: ProgressBar, light: SKLightNode)
     {
@@ -83,6 +87,7 @@ class Player
         self.progressBar = progressBar
         self.light = light
         setup()
+//        setupNewLight()
     }
     
     func setup()
@@ -97,6 +102,13 @@ class Player
         self.sprite.physicsBody?.restitution = 0.0;
         self.sprite.physicsBody?.linearDamping = 0.0;
         self.sprite.physicsBody?.angularDamping = 0.0;
+    }
+    
+    func setupNewLight()
+    {
+        lightRed.position = light.position
+        lightRed.falloff = light.falloff
+        lightRed.lightColor = .red
     }
     
     func hitAnimation(progressBar : ProgressBar)
@@ -142,6 +154,7 @@ class Player
                 progressBar.updateProgressBar(time: CGFloat(time))
                 if time <= 10
                 {
+                    light.lightColor = UIColor(red: 112, green: 23, blue: 4, alpha: 0.02)
                     if time % 3 == 0
                     {
                         if !videoIsPlaying
@@ -160,7 +173,7 @@ class Player
     func removeLife(light: SKLightNode)
     {
         time -= 5
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
         {
             self.playerAnimator.startHitAnimation(player: self)
         }
@@ -183,6 +196,7 @@ class Player
             self.isCharging = false
             self.chargingBite.removeFromParent()
             self.light.falloff = 0.1
+            self.light.lightColor = .white
         }
     }
     

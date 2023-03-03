@@ -31,20 +31,27 @@ class FloppyDisk: Trigger
         sprite.zPosition = 1
     }
     
-    func playFloppyVideo()
+    func playFloppyVideo(scene: SKScene, player: Player, playerController: PlayerController)
     {
         self.videoIsPlaying = true
         self.videoToPlay.play()
-        self.videoToPlay.zPosition = 1000
         DispatchQueue.main.asyncAfter(deadline: .now() + 6)
         {
             self.stopFloppyVideo()
         }
+        
+        player.canJump = true
+        playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
+        player.nearFloppy = false
+        
+        
     }
     
     func stopFloppyVideo()
     {
         videoIsPlaying = false
         self.videoToPlay.removeFromParent()
+        sprite.removeFromParent()
+        
     }
 }
