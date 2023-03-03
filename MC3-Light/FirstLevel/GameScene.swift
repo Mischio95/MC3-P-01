@@ -277,7 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 //        light2.falloff = light.falloff
         
-        if(player.lightIsOn)
+        if(player.lightIsOn && !player.videoFloppyIsPlaying)
         {
             if(!enemy.isInLife)
             {

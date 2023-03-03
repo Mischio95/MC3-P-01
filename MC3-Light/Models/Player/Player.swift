@@ -14,7 +14,8 @@ class Player
     var playerStar: SKNode!
     var imDeathing = false
     var videoToPlay: SKVideoNode = SKVideoNode()
-    var videoIsPlaying: Bool = false
+    var videoGlitchIsPlaying: Bool = false
+    var videoFloppyIsPlaying: Bool = false
     
     var sprite: SKSpriteNode
     var size: CGSize
@@ -147,7 +148,7 @@ class Player
             progressBar.startPlayerIdleAnimationProgressBar()
         }
         
-        if(!isCharging)
+        if(!isCharging && !videoFloppyIsPlaying)
         {
             time -= 1
 //            print("Time: \(time)")
@@ -166,7 +167,7 @@ class Player
 
                     if time % 3 == 0
                     {
-                        if !videoIsPlaying
+                        if !videoGlitchIsPlaying
                         {
                             videoToPlay = SKVideoNode(fileNamed: "glitch4.mov")
                             scene.addChild(videoToPlay)
@@ -180,10 +181,13 @@ class Player
     
     func removeLife(light: SKLightNode)
     {
-        time -= 5
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
+        if(!videoFloppyIsPlaying)
         {
-            self.playerAnimator.startHitAnimation(player: self)
+            time -= 5
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)
+            {
+                self.playerAnimator.startHitAnimation(player: self)
+            }
         }
     }
     
@@ -224,7 +228,7 @@ class Player
         self.videoToPlay.play()
         self.videoToPlay.zPosition = self.sprite.zPosition + 10
         self.videoToPlay.position = self.sprite.position
-        self.videoIsPlaying = true
+        self.videoGlitchIsPlaying = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
         {
             self.stopGlitchVideo()
@@ -233,7 +237,7 @@ class Player
     
     func stopGlitchVideo()
     {
-        self.videoIsPlaying = false
+        self.videoGlitchIsPlaying = false
         self.videoToPlay.removeFromParent()
     }
 
