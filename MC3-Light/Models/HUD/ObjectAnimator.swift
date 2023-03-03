@@ -10,6 +10,12 @@ import SpriteKit
 
 class ObjectAnimator
 {
+    var waterNode: SKSpriteNode!
+    var wateAnimation: SKAction!
+    
+    var waterNodeCascata: SKSpriteNode!
+    var waterCascataAnimation: SKAction!
+    
     //MARK: MAIN MENU
     var animationPlayerMainMenu: SKAction!
     var playerMainMenu: SKSpriteNode!
@@ -58,6 +64,22 @@ class ObjectAnimator
         waterGreenNode.lightingBitMask = 1
         waterGreenNodeAnimation = SKAction(named: "WaterGreen")
         waterGreenNode.run(waterGreenNodeAnimation)
+    }
+    
+    func setupWater(scene: SKScene, nodeNameInTheScene: String)
+    {
+        waterNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
+        waterNode.lightingBitMask = 1
+        wateAnimation = SKAction(named: "Water")
+        waterNode.run(wateAnimation)
+    }
+    
+    func setupWaterCascata(scene: SKScene, nodeNameInTheScene: String)
+    {
+        waterNodeCascata = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
+        waterNodeCascata.lightingBitMask = 1
+        waterCascataAnimation = SKAction(named: "WaterCascata")
+        waterNodeCascata.run(waterCascataAnimation)
     }
 }
 

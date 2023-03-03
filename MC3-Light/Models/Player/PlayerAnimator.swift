@@ -74,23 +74,38 @@ class PlayerAnimator
     
     private var playerDeathAnimation: [SKTexture]
     {
-        return[playerDeathAtlas.textureNamed(""),
-               playerDeathAtlas.textureNamed(""),
-               playerDeathAtlas.textureNamed(""),
-               playerDeathAtlas.textureNamed(""),
-               playerDeathAtlas.textureNamed("")]
+        return[playerDeathAtlas.textureNamed("PlayerDeath1"),
+               playerDeathAtlas.textureNamed("PlayerDeath2"),
+               playerDeathAtlas.textureNamed("PlayerDeath3"),
+               playerDeathAtlas.textureNamed("PlayerDeath4"),
+               playerDeathAtlas.textureNamed("PlayerDeath5"),
+               playerDeathAtlas.textureNamed("PlayerDeath6"),
+               playerDeathAtlas.textureNamed("PlayerDeath7"),
+               playerDeathAtlas.textureNamed("PlayerDeath8")]
+    }
+    
+    private var playerChargeAtlas: SKTextureAtlas
+    {
+        return SKTextureAtlas(named: "PlayerCharge")
+    }
+    
+    private var playerChargeAnimation: [SKTexture]
+    {
+        return[playerChargeAtlas.textureNamed("PlayerCharge1"),
+               playerChargeAtlas.textureNamed("PlayerCharge2"),
+               playerChargeAtlas.textureNamed("PlayerCharge3")]
     }
 
-    func starRunningAnimation(player: Player)
+    func startRunningAnimation(player: Player)
     {
         let move = SKAction.animate(with: playerAnimMove, timePerFrame: 0.19)
         player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerMoveAnimation")
         animRunning = true
     }
     
-    func starDeathAnimation(player: Player)
+    func startDeathAnimation(player: Player)
     {
-        let move = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.2)
+        let move = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.1)
         player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerDeathAnimation")
     }
     
@@ -111,5 +126,11 @@ class PlayerAnimator
     {
         let idle = SKAction.animate(with: playerIdleAnimation, timePerFrame: 0.14)
         player.sprite.run(SKAction.repeatForever(idle), withKey: "PlayerIdleAnimation")
+    }
+    
+    func startChargeAnimation(player: Player)
+    {
+        let move = SKAction.animate(with: playerChargeAnimation, timePerFrame: 0.14)
+        player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerChargeAnimation")
     }
 }

@@ -108,7 +108,7 @@ class Enemy: Trigger, Updatable {
             player.canMove = true
             if(joystickButtonClicked)
             {
-                player.playerAnimator.starRunningAnimation(player: player)
+                player.playerAnimator.startRunningAnimation(player: player)
             }
             else
             {

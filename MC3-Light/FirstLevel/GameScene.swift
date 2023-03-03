@@ -47,6 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var objectAnimatorScene = ObjectAnimator()
     var bottonClicked = true
     
+    
     private var updatables = [Updatable]()
     
     var cameraNode = SKCameraNode()
@@ -156,6 +157,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        initLight()
        initGasObjectScene()
        initWaterGreenScene()
+       initCascataGameScene()
+        
        lightSprite?.position.y = player.sprite.position.y + 50
        lightSprite?.position.x = player.sprite.position.x
         
@@ -328,6 +331,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerDeath()
         }
         
+        if player.isCharging
+        {
+            player.playerAnimator.startChargeAnimation(player: player)
+        }
+        
+        if player.imDeathing
+        {
+            player.playerAnimator.startDeathAnimation(player: player)
+        }
     }
     
     //MARK: - didBegin
@@ -360,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.isFalling = false
             if joystickButtonClicked
             {
-                player.playerAnimator.starRunningAnimation(player: player)
+                player.playerAnimator.startRunningAnimation(player: player)
             }
         }
         
@@ -397,7 +409,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //            secondBody.collisionBitMask = 0
 //            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             player.canJump = false
-            playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
+            playerController.touchJump.texture = SKTexture(imageNamed: "mano")
             player.nearFloppy = true
             print(player.nearFloppy)
         }
@@ -514,9 +526,17 @@ extension GameScene
     
     fileprivate func initWaterGreenScene()
     {
-        for index in 0..<9
+        for index in 0..<8
         {
             objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
+        }
+    }
+    
+    fileprivate func initCascataGameScene()
+    {
+        for index in 0..<2
+        {
+            objectAnimator.setupWaterCascata(scene: self, nodeNameInTheScene: "waterFall\(index)")
         }
     }
     
@@ -671,7 +691,7 @@ extension GameScene
                         DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
                         {
                             print("I'm moving")
-                            self.player.playerAnimator.starRunningAnimation(player: self.player)
+                            self.player.playerAnimator.startRunningAnimation(player: self.player)
                         }
                     }
                     if (data.velocity.x < 0)

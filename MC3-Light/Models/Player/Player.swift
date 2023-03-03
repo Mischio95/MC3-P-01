@@ -11,9 +11,8 @@ import SpriteKit
 
 class Player
 {
-    
     var playerStar: SKNode!
-    
+    var imDeathing = false
     var videoToPlay: SKVideoNode = SKVideoNode()
     var videoIsPlaying: Bool = false
     
@@ -190,6 +189,7 @@ class Player
     
     func chargingPlayer()
     {
+        isCharging = true
         chargingBite = SKAudioNode(fileNamed: "charge.wav")
         isCharging = true
         timerNode.isPaused = false
@@ -206,19 +206,17 @@ class Player
             self.chargingBite.removeFromParent()
             self.light.falloff = 0.1
             self.light.lightColor = .white
+            self.isCharging = false
         }
     }
     
     func playerDeath()
     {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5)
-//        {
-//            self.playerAnimator.starDeathAnimation(player: self)
-//        }
+        imDeathing = true
         let transition = SKTransition.fade(with: .black, duration: 1)
         let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
         restartScene.scaleMode = .aspectFill
-        scene.view?.presentScene(restartScene, transition: transition)
+        self.scene.view?.presentScene(restartScene, transition: transition)
     }
     
     func playGlitchVideo()
