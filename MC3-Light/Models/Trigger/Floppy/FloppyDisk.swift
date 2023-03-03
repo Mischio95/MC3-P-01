@@ -36,18 +36,15 @@ class FloppyDisk: Trigger
     
     func playFloppyVideo(scene: SKScene, player: Player, playerController: PlayerController)
     {
+        player.canMove = false
         self.videoIsPlaying = true
         self.videoToPlay.play()
         player.videoFloppyIsPlaying = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 16)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5)
         {
+            
             self.stopFloppyVideo(player: player)
         }
-        
-        player.canJump = true
-        playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
-        player.nearFloppy = false
-       
     }
     
     func stopFloppyVideo(player: Player)
@@ -56,5 +53,6 @@ class FloppyDisk: Trigger
         self.videoToPlay.removeFromParent()
         sprite.removeFromParent()
         player.videoFloppyIsPlaying = false
+        player.canMove = true
     }
 }
