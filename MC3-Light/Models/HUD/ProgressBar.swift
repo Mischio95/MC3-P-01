@@ -14,6 +14,7 @@ class ProgressBar: SKNode
     private var progress = CGFloat(29)
     private var maxProgress = CGFloat(29)
     private var maxProgressBarWidth = CGFloat(0)
+    var videoIsPlaying: Bool = false
     
     private var progressBar = SKSpriteNode()
     private var progressBarContainer = SKSpriteNode()
@@ -21,7 +22,7 @@ class ProgressBar: SKNode
     private let progressTexture = SKTexture(imageNamed: "progressResize")
     private let progressTextureContainer = SKTexture(imageNamed: "progressContainer")
     
-    private let video = SKVideoNode(fileNamed: "Comp_1_1.mov")
+    private var video = SKVideoNode(fileNamed: "Comp-1_4.mov")
     
     private var sceneFrame = CGRect()
     
@@ -86,13 +87,9 @@ class ProgressBar: SKNode
         progressBar.anchorPoint = CGPoint(x: 0, y: 0.5)
         progressBar.zPosition = 100
         
-        video.size.width = sceneFrame.width * 0.2
-        video.size.height = sceneFrame.height * 0.047
-        video.anchorPoint = CGPoint(x: 0, y: 0.5)
-        video.zPosition = progressBar.zPosition + 1
+       
         
-        progressBar.addChild(video)
-        video.play()
+//        progressBar.addChild(video)
         //        updateColorBar()
         
         addChild(progressBar)
@@ -105,6 +102,28 @@ class ProgressBar: SKNode
         if time <= 0 { return }
         progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
         video.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
+        
+        if(!videoIsPlaying)
+        {
+            videoIsPlaying = true
+            
+            video = SKVideoNode(fileNamed: "Comp-1_4.mov")
+            video.size.width = progressBar.size.width
+            video.size.height = progressBar.size.height
+            video.anchorPoint = CGPoint(x: 0, y: 0.5)
+            video.zPosition = progressBar.zPosition + 1
+            progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
+            video.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
+            progressBar.addChild(video)
+            video.play()
+           
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+            {
+                self.video.removeFromParent()
+                self.videoIsPlaying = false
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder)
