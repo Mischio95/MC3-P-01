@@ -142,8 +142,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         // VIDEO TUTORIAL
         
-        floppyDisk1.sprite.position.x = player.sprite.position.x - 3000
-        floppyDisk1.sprite.position.y = player.sprite.position.y - 70
+        floppyDisk1.sprite.position.x = player.sprite.position.x - 100
+        floppyDisk1.sprite.position.y = player.sprite.position.y 
         addChild(floppyDisk1.sprite)
         
         // GESTIONE LUCI

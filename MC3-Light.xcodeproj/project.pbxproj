@@ -11,6 +11,7 @@
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
 		83A6AA2029B22FB8007B1716 /* Comp-1_4.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */; };
+		83A6AA2329B24B36007B1716 /* FloppyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6AA2229B24B36007B1716 /* FloppyAnimator.swift */; };
 		83E44A6829ACFE0F00D3BD73 /* FloppyDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */; };
 		83E44A6D29AD305C00D3BD73 /* floppy-1.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83E44A6C29AD305C00D3BD73 /* floppy-1.mov */; };
 		83FA7C0C29A7A08F0064F8DC /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA7C0B29A7A08F0064F8DC /* Enemy.swift */; };
@@ -90,6 +91,7 @@
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Comp-1_4.mov"; sourceTree = "<group>"; };
+		83A6AA2229B24B36007B1716 /* FloppyAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloppyAnimator.swift; sourceTree = "<group>"; };
 		83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloppyDisk.swift; sourceTree = "<group>"; };
 		83E44A6C29AD305C00D3BD73 /* floppy-1.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "floppy-1.mov"; sourceTree = "<group>"; };
 		83FA7C0B29A7A08F0064F8DC /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -216,6 +218,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		83A6AA2129B24B19007B1716 /* Floppy */ = {
+			isa = PBXGroup;
+			children = (
+				83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */,
+				83A6AA2229B24B36007B1716 /* FloppyAnimator.swift */,
+			);
+			path = Floppy;
+			sourceTree = "<group>";
+		};
 		A71F12E629A53BBB00665582 /* FirstLevel */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,10 +351,10 @@
 		A7ED434C29AE795D00EDA732 /* Trigger */ = {
 			isa = PBXGroup;
 			children = (
+				83A6AA2129B24B19007B1716 /* Floppy */,
 				833785C129A5854D00DE5263 /* Trigger.swift */,
 				83FA7C0B29A7A08F0064F8DC /* Enemy.swift */,
 				83FA7C0F29A7A2B70064F8DC /* PickupItem.swift */,
-				83E44A6729ACFE0F00D3BD73 /* FloppyDisk.swift */,
 			);
 			path = Trigger;
 			sourceTree = "<group>";
@@ -553,6 +564,7 @@
 				A7AE5C5329A3C2F6002FDAEB /* GameViewController.swift in Sources */,
 				A76F4E4029AAA093008F9A05 /* Utilities.swift in Sources */,
 				A7ED434B29AE795200EDA732 /* ObjectAnimator.swift in Sources */,
+				83A6AA2329B24B36007B1716 /* FloppyAnimator.swift in Sources */,
 				83A1574629A4002A009C0537 /* Platform.swift in Sources */,
 				A76F4E3329AA56C8008F9A05 /* MainMenu.swift in Sources */,
 				A7ACB0D629AD4FD400A5000D /* PlayerAnimator.swift in Sources */,

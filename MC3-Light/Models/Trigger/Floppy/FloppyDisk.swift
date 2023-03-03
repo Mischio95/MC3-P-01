@@ -12,6 +12,7 @@ class FloppyDisk: Trigger
 {
     var videoToPlay = SKVideoNode()
     var videoIsPlaying: Bool = false
+    var floppyAnimator = FloppyAnimator()
     
     init(sprite: SKSpriteNode, size: CGSize, videoToPlay:SKVideoNode)
     {
@@ -20,6 +21,7 @@ class FloppyDisk: Trigger
         self.sprite.isHidden = false
         self.videoToPlay = videoToPlay
         setup()
+        floppyAnimator.startFloppyAnimation(floppy: self)
     }
     
     override func setup()
@@ -51,6 +53,5 @@ class FloppyDisk: Trigger
         videoIsPlaying = false
         self.videoToPlay.removeFromParent()
         sprite.removeFromParent()
-        
     }
 }
