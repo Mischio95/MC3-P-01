@@ -24,7 +24,7 @@ class FloppyDisk: Trigger
     
     override func setup()
     {
-        sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width + 100, height: sprite.size.height + 100))
+        sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width + 10, height: sprite.size.height + 10))
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.soundTriggerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
