@@ -43,8 +43,6 @@ class FloppyDisk: Trigger
         player.canJump = true
         playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
         player.nearFloppy = false
-        
-        
     }
     
     func stopFloppyVideo()
