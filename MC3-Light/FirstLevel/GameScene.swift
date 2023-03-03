@@ -47,7 +47,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var objectAnimatorScene = ObjectAnimator()
     var bottonClicked = true
     
-    
     private var updatables = [Updatable]()
     
     var cameraNode = SKCameraNode()
@@ -157,8 +156,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        initLight()
        initGasObjectScene()
        initWaterGreenScene()
-       initCascataGameScene()
-        
        lightSprite?.position.y = player.sprite.position.y + 50
        lightSprite?.position.x = player.sprite.position.x
         
@@ -331,15 +328,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerDeath()
         }
         
-        if player.isCharging
-        {
-            player.playerAnimator.startChargeAnimation(player: player)
-        }
-        
         if player.imDeathing
         {
+            print("sto morendo")
             player.playerAnimator.startDeathAnimation(player: player)
         }
+        
     }
     
     //MARK: - didBegin
@@ -409,7 +403,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //            secondBody.collisionBitMask = 0
 //            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             player.canJump = false
-            playerController.touchJump.texture = SKTexture(imageNamed: "mano")
+            playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
             print(player.nearFloppy)
         }
@@ -532,11 +526,11 @@ extension GameScene
         }
     }
     
-    fileprivate func initCascataGameScene()
+    fileprivate func initWater()
     {
-        for index in 0..<2
+        for index in 0..<5
         {
-            objectAnimator.setupWaterCascata(scene: self, nodeNameInTheScene: "waterFall\(index)")
+            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "water\(index)")
         }
     }
     

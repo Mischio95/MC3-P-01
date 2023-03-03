@@ -105,7 +105,7 @@ class PlayerAnimator
     
     func startDeathAnimation(player: Player)
     {
-        let move = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.1)
+        let move = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.09)
         player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerDeathAnimation")
     }
     
