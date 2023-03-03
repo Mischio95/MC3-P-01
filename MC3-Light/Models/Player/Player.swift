@@ -193,6 +193,8 @@ class Player
     
     func chargingPlayer()
     {
+        sprite.removeAllActions()
+        playerAnimator.startChargeAnimation(player: self)
         isCharging = true
         chargingBite = SKAudioNode(fileNamed: "charge.wav")
         isCharging = true
@@ -204,6 +206,7 @@ class Player
             if(self.lightIsOn)
             {
                 self.timerNode.isPaused = false
+                self.sprite.removeAllActions()
             }
             self.chargingBite.run(SKAction.stop())
             self.isCharging = false
