@@ -96,7 +96,7 @@ class Player
         newPosition = sprite.position
         sprite.physicsBody = SKPhysicsBody(rectangleOf: playerBoxCollision)
         sprite.physicsBody?.isDynamic = true
-        sprite.physicsBody?.density = 2
+        sprite.physicsBody?.density = 2.1
         sprite.physicsBody?.allowsRotation = false
         self.sprite.physicsBody?.friction = 0.0;
         self.sprite.physicsBody?.restitution = 0.0;
@@ -154,7 +154,9 @@ class Player
                 progressBar.updateProgressBar(time: CGFloat(time))
                 if time <= 10
                 {
-                    light.lightColor = UIColor(red: 112, green: 23, blue: 4, alpha: 0.02)
+//                    light.lightColor = UIColor(red: 112, green: 23, blue: 4, alpha: 0.02)
+                      light.lightColor = UIColor(red: 60, green: 1, blue: 1, alpha: 0.013)
+
                     if time % 3 == 0
                     {
                         if !videoIsPlaying
@@ -202,6 +204,10 @@ class Player
     
     func playerDeath()
     {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5)
+//        {
+//            self.playerAnimator.starDeathAnimation(player: self)
+//        }
         let transition = SKTransition.fade(with: .black, duration: 1)
         let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
         restartScene.scaleMode = .aspectFill

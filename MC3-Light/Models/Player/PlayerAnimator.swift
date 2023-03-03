@@ -10,6 +10,7 @@ import SpriteKit
 
 class PlayerAnimator
 {
+        
     private var playerJumpAtlas: SKTextureAtlas
     {
         return SKTextureAtlas(named: "Player Jump")
@@ -64,12 +65,33 @@ class PlayerAnimator
                playerHitAtlas.textureNamed("Robot_danno_4"),
                playerHitAtlas.textureNamed("Robot_danno_5")]
     }
+    
+    
+    private var playerDeathAtlas: SKTextureAtlas
+    {
+        return SKTextureAtlas(named: "PlayerDeath")
+    }
+    
+    private var playerDeathAnimation: [SKTexture]
+    {
+        return[playerDeathAtlas.textureNamed(""),
+               playerDeathAtlas.textureNamed(""),
+               playerDeathAtlas.textureNamed(""),
+               playerDeathAtlas.textureNamed(""),
+               playerDeathAtlas.textureNamed("")]
+    }
 
     func starRunningAnimation(player: Player)
     {
         let move = SKAction.animate(with: playerAnimMove, timePerFrame: 0.19)
         player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerMoveAnimation")
         animRunning = true
+    }
+    
+    func starDeathAnimation(player: Player)
+    {
+        let move = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.2)
+        player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerDeathAnimation")
     }
     
     func startJumpAnimation(player: Player)

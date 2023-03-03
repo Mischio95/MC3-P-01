@@ -158,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        initLight()
        initGasObjectScene()
        initWaterGreenScene()
-       lightSprite?.position.y = player.sprite.position.y
+       lightSprite?.position.y = player.sprite.position.y + 50
        lightSprite?.position.x = player.sprite.position.x
         
         if(player.lightIsOn)
@@ -286,7 +286,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                 enemy.spawnEnemy(scene: self)
             }
             
-            lightSprite?.position.y = player.sprite.position.y
+            lightSprite?.position.y = player.sprite.position.y + 50
+            
             enemy.enemyFollowThePlayer(player: player)
         }
         else
@@ -315,7 +316,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(player.isJumping)
         {
-            player.maxJump = 230
+            player.maxJump = 220
             player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
             player.playerAnimator.startJumpAnimation(player: player)
             DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
@@ -548,11 +549,11 @@ extension GameScene
     {
         if(player.lightIsOn)
         {
-            self.lightSprite?.position.y = self.player.sprite.position.y
+            self.lightSprite?.position.y = self.player.sprite.position.y + 50
         }
         else
         {
-            self.lightSprite?.position.y = self.player.sprite.position.y + 1000
+            self.lightSprite?.position.y = self.player.sprite.position.y + 3000
 
         }
     }
