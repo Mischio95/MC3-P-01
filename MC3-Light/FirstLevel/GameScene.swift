@@ -497,7 +497,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<16
+        for index in 0..<18
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
@@ -515,7 +515,7 @@ extension GameScene
     
     fileprivate func initWaterGreenScene()
     {
-        for index in 0..<8
+        for index in 0..<9
         {
             objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
         }
