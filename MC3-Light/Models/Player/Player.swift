@@ -12,6 +12,7 @@ import SpriteKit
 class Player
 {
     
+    var playerStar: SKNode!
     
     var videoToPlay: SKVideoNode = SKVideoNode()
     var videoIsPlaying: Bool = false
@@ -77,31 +78,40 @@ class Player
     {
         self.sprite = sprite
         self.size = size
-        self.sprite.name = "player"
-        self.sprite.zPosition = 100
-//        self.sprite.zRotation = -1.5708
-        self.sprite.lightingBitMask = 1
-        self.sprite.zPosition = 2
-        self.sprite.position = CGPoint(x: -960, y: -168)
+        self.sprite.position = CGPoint(x: -960, y: -176)
         self.scene = scene
         self.progressBar = progressBar
         self.light = light
         setup()
 //        setupNewLight()
     }
+   
     
+    //MARK: - setup PLAYER
     func setup()
     {
         let playerBoxCollision = CGSize(width: self.size.width - 40, height: self.size.height)
+        playerStar = scene.childNode(withName: "PlayerStart")
+        playerStar.isHidden = true
+        sprite.position = playerStar.position
         newPosition = sprite.position
+        sprite.size = size
         sprite.physicsBody = SKPhysicsBody(rectangleOf: playerBoxCollision)
         sprite.physicsBody?.isDynamic = true
         sprite.physicsBody?.density = 2.1
         sprite.physicsBody?.allowsRotation = false
+        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.name = "player"
+        sprite.zPosition = 100
+//        self.sprite.zRotation = -1.5708
+        self.sprite.lightingBitMask = 1
         self.sprite.physicsBody?.friction = 0.0;
         self.sprite.physicsBody?.restitution = 0.0;
         self.sprite.physicsBody?.linearDamping = 0.0;
         self.sprite.physicsBody?.angularDamping = 0.0;
+        scene.addChild(sprite)
     }
     
     func setupNewLight()
@@ -123,8 +133,6 @@ class Player
             progressBar.startPlayerIdleAnimationProgressBar()
         }
     }
-    
-    
     
     func countdownPlayerPointLightBattery()
     {
@@ -170,7 +178,6 @@ class Player
             }
         }
     }
-    
     
     func removeLife(light: SKLightNode)
     {

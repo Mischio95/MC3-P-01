@@ -117,8 +117,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         // setup - Ground and Invisible Ground
 
-        
-        setupPlayer()
         setupChargingBox()
         setupItem()
         setupWinBox()
@@ -606,19 +604,6 @@ extension GameScene
 
 extension GameScene
 {
-    
-    //MARK: - setup PLAYER
-    func setupPlayer()
-    {
-        player.sprite.size = player.size
-        playerStart = self.childNode(withName: "PlayerStart") as? SKSpriteNode
-        playerStart?.isHidden = true
-        player.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.playerCategory
-        player.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-        player.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-        self.lastUpdateTime = 0
-        addChild(player.sprite)
-    }
     
     //MARK: - setup CHARGING BOX
     func setupChargingBox()
