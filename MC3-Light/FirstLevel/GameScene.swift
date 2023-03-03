@@ -497,7 +497,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<18
+        for index in 0..<22
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }

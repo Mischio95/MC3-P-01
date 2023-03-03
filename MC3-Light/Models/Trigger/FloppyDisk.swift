@@ -29,6 +29,7 @@ class FloppyDisk: Trigger
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.soundTriggerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.zPosition = 1
+        sprite.lightingBitMask = 1
     }
     
     func playFloppyVideo(scene: SKScene, player: Player, playerController: PlayerController)
