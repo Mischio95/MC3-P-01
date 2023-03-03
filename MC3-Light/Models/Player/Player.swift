@@ -215,12 +215,8 @@ class Player
         let transition = SKTransition.fade(with: .black, duration: 1)
         let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
         restartScene.scaleMode = .aspectFill
+        self.scene.view?.presentScene(restartScene, transition: transition)
         
-        playerAnimator.startDeathAnimation(player: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1)
-        {
-            self.scene.view?.presentScene(restartScene, transition: transition)
-        }
     }
     
     func playGlitchVideo()
@@ -241,4 +237,12 @@ class Player
         self.videoToPlay.removeFromParent()
     }
 
+//    func playerWin()
+//    {
+//        let transition = SKTransition.fade(with: .black, duration: 1)
+//        let restartScene = SKScene(fileNamed: "WinGame") as! WinGame
+//        restartScene.scaleMode = .aspectFill
+//        self.scene.view?.presentScene(restartScene, transition: transition)
+//
+//    }
 }

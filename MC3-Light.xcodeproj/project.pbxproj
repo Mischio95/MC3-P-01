@@ -19,6 +19,8 @@
 		A7393D3D29A6723300C47229 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3A29A6723300C47229 /* lightbulb.png */; };
 		A7393D3E29A6723300C47229 /* cicciobello.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3B29A6723300C47229 /* cicciobello.png */; };
 		A7393D3F29A6723300C47229 /* ciccio.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3C29A6723300C47229 /* ciccio.png */; };
+		A76EF63229B25A190051B693 /* WinGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EF63129B25A190051B693 /* WinGame.swift */; };
+		A76EF63429B25A700051B693 /* WinGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = A76EF63329B25A700051B693 /* WinGame.sks */; };
 		A76F4E2E29AA4257008F9A05 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F4E2D29AA4257008F9A05 /* PlayerController.swift */; };
 		A76F4E3329AA56C8008F9A05 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F4E3229AA56C8008F9A05 /* MainMenu.swift */; };
 		A76F4E3529AA56E4008F9A05 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = A76F4E3429AA56E4008F9A05 /* MainMenu.sks */; };
@@ -99,6 +101,8 @@
 		A7393D3A29A6723300C47229 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
 		A7393D3B29A6723300C47229 /* cicciobello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cicciobello.png; sourceTree = "<group>"; };
 		A7393D3C29A6723300C47229 /* ciccio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciccio.png; sourceTree = "<group>"; };
+		A76EF63129B25A190051B693 /* WinGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinGame.swift; sourceTree = "<group>"; };
+		A76EF63329B25A700051B693 /* WinGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WinGame.sks; sourceTree = "<group>"; };
 		A76F4E2D29AA4257008F9A05 /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		A76F4E3229AA56C8008F9A05 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		A76F4E3429AA56E4008F9A05 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
@@ -254,6 +258,15 @@
 			path = Sprites;
 			sourceTree = "<group>";
 		};
+		A76EF63029B25A070051B693 /* WinGame */ = {
+			isa = PBXGroup;
+			children = (
+				A76EF63129B25A190051B693 /* WinGame.swift */,
+				A76EF63329B25A700051B693 /* WinGame.sks */,
+			);
+			path = WinGame;
+			sourceTree = "<group>";
+		};
 		A76F4E3129AA569F008F9A05 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +333,7 @@
 				A76F4E3129AA569F008F9A05 /* MainMenu */,
 				A71F12E629A53BBB00665582 /* FirstLevel */,
 				A76F4E3629AA6B06008F9A05 /* Game Over */,
+				A76EF63029B25A070051B693 /* WinGame */,
 				A7AE5C5229A3C2F6002FDAEB /* GameViewController.swift */,
 				A7AE5C4A29A3C2F6002FDAEB /* AppDelegate.swift */,
 				A7AE5C4E29A3C2F6002FDAEB /* Actions.sks */,
@@ -511,6 +525,7 @@
 				A79D515E29AF4CE200DB59A5 /* EndGameGlitch.wav in Resources */,
 				A76F4E3C29AA6F1C008F9A05 /* GAMEOVER.png in Resources */,
 				A7919A7A29B17FB40089C118 /* Pipe_verticale.png in Resources */,
+				A76EF63429B25A700051B693 /* WinGame.sks in Resources */,
 				A7ED435E29AEA76D00EDA732 /* waterEffect.wav in Resources */,
 				83E44A6D29AD305C00D3BD73 /* floppy-1.mov in Resources */,
 				A7919A6A29B113830089C118 /* riempimento.png in Resources */,
@@ -562,6 +577,7 @@
 				A7AE5C5129A3C2F6002FDAEB /* GameScene.swift in Sources */,
 				A76F4E2E29AA4257008F9A05 /* PlayerController.swift in Sources */,
 				A7AE5C5329A3C2F6002FDAEB /* GameViewController.swift in Sources */,
+				A76EF63229B25A190051B693 /* WinGame.swift in Sources */,
 				A76F4E4029AAA093008F9A05 /* Utilities.swift in Sources */,
 				A7ED434B29AE795200EDA732 /* ObjectAnimator.swift in Sources */,
 				83A6AA2329B24B36007B1716 /* FloppyAnimator.swift in Sources */,
@@ -753,7 +769,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = W76A7456VL;
+				DEVELOPMENT_TEAM = U2Y4UHZS79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "P-01";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -783,7 +799,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = W76A7456VL;
+				DEVELOPMENT_TEAM = U2Y4UHZS79;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "P-01";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

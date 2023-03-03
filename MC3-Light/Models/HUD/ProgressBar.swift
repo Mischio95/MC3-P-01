@@ -100,7 +100,7 @@ class ProgressBar: SKNode
     func updateProgressBar(time: CGFloat)
     {
         if time <= 0 { return }
-        progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
+//        progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
         video.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
         
         if(!videoIsPlaying)
@@ -114,8 +114,8 @@ class ProgressBar: SKNode
             video.zPosition = progressBar.zPosition + 1
             progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
             video.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
-            progressBar.addChild(video)
-            video.play()
+//            progressBar.addChild(video)
+//            video.play()
            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1)

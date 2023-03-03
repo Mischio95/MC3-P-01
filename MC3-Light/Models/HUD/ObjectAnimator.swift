@@ -72,6 +72,7 @@ class ObjectAnimator
         waterNode.lightingBitMask = 1
         wateAnimation = SKAction(named: "Water")
         waterNode.run(wateAnimation)
+        waterNode.color = .black
     }
     
     func setupWaterCascata(scene: SKScene, nodeNameInTheScene: String)
@@ -80,6 +81,7 @@ class ObjectAnimator
         waterNodeCascata.lightingBitMask = 1
         waterCascataAnimation = SKAction(named: "WaterCascata")
         waterNodeCascata.run(waterCascataAnimation)
+        waterNode.color = .black
     }
 }
 

@@ -334,6 +334,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerAnimator.startDeathAnimation(player: player)
         }
         
+        if player.isCharging
+        {
+            player.playerAnimator.startChargeAnimation(player: player)
+        }
+        
     }
     
     //MARK: - didBegin

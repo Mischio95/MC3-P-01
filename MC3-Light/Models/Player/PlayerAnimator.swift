@@ -105,8 +105,8 @@ class PlayerAnimator
     
     func startDeathAnimation(player: Player)
     {
-        let move = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.09)
-        player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerDeathAnimation")
+        let death = SKAction.animate(with: playerDeathAnimation, timePerFrame: 0.09)
+        player.sprite.run(SKAction.repeatForever(death), withKey: "PlayerDeathAnimation")
     }
     
     func startJumpAnimation(player: Player)
@@ -130,7 +130,7 @@ class PlayerAnimator
     
     func startChargeAnimation(player: Player)
     {
-        let move = SKAction.animate(with: playerChargeAnimation, timePerFrame: 0.14)
-        player.sprite.run(SKAction.repeatForever(move), withKey: "PlayerChargeAnimation")
+        let charge = SKAction.animate(with: playerChargeAnimation, timePerFrame: 0.06)
+        player.sprite.run(SKAction.repeatForever(charge), withKey: "PlayerChargeAnimation")
     }
 }
