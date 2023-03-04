@@ -35,4 +35,20 @@ struct Utilities
         static let floppyDiskCategory: UInt32 = 9
         static let soundTriggerCategory: UInt32 = 10
     }
+    
+    struct ZIndex
+    {
+        static let background: Int = 0
+        static let layer1: Int = 1
+        static let layer2: Int = 2
+        static let layer3: Int = 3
+        static let ground: Int = 4
+        static let sceneObject: Int = 5
+        static let enemy: Int = 6
+        static let player: Int = 7
+        static let layer8: Int = 8
+        static let layer9: Int = 9
+        static let layer10: Int = 10
+        static let HUD: Int = 100
+    }
 }
