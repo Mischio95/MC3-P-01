@@ -503,6 +503,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerHit = false
             player.playerAnimator.startIdleAnimation(player: player)
         }
+    
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
             player.canJump = true
@@ -686,7 +687,7 @@ extension GameScene
     //MARK: - setup WINBOX
     func setupWinBox()
     {
-        winBox.sprite.size = CGSize(width: 100, height: 100)
+        winBox.sprite.size = CGSize(width: 230, height: 230)
         winBox.sprite.zPosition = player.sprite.zPosition
         winBox.sprite.physicsBody!.isDynamic = false
         winBox.sprite.physicsBody?.affectedByGravity = false
@@ -697,6 +698,7 @@ extension GameScene
         winBox.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         winBox.setNumberOkKey(numberOfKey: 1)
         questItem.setGUID(GUID: winBox.GUID)
+        winBox.sprite.zPosition = player.sprite.zPosition - 1
         addChild(winBox.sprite)
     }
     
