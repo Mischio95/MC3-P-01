@@ -99,7 +99,7 @@ class Player
         sprite.size = size
         sprite.physicsBody = SKPhysicsBody(rectangleOf: playerBoxCollision)
         sprite.physicsBody?.isDynamic = true
-        sprite.physicsBody?.density = 2.1
+//        sprite.physicsBody?.density = 2.1
         sprite.physicsBody?.allowsRotation = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
@@ -238,6 +238,10 @@ class Player
     
     func chargingPlayer()
     {
+        if(self.isFalling || self.isJumping)
+        {
+            self.sprite.removeAllActions()
+        }
         if(!self.isCharging && !self.videoFloppyIsPlaying)
         {
             self.canMove = false
@@ -274,7 +278,14 @@ class Player
             }
         }
     }
+
+
     
+    func Jump()
+    {
+        self.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(self.maxJump)))
+            self.playerAnimator.startJumpAnimation(player: self)
+    }
     
 //    func playerWin()
 //    {

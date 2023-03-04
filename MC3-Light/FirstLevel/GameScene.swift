@@ -178,7 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     //MARK: - touchesBegan
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if chooseVibration {
+        if chooseVibration && !player.isCharging && !player.videoFloppyIsPlaying {
             let impactMed = UIImpactFeedbackGenerator(style: .soft)
             impactMed.impactOccurred()
         }
@@ -186,28 +186,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         let location = touch.location(in: self)
             if(atPoint(location).name == "jump")
             {
-                // Caso in cui premo il bottone jump vicino alla boxCharge
-                if(player.nearBoxCharge)
+                if(!player.isCharging && !player.videoFloppyIsPlaying)
                 {
-                    if(!player.isCharging)
+//                    player.sprite.removeAllActions()
+                    // Caso in cui premo il bottone jump vicino alla boxCharge
+                    if(player.nearBoxCharge && !player.videoFloppyIsPlaying && !player.nearFloppy)
                     {
-                        player.chargingPlayer()
+                        if(!player.isCharging)
+                        {
+                            player.chargingPlayer()
+                        }
+                    }
+                    // Quando effettivamente effettua il salto
+                    if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy)
+                    {
+                        player.isJumping = true
+                        player.isFalling = true
+                        player.Jump()
+                    }
+                    
+                    if(!player.nearBoxCharge && !player.videoFloppyIsPlaying && player.nearFloppy)
+                    {
+                        floppyDisk1.videoToPlay.position = CGPoint(x: player.sprite.position.x, y:player.sprite.position.y)
+                        floppyDisk1.videoToPlay.zPosition = 100
+                        addChild(floppyDisk1.videoToPlay)
+    //                    floppyDisk1.videoToPlay.play()
+                        floppyDisk1.playFloppyVideo(scene: self, player: player, playerController: playerController)
                     }
                 }
-                // Quando effettivamente effettua il salto
-                if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy)
+                else
                 {
-                    player.isJumping = true
-                    player.isFalling = true
-                }
-                
-                if(player.nearFloppy)
-                {
-                    floppyDisk1.videoToPlay.position = CGPoint(x: player.sprite.position.x, y:player.sprite.position.y)
-                    floppyDisk1.videoToPlay.zPosition = 100
-                    addChild(floppyDisk1.videoToPlay)
-//                    floppyDisk1.videoToPlay.play()
-                    floppyDisk1.playFloppyVideo(scene: self, player: player, playerController: playerController)
+                    if(player.isCharging)
+                    {
+                        player.playerAnimator.startChargeAnimation(player: player)
+                    }
                 }
             }
             
@@ -312,16 +324,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerAnimator.startIdleAnimation(player: player)
         }
         
-        if(player.isJumping)
-        {
-//            player.maxJump = 220
-            player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
-            player.playerAnimator.startJumpAnimation(player: player)
-            DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
-            {
-                self.player.isJumping = false
-            }
-        }
+//        if(player.isJumping)
+//        {
+////            player.maxJump = 220
+//            player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
+//            player.playerAnimator.startJumpAnimation(player: player)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
+//            {
+//                self.player.isJumping = false
+//            }
+//        }
         
         if(player.time <= 0)
         {
@@ -357,7 +369,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             firstBody.contactTestBitMask = Utilities.CollisionBitMask.chargingBoxCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearBoxCharge = true
-            print("contact")
+            player.canJump = false
+            player.sprite.removeAllActions()
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "ground")
@@ -454,6 +467,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearBoxCharge = false
+            player.canJump = true
             print("contact")
         }
         
@@ -679,7 +693,7 @@ extension GameScene
                     let newPosition = CGPoint(x: self.player.sprite.position.x + (data.velocity.x * self.player.velocityMultiplier),y: self.player.sprite.position.y)
                     self.player.sprite.position = newPosition
             
-                    if joystickButtonClicked && !animRunning && !player.playerHit
+                    if joystickButtonClicked && !animRunning && !player.playerHit && !player.videoFloppyIsPlaying && !player.isCharging
                     {
                         DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
                         {
