@@ -20,7 +20,7 @@ class ProgressBar: SKNode
     private var progressBarContainer = SKSpriteNode()
     
     private let progressTexture = SKTexture(imageNamed: "progressResize")
-    private let progressTextureContainer = SKTexture(imageNamed: "progressContainer")
+    private let progressTextureContainer = SKTexture(imageNamed: "hud vuoto")
     
     private var video = SKVideoNode(fileNamed: "Comp-1_4.mov")
     
