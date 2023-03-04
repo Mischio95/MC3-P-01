@@ -23,6 +23,8 @@ class Player
     var normalTexture: SKTexture!
     var newPosition = CGPoint.zero
     
+    var inventory = PlayerInventory()
+    
    //Life
     var maxCharge: Float = 100
     var currentCharge: Float = 30
@@ -32,8 +34,9 @@ class Player
     
     //Collision
     var nearBoxCharge:Bool = false
-    var nearLadder:Bool = false
+    var nearWinBox:Bool = false
     var nearFloppy: Bool = false
+    var nearPickup: Bool = false
    
     //Animation
     var playerAnimator = PlayerAnimator()
@@ -105,7 +108,7 @@ class Player
         sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.name = "player"
-        sprite.zPosition = 100
+        sprite.zPosition = Utilities.ZIndex.player
 //        self.sprite.zRotation = -1.5708
         self.sprite.lightingBitMask = 1
         self.sprite.physicsBody?.friction = 0.0;

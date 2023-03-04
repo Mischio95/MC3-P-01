@@ -44,16 +44,7 @@ class ChargingBox: Trigger {
     }
 }
 
-class WinBox: Trigger
-{
-    
-    override init(sprite: SKSpriteNode, size: CGSize)
-    {
-        super .init(sprite: sprite, size: size)
-        self.sprite.name = "winBox"
-        setup()
-    }
-}
+
 
 class Bullet: Trigger
 {
@@ -109,4 +100,3 @@ class EnemyViewTrigger: Trigger
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
     }
 }
-

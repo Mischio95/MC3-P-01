@@ -57,14 +57,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     
     private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+  
+    var questItem = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
+    
         
     
     // TRIGGER
 //    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
     var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
-    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
+//    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
+//    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
     var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
     
     // GROUND
@@ -118,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // setup - Ground and Invisible Ground
 
         setupChargingBox()
-        setupItem()
+//        setupItem()
         setupWinBox()
        
         player.timerNode.isHidden = true
@@ -131,7 +133,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     //MARK: - didMove
     override func didMove(to view: SKView) {
         
+       
+//        self.physicsWorld.gravity = CGVectorMake(0, -30)
         self.physicsWorld.contactDelegate = self
+        
         joystickButtonClicked = false
         animRunning = false
         
@@ -174,6 +179,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(progressBar)
         
         enemy.setupSprite(scene: self)
+        
+        
+        //pickup
+        addChild(questItem.sprite)
+        questItem.floppyAnimator.startFloppyAnimation(sprite: questItem.sprite)
+        questItem.sprite.position.x = player.sprite.position.x + 400
+        questItem.sprite.position.y = player.sprite.position.y + 50
     }
 
     //MARK: - touchesBegan
@@ -198,14 +210,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                         }
                     }
                     // Quando effettivamente effettua il salto
-                    if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy)
+                    if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy && !player.nearWinBox)
                     {
                         player.isJumping = true
                         player.isFalling = true
                         player.Jump()
                     }
                     
-                    if(!player.nearBoxCharge && !player.videoFloppyIsPlaying && player.nearFloppy)
+                    if(!player.nearBoxCharge && player.nearFloppy && !player.nearWinBox)
                     {
                         floppyDisk1.videoToPlay.position = CGPoint(x: player.sprite.position.x, y:player.sprite.position.y)
                         floppyDisk1.videoToPlay.zPosition = 100
@@ -213,6 +225,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     //                    floppyDisk1.videoToPlay.play()
                         floppyDisk1.playFloppyVideo(scene: self, player: player, playerController: playerController)
                     }
+                    if(!player.nearBoxCharge && !player.nearFloppy && player.nearWinBox)
+                    {
+                        winBox.openGate(player: player)
+                    }
+                    
                 }
                 else
                 {
@@ -370,7 +387,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearBoxCharge = true
             player.canJump = false
-            player.sprite.removeAllActions()
+//            player.sprite.removeAllActions()
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "ground")
@@ -382,13 +399,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             }
         }
         
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "item")
-        {
-            self.item.sprite.removeFromParent()
-        }
+//        if(firstBody.node?.name == "player" && secondBody.node?.name == "item")
+//        {
+//            self.item.sprite.removeFromParent()
+//        }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "winBox")
         {
+            player.nearWinBox = true
             print("HO FOTTUTAMENTE VINTO")
         }
         
@@ -441,7 +459,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             secondBody.collisionBitMask = 0
 //            enemy.isChasingPlayer = true
         }
-
+        
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
+        {
+            player.playerDeath()
+            
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "pickup")
+        {
+            player.inventory.addItemInInventory(itemToAdd: questItem)
+        }
     }
     
     //MARK: - didEnd
@@ -468,7 +495,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearBoxCharge = false
             player.canJump = true
-            print("contact")
+            
         }
         
         else if(firstBody.node?.name == "player" && secondBody.node?.name == "enemy")
@@ -476,22 +503,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerHit = false
             player.playerAnimator.startIdleAnimation(player: player)
         }
-        
-        else if(firstBody.node?.name == "player" && secondBody.node?.name == "enemyView")
-        {
-            secondBody.collisionBitMask = Utilities.CollisionBitMask.enemyViewCategory
-            firstBody.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-//            touchJump.texture = SKTexture(imageNamed: "jump")
-//            player.nearBoxCharge = false
-            print("i don't see you")
-//            enemy.isChasingPlayer = false
-        }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
             player.canJump = true
             playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
             player.nearFloppy = false
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "winBox")
+        {
+            player.nearWinBox = false
         }
     }
 }
@@ -649,19 +669,19 @@ extension GameScene
     }
     
     //MARK: - setup ITEM
-    func setupItem()
-    {
-        item.sprite.size = CGSize(width: 200, height: 200)
-        item.sprite.zPosition = player.sprite.zPosition + 6
-        item.sprite.physicsBody!.isDynamic = true
-        item.sprite.position.y = player.sprite.position.y
-        item.sprite.position.x = player.sprite.position.x + 400
-        item.sprite.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.itemCatecory
-        item.sprite.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-        item.sprite.physicsBody?.affectedByGravity = false
-        item.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-//        addChild(item.sprite)
-    }
+//    func setupItem()
+//    {
+//        item.sprite.size = CGSize(width: 200, height: 200)
+//        item.sprite.zPosition = player.sprite.zPosition + 6
+//        item.sprite.physicsBody!.isDynamic = true
+//        item.sprite.position.y = player.sprite.position.y
+//        item.sprite.position.x = player.sprite.position.x + 400
+//        item.sprite.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.itemCatecory
+//        item.sprite.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+//        item.sprite.physicsBody?.affectedByGravity = false
+//        item.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+////        addChild(item.sprite)
+//    }
     
     //MARK: - setup WINBOX
     func setupWinBox()
@@ -670,12 +690,14 @@ extension GameScene
         winBox.sprite.zPosition = player.sprite.zPosition
         winBox.sprite.physicsBody!.isDynamic = false
         winBox.sprite.physicsBody?.affectedByGravity = false
-        winBox.sprite.position.y = player.sprite.position.y - 100
-        winBox.sprite.position.x = player.sprite.position.x + 600
+        winBox.sprite.position.y = player.sprite.position.y + 50
+        winBox.sprite.position.x = player.sprite.position.x - 600
         winBox.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.winBoxCategory
         winBox.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
         winBox.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-//        addChild(winBox.sprite)
+        winBox.setNumberOkKey(numberOfKey: 1)
+        questItem.setGUID(GUID: winBox.GUID)
+        addChild(winBox.sprite)
     }
     
     //MARK: - setup JOYSTICK

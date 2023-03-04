@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class FloppyDisk: Trigger
+class FloppyDisk: Item
 {
     var videoToPlay = SKVideoNode()
     var videoIsPlaying: Bool = false
@@ -16,15 +16,17 @@ class FloppyDisk: Trigger
     
     init(sprite: SKSpriteNode, size: CGSize, videoToPlay:SKVideoNode)
     {
-        super .init(sprite: sprite, size: size)
+        super .init(sprite: sprite, size: size, quantity: 1)
         self.sprite.name = "floppy"
         self.sprite.isHidden = false
         self.videoToPlay = videoToPlay
-        setup()
-        floppyAnimator.startFloppyAnimation(floppy: self)
+        self.quantity = quantity
+        self.itemType = Utilities.ItemType.floppy
+        setupPhyisics()
+        floppyAnimator.startFloppyAnimation(sprite: self.sprite)
     }
     
-    override func setup()
+    override func setupPhyisics()
     {
         sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width + 10, height: sprite.size.height + 10))
         sprite.physicsBody?.isDynamic = false

@@ -34,21 +34,29 @@ struct Utilities
         static let invisibleGroundCategory: UInt32 = 8
         static let floppyDiskCategory: UInt32 = 9
         static let soundTriggerCategory: UInt32 = 10
+        static let pickupItemCategory: UInt32 = 11
     }
     
     struct ZIndex
     {
-        static let background: Int = 0
-        static let layer1: Int = 1
-        static let layer2: Int = 2
-        static let layer3: Int = 3
-        static let ground: Int = 4
-        static let sceneObject: Int = 5
-        static let enemy: Int = 6
-        static let player: Int = 7
-        static let layer8: Int = 8
-        static let layer9: Int = 9
-        static let layer10: Int = 10
-        static let HUD: Int = 100
+        static let background: CGFloat = CGFloat(0)
+        static let layer1: CGFloat = CGFloat(1)
+        static let layer2: CGFloat = CGFloat(2)
+        static let layer3: CGFloat = CGFloat(3)
+        static let ground: CGFloat = CGFloat(4)
+        static let sceneObject: CGFloat = CGFloat(5)
+        static let enemy: CGFloat = CGFloat(6)
+        static let player: CGFloat = CGFloat(7)
+        static let layer8: CGFloat = CGFloat(8)
+        static let layer9: CGFloat = CGFloat(9)
+        static let layer10: CGFloat = CGFloat(10)
+        static let HUD: CGFloat = CGFloat(100)
+    }
+    
+    enum ItemType
+    {
+        case defaultItem
+        case floppy
+        case questItem
     }
 }

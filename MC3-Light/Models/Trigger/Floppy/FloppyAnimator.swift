@@ -44,10 +44,10 @@ class FloppyAnimator
                floppyAtlas.textureNamed("00025")]
     }
     
-    func startFloppyAnimation(floppy: FloppyDisk)
+    func startFloppyAnimation(sprite: SKSpriteNode)
     {
         let move = SKAction.animate(with: floppyAnimations, timePerFrame: 0.14)
-        floppy.sprite.run(SKAction.repeatForever(move), withKey: "floppyAnimation")
+        sprite.run(SKAction.repeatForever(move), withKey: "floppyAnimation")
     }
 }
 
