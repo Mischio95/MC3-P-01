@@ -16,6 +16,7 @@ class Player
     var videoToPlay: SKVideoNode = SKVideoNode()
     var videoGlitchIsPlaying: Bool = false
     var videoFloppyIsPlaying: Bool = false
+    var damageLight: Bool = false
     
     var sprite: SKSpriteNode
     var size: CGSize
@@ -216,10 +217,11 @@ class Player
     
     func hitAfterTurnOnLight()
     {
-        if(!self.isCharging && !self.videoFloppyIsPlaying)
+        if(!self.isCharging && !self.videoFloppyIsPlaying && !self.playerHit)
         {
+            self.damageLight = true
             self.playerAnimator.startHitAnimation(player: self)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
             {
                 if(joystickButtonClicked)
                 {
@@ -229,6 +231,7 @@ class Player
                 {
                     self.playerAnimator.startIdleAnimation(player: self)
                 }
+                self.damageLight = false
             }
         }
     }
@@ -269,7 +272,6 @@ class Player
                 }
                 self.canMove = true
             }
-
         }
     }
     

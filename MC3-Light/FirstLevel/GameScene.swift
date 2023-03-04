@@ -307,7 +307,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
 
 //         Controllo per interrompere l'animazione di camminata dal JOYSTICK
-        if(!joystickButtonClicked && !player.isFalling && !player.playerHit && !player.isCharging)
+        if(!joystickButtonClicked && !player.isFalling && !player.playerHit && !player.isCharging && !player.damageLight)
         {
             player.playerAnimator.startIdleAnimation(player: player)
         }
