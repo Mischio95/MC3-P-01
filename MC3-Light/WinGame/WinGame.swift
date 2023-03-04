@@ -10,5 +10,12 @@ import SpriteKit
 
 class WinGame: SKScene
 {
+    var objectAnimator = ObjectAnimator()
     
+    
+    override func didMove(to view: SKView) {
+        
+        objectAnimator.setupWinGameAnimation(scene: self)
+        
+    }
 }

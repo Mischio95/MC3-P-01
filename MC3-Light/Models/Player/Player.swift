@@ -287,7 +287,7 @@ class Player
     func Jump()
     {
         self.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(self.maxJump)))
-            self.playerAnimator.startJumpAnimation(player: self)
+        self.playerAnimator.startJumpAnimation(player: self)
     }
     
 //    func playerWin()

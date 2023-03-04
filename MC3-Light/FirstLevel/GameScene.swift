@@ -542,8 +542,6 @@ extension GameScene
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
-       
-        
     }
     
     fileprivate func initGasObjectScene()

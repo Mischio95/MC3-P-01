@@ -10,6 +10,10 @@ import SpriteKit
 
 class ObjectAnimator
 {
+    
+    var winGame: SKSpriteNode!
+    var winGameAnimation: SKAction!
+    
     var waterNode: SKSpriteNode!
     var wateAnimation: SKAction!
     
@@ -40,6 +44,14 @@ class ObjectAnimator
         playerMainMenu = (scene.childNode(withName: "PlayerAnimMainMenu") as? SKSpriteNode)!
         animationPlayerMainMenu = SKAction(named: "MainMenuPlayer")
         playerMainMenu.run(animationPlayerMainMenu)
+        
+    }
+    
+    func setupWinGameAnimation(scene : SKScene)
+    {
+        winGame = (scene.childNode(withName: "WinGame") as? SKSpriteNode)!
+        winGameAnimation = SKAction(named: "WinGame")
+        winGame.run(winGameAnimation)
         
     }
     
