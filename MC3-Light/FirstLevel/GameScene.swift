@@ -78,6 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var rangedEnemy = RangedEnemy(sprite: SKSpriteNode(imageNamed: "enemyAnim1"), size: CGSize(width: 50, height: 50))
     var enemySpownPosition : SKNode!
     
+    var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
+    
     // LIGHT && color
     var _scale: CGFloat = 1.0
     var _screenH: CGFloat = 640.0
@@ -687,19 +689,33 @@ extension GameScene
     //MARK: - setup WINBOX
     func setupWinBox()
     {
-        winBox.sprite.size = CGSize(width: 230, height: 230)
+        winBox.sprite.size = CGSize(width: 50, height: 50)
         winBox.sprite.zPosition = player.sprite.zPosition
         winBox.sprite.physicsBody!.isDynamic = false
         winBox.sprite.physicsBody?.affectedByGravity = false
-        winBox.sprite.position.y = player.sprite.position.y + 50
+        winBox.sprite.position.y = player.sprite.position.y - 70
         winBox.sprite.position.x = player.sprite.position.x - 600
         winBox.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.winBoxCategory
         winBox.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
         winBox.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        winBox.sprite.zPosition = player.sprite.zPosition - 1
+        
+        
+        //SETUP GATE
         winBox.setNumberOkKey(numberOfKey: 1)
         questItem.setGUID(GUID: winBox.GUID)
-        winBox.sprite.zPosition = player.sprite.zPosition - 1
+        winBox.setGate(gate: gate, position: CGPoint(x: winBox.sprite.position.x - 150, y: winBox.sprite.position.y + 100))
+        
+//        gate.sprite.position.x = winBox.sprite.position.x - 20
+//        gate.sprite.position.y = winBox.sprite.position.y
+        
+        //Secondo te è meglio winBox.AddChild(gate.sprite)
+//        addChild(gate.sprite)
+        
         addChild(winBox.sprite)
+        addChild(winBox.gate.sprite)
+        
+        
     }
     
     //MARK: - setup JOYSTICK

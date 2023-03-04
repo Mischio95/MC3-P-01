@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		830A92B829B3B51C00929DBF /* WinBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92B729B3B51C00929DBF /* WinBox.swift */; };
+		830A92BA29B3C96300929DBF /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92B929B3C96300929DBF /* Gate.swift */; };
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
@@ -92,6 +93,7 @@
 
 /* Begin PBXFileReference section */
 		830A92B729B3B51C00929DBF /* WinBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinBox.swift; sourceTree = "<group>"; };
+		830A92B929B3C96300929DBF /* Gate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				830A92B729B3B51C00929DBF /* WinBox.swift */,
+				830A92B929B3C96300929DBF /* Gate.swift */,
 			);
 			path = WinBox;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830A92BA29B3C96300929DBF /* Gate.swift in Sources */,
 				83FA7C0C29A7A08F0064F8DC /* Enemy.swift in Sources */,
 				A7AE5C5129A3C2F6002FDAEB /* GameScene.swift in Sources */,
 				A76F4E2E29AA4257008F9A05 /* PlayerController.swift in Sources */,

@@ -10,8 +10,10 @@ import SpriteKit
 
 class WinBox: Trigger
 {
-var numberOfKey: Int = 0
-let GUID: UUID = UUID()
+    var numberOfKey: Int = 0
+    let GUID: UUID = UUID()
+    var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
+
 
     override init(sprite: SKSpriteNode, size: CGSize)
     {
@@ -23,6 +25,13 @@ let GUID: UUID = UUID()
         startIdleAnimation()
     }
 
+    func setGate(gate: Gate, position: CGPoint)
+    {
+        self.gate = gate
+        self.gate.sprite.position = position
+        self.gate.sprite.size = CGSize(width: 230, height: 230)
+        self.gate.sprite.zPosition = self.sprite.zPosition
+    }
     func setNumberOkKey(numberOfKey: Int)
     {
         self.numberOfKey = numberOfKey
@@ -40,6 +49,7 @@ let GUID: UUID = UUID()
                 {
                     print("OpenGate")
                     startOpengateAnimation()
+                    gate.startOpengateAnimation()
 //                    startEndAnimation()
                     opened = true
                 }
@@ -58,26 +68,29 @@ let GUID: UUID = UUID()
 //ANIMATION
     private var WinBoxAtlas: SKTextureAtlas
     {
-        return SKTextureAtlas(named: "WinBox")
+        return SKTextureAtlas(named: "LevettaAttivabile")
     }
     
     private var OpenAnimations: [SKTexture]
     {
-        return[WinBoxAtlas.textureNamed("WinBox1"),
-               WinBoxAtlas.textureNamed("WinBox2"),
-               WinBoxAtlas.textureNamed("WinBox3"),
-               WinBoxAtlas.textureNamed("WinBox4"),
-               WinBoxAtlas.textureNamed("WinBox5")]
+        return[WinBoxAtlas.textureNamed("LevettaAttivabile1"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile2"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile3"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile4"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile5"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile6"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile7"),
+               WinBoxAtlas.textureNamed("LevettaAttivabile8")]
     }
     
     private var IdleAnimations: [SKTexture]
     {
-        return[WinBoxAtlas.textureNamed("WinBox1")]
+        return[WinBoxAtlas.textureNamed("LevettaAttivabile1")]
     }
     
     private var endAnimations: [SKTexture]
     {
-        return[WinBoxAtlas.textureNamed("WinBox5")]
+        return[WinBoxAtlas.textureNamed("LevettaAttivabile8")]
     }
         
     func startEndAnimation()
