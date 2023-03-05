@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		830A92B829B3B51C00929DBF /* WinBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92B729B3B51C00929DBF /* WinBox.swift */; };
 		830A92BA29B3C96300929DBF /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92B929B3C96300929DBF /* Gate.swift */; };
+		830A92C029B536EC00929DBF /* Bolt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92BF29B536EC00929DBF /* Bolt.swift */; };
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
@@ -94,6 +95,7 @@
 /* Begin PBXFileReference section */
 		830A92B729B3B51C00929DBF /* WinBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinBox.swift; sourceTree = "<group>"; };
 		830A92B929B3C96300929DBF /* Gate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
+		830A92BF29B536EC00929DBF /* Bolt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolt.swift; sourceTree = "<group>"; };
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -195,6 +197,14 @@
 				830A92B929B3C96300929DBF /* Gate.swift */,
 			);
 			path = WinBox;
+			sourceTree = "<group>";
+		};
+		830A92BE29B536E400929DBF /* Bolt */ = {
+			isa = PBXGroup;
+			children = (
+				830A92BF29B536EC00929DBF /* Bolt.swift */,
+			);
+			path = Bolt;
 			sourceTree = "<group>";
 		};
 		839D259F29A8203600D47B57 /* Art */ = {
@@ -381,6 +391,7 @@
 		A7ED434C29AE795D00EDA732 /* Trigger */ = {
 			isa = PBXGroup;
 			children = (
+				830A92BE29B536E400929DBF /* Bolt */,
 				830A92B629B3B4F800929DBF /* WinBox */,
 				83A6AA2129B24B19007B1716 /* Floppy */,
 				833785C129A5854D00DE5263 /* Trigger.swift */,
@@ -604,6 +615,7 @@
 				A76F4E3329AA56C8008F9A05 /* MainMenu.swift in Sources */,
 				A7ACB0D629AD4FD400A5000D /* PlayerAnimator.swift in Sources */,
 				830A92B829B3B51C00929DBF /* WinBox.swift in Sources */,
+				830A92C029B536EC00929DBF /* Bolt.swift in Sources */,
 				833785C229A5854D00DE5263 /* Trigger.swift in Sources */,
 				83E44A6829ACFE0F00D3BD73 /* FloppyDisk.swift in Sources */,
 				A7919A6E29B119E30089C118 /* SetupMap.swift in Sources */,

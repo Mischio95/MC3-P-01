@@ -62,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
   
     var questItem = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
     
-        
+        var bolt = Bolt(sprite: SKSpriteNode(imageNamed: "Player"), quantity: 1)
     
     // TRIGGER
 //    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
@@ -473,6 +473,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             player.inventory.addItemInInventory(itemToAdd: questItem)
         }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "bolt")
+        {
+            player.inventory.addBolts(bolt: bolt)
+        }
     }
     
     //MARK: - didEnd
@@ -715,6 +719,7 @@ extension GameScene
         
         addChild(winBox.sprite)
         addChild(winBox.gate.sprite)
+        addChild(bolt.sprite)
         
         
     }

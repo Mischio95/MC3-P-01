@@ -10,6 +10,7 @@ import Foundation
 class PlayerInventory
 {
     var playerInventory: [PickupItem] = []
+    var boltAmount: Int = 0
     
     func addItemInInventory(itemToAdd: PickupItem)
     {
@@ -50,5 +51,16 @@ class PlayerInventory
                 playerInventory.remove(at: index)
             }
         }
+    }
+}
+
+extension PlayerInventory
+{
+    func addBolts(bolt: Bolt)
+    {
+        boltAmount += bolt.quantity
+        print("Numero Bolt")
+        print(boltAmount)
+        bolt.sprite.removeFromParent()
     }
 }
