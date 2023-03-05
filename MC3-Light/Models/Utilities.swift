@@ -20,6 +20,10 @@ var chooseVibration = true
  
 var timerStopped = false
 
+protocol Updatable: AnyObject {
+    func update(currentTime: Double)
+}
+
 struct Utilities
 {
     struct CollisionBitMask

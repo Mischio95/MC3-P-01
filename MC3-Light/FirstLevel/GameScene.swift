@@ -84,6 +84,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
     var merchant = Merchant()
     
+    var invisibleWall = InvisibleWall(active: true)
+    
     // LIGHT && color
     var _scale: CGFloat = 1.0
     var _screenH: CGFloat = 640.0
@@ -150,8 +152,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         camera = cameraNode
         addChild(cameraNode)
         addChild(merchant.sprite)
-        merchant.sprite.position.x = player.sprite.position.x + 500
+        
+        
+        merchant.sprite.position.x = player.sprite.position.x + 700
         merchant.sprite.position.y = player.sprite.position.y + 50
+        
+        invisibleWall.sprite.position.x = player.sprite.position.x + 400
+        invisibleWall.sprite.position.y = player.sprite.position.y
+        addChild(invisibleWall.sprite)
         
         // VIDEO TUTORIAL
         
@@ -484,8 +492,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
         {
-            print("ciao")
             merchant.sprite.physicsBody?.collisionBitMask = 0
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "invisibleWall")
+        {
+            print("Invisibile")
+            invisibleWall.sprite.physicsBody?.collisionBitMask = 0
+            invisibleWall.playerActiveWall(player: player)
         }
     }
     

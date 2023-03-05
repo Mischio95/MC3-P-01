@@ -8,10 +8,6 @@
 import Foundation
 import SpriteKit
 
-protocol Updatable: AnyObject {
-    func update(currentTime: Double)
-}
-
 class Enemy: Trigger, Updatable {
     
     var isChasingPlayer: Int = 3

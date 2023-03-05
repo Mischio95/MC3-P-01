@@ -11,6 +11,7 @@
 		830A92BA29B3C96300929DBF /* Gate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92B929B3C96300929DBF /* Gate.swift */; };
 		830A92C029B536EC00929DBF /* Bolt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92BF29B536EC00929DBF /* Bolt.swift */; };
 		830A92C529B5398C00929DBF /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92C429B5398C00929DBF /* Merchant.swift */; };
+		830A92C729B54D3E00929DBF /* InvisibleWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92C629B54D3E00929DBF /* InvisibleWall.swift */; };
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
@@ -98,6 +99,7 @@
 		830A92B929B3C96300929DBF /* Gate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gate.swift; sourceTree = "<group>"; };
 		830A92BF29B536EC00929DBF /* Bolt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolt.swift; sourceTree = "<group>"; };
 		830A92C429B5398C00929DBF /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
+		830A92C629B54D3E00929DBF /* InvisibleWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleWall.swift; sourceTree = "<group>"; };
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				833785C129A5854D00DE5263 /* Trigger.swift */,
 				83FA7C0B29A7A08F0064F8DC /* Enemy.swift */,
 				83FA7C0F29A7A2B70064F8DC /* PickupItem.swift */,
+				830A92C629B54D3E00929DBF /* InvisibleWall.swift */,
 			);
 			path = Trigger;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 				A7919A6E29B119E30089C118 /* SetupMap.swift in Sources */,
 				A76F4E3829AA6B46008F9A05 /* GameOver.swift in Sources */,
 				A7C223B329A4DA2500439545 /* Player.swift in Sources */,
+				830A92C729B54D3E00929DBF /* InvisibleWall.swift in Sources */,
 				A76F4E3E29AA8D9A008F9A05 /* AnalogJosystick.swift in Sources */,
 				83FA7C1029A7A2B70064F8DC /* PickupItem.swift in Sources */,
 				A7ACB0D429AD336100A5000D /* ProgressBar.swift in Sources */,
