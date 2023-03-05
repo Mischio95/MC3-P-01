@@ -12,9 +12,9 @@ class Bolt: Item
 {
     var amount: Int = 0
     
-    init(sprite: SKSpriteNode, quantity: Int)
+    init(quantity: Int)
    {
-       super.init(sprite: sprite, size: CGSize(width: 20, height: 20), quantity: quantity)
+       super.init(sprite: SKSpriteNode(imageNamed: "bolt"), size: CGSize(width: 20, height: 20), quantity: quantity)
        self.sprite.name = "bolt"
    }
 }

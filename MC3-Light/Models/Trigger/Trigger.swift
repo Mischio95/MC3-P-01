@@ -24,7 +24,11 @@ class Trigger
     func setup()
     {
         sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
-        sprite.physicsBody?.isDynamic = true
+//        sprite.physicsBody?.isDynamic = true
+//        sprite.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: sprite.size.width + 60, height: sprite.size.width + 10))
+        sprite.physicsBody?.isDynamic = false
+        sprite.physicsBody?.allowsRotation = false
+        sprite.lightingBitMask = 1
     }
 }
 

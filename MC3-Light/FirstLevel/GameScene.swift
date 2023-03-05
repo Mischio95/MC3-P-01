@@ -62,15 +62,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
   
     var questItem = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
     
-        var bolt = Bolt(sprite: SKSpriteNode(imageNamed: "Player"), quantity: 1)
+        var bolt = Bolt(quantity: 1)
     
     // TRIGGER
 //    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
     var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
 //    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
 //    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
-    var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
     
+
+    var winBox = WinBox(sprite:SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
     // GROUND
     var groundGameScene1 = SetupMap()
     var invisibleGroundGameScene1 = SetupMap()
@@ -81,6 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var enemySpownPosition : SKNode!
     
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
+    var merchant = Merchant()
     
     // LIGHT && color
     var _scale: CGFloat = 1.0
@@ -147,6 +149,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // Camera
         camera = cameraNode
         addChild(cameraNode)
+        addChild(merchant.sprite)
+        merchant.sprite.position.x = player.sprite.position.x + 500
+        merchant.sprite.position.y = player.sprite.position.y + 50
         
         // VIDEO TUTORIAL
         
@@ -477,6 +482,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             player.inventory.addBolts(bolt: bolt)
         }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
+        {
+            print("ciao")
+            merchant.sprite.physicsBody?.collisionBitMask = 0
+        }
     }
     
     //MARK: - didEnd
@@ -521,6 +531,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "winBox")
         {
             player.nearWinBox = false
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
+        {
+            print("ciao")
+            merchant.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
         }
     }
 }

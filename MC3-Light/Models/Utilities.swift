@@ -35,6 +35,7 @@ struct Utilities
         static let floppyDiskCategory: UInt32 = 9
         static let soundTriggerCategory: UInt32 = 10
         static let pickupItemCategory: UInt32 = 11
+        static let merchantCategory: UInt32 = 12
     }
     
     struct ZIndex
