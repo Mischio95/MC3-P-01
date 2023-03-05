@@ -32,6 +32,7 @@ class WinBox: Trigger
         self.gate.sprite.size = CGSize(width: 230, height: 230)
         self.gate.sprite.zPosition = self.sprite.zPosition
     }
+    
     func setNumberOkKey(numberOfKey: Int)
     {
         self.numberOfKey = numberOfKey

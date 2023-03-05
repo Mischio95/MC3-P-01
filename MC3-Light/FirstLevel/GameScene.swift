@@ -46,6 +46,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var objectAnimator = WaterPipe()
     var objectAnimatorScene = ObjectAnimator()
     var bottonClicked = true
+    var nearWinBox = false
+    var winBoxSpown: SKNode!
     
     private var updatables = [Updatable]()
     
@@ -231,8 +233,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     {
                         winBox.openGate(player: player)
                     }
-                    
                 }
+                
                 else
                 {
                     if(player.isCharging)
@@ -546,7 +548,7 @@ extension GameScene
     
     fileprivate func initGasObjectScene()
     {
-        for index in 0..<4
+        for index in 0..<3
         {
             objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
         }
@@ -702,7 +704,8 @@ extension GameScene
         //SETUP GATE
         winBox.setNumberOkKey(numberOfKey: 1)
         questItem.setGUID(GUID: winBox.GUID)
-        winBox.setGate(gate: gate, position: CGPoint(x: winBox.sprite.position.x - 150, y: winBox.sprite.position.y + 100))
+        winBoxSpown = self.childNode(withName: "winBox")
+        winBox.setGate(gate: gate, position: winBoxSpown.position)
         
 //        gate.sprite.position.x = winBox.sprite.position.x - 20
 //        gate.sprite.position.y = winBox.sprite.position.y
