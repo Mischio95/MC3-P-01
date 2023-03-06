@@ -34,10 +34,16 @@ class Trigger
 
 class ChargingBox: Trigger {
     
-    override init(sprite: SKSpriteNode, size: CGSize) {
-        super .init(sprite: sprite, size: size)
+    var scene = SKScene()
+    var player: Player?
+    
+    init(scene: SKScene, player: Player) {
+        super .init(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
         self.sprite.name = "chargingBox"
         setup()
+        self.player = player
+        self.scene = scene
+        setupChargingBox()
     }
     
     override func setup() {
@@ -45,6 +51,22 @@ class ChargingBox: Trigger {
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.allowsRotation = false
         sprite.lightingBitMask = 1
+    }
+    
+    //MARK: - setup CHARGING BOX
+    func setupChargingBox()
+    {
+        sprite.size = CGSize(width: 220, height: 60)
+        sprite.zPosition = player!.sprite.zPosition - 1
+        sprite.physicsBody!.isDynamic = true
+        sprite.position.y = player!.sprite.position.y - 100
+        sprite.position.x = player!.sprite.position.x - 300
+        sprite.lightingBitMask = 1
+        sprite.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.chargingBoxCategory
+        sprite.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.physicsBody?.affectedByGravity = false
+        sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        scene.addChild(sprite)
     }
 }
 
