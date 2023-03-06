@@ -31,10 +31,10 @@ class WinBox: Trigger
         
         let gateBoxCollision = gate.sprite.size
         self.gate.sprite.physicsBody = SKPhysicsBody(rectangleOf: gateBoxCollision)
-        self.gate.sprite.physicsBody?.isDynamic = false
         self.gate.sprite.position = position
         self.gate.sprite.size = CGSize(width: 230, height: 230)
         self.gate.sprite.zPosition = self.sprite.zPosition
+        self.gate.sprite.physicsBody?.isDynamic = false
         self.gate.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.gateCategory
         self.gate.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         self.gate.sprite.lightingBitMask = 1

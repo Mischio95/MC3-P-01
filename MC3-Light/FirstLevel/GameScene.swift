@@ -150,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // Camera
         camera = cameraNode
         addChild(cameraNode)
-        addChild(merchant.sprite)
+//        addChild(merchant.sprite)
         
         
         merchant.sprite.position.x = player.sprite.position.x + 700
@@ -471,6 +471,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             print("esco")
             objectAnimator.handlerPlaySound(scene: self)
         }
+        
         if(firstBody.node?.name == "player" && secondBody.node?.name == "enemyView")
         {
             secondBody.collisionBitMask = 0
@@ -498,6 +499,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             print("Invisibile")
             invisibleWall.sprite.physicsBody?.collisionBitMask = 0
             invisibleWall.playerActiveWall(player: player)
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")
+        {
+            player.nearGate = true
         }
     }
     
@@ -548,6 +553,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             print("ciao")
             merchant.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
+        }
+        
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")
+        {
+            player.nearGate = false
         }
     }
 }
@@ -644,41 +654,6 @@ extension GameScene
         addChild(bullet.sprite)
         rangedEnemy.shooting(bullet: bullet, player: player.sprite)
     }
-    
-    
-    /*
-        fileprivate func addBackgroundTile(spriteFile: String) -> SKSpriteNode
-        {
-            var background:SKSpriteNode
-
-            background = SKSpriteNode(imageNamed:spriteFile);
-            background.color = _ambientColor!
-            background.colorBlendFactor = 1
-            background.zPosition = -1
-            background.alpha = 1
-            background.anchorPoint = CGPoint(x:0, y:0.5)
-            background.setScale(_scale)
-            addChild(background);
-
-            return background;
-        }
-        
-        fileprivate func addForegroundTile(spriteFile: String, normalsFile: String) -> SKSpriteNode
-        {
-            var foreground:SKSpriteNode
-            
-            foreground = SKSpriteNode(texture: SKTexture(imageNamed:spriteFile), normalMap: SKTexture(imageNamed:normalsFile));
-            foreground.lightingBitMask = 1
-            foreground.color = _ambientColor!
-            foreground.colorBlendFactor = 1
-            foreground.zPosition = -1
-            foreground.anchorPoint = CGPoint(x:0.5, y:0.5)
-            foreground.setScale(_scale * 2)
-            foreground.zPosition = player.sprite.zPosition - 10
-            addChild(foreground)
-            return foreground
-        }
-    */
 }
 
 // ------------------------------------------ MARK: - EXTENSION PER I VARI SETUP ----------------------------------------------------------------
@@ -746,7 +721,7 @@ extension GameScene
         
         addChild(winBox.sprite)
         addChild(winBox.gate.sprite)
-        addChild(bolt.sprite)
+//        addChild(bolt.sprite)
         
         
     }
@@ -787,3 +762,36 @@ extension GameScene
         }
     }
 
+/*
+    fileprivate func addBackgroundTile(spriteFile: String) -> SKSpriteNode
+    {
+        var background:SKSpriteNode
+
+        background = SKSpriteNode(imageNamed:spriteFile);
+        background.color = _ambientColor!
+        background.colorBlendFactor = 1
+        background.zPosition = -1
+        background.alpha = 1
+        background.anchorPoint = CGPoint(x:0, y:0.5)
+        background.setScale(_scale)
+        addChild(background);
+
+        return background;
+    }
+    
+    fileprivate func addForegroundTile(spriteFile: String, normalsFile: String) -> SKSpriteNode
+    {
+        var foreground:SKSpriteNode
+        
+        foreground = SKSpriteNode(texture: SKTexture(imageNamed:spriteFile), normalMap: SKTexture(imageNamed:normalsFile));
+        foreground.lightingBitMask = 1
+        foreground.color = _ambientColor!
+        foreground.colorBlendFactor = 1
+        foreground.zPosition = -1
+        foreground.anchorPoint = CGPoint(x:0.5, y:0.5)
+        foreground.setScale(_scale * 2)
+        foreground.zPosition = player.sprite.zPosition - 10
+        addChild(foreground)
+        return foreground
+    }
+*/
