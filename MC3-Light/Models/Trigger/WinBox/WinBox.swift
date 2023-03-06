@@ -15,9 +15,9 @@ class WinBox: Trigger
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
     var opened: Bool = false
 
-    override init(sprite: SKSpriteNode, size: CGSize)
+    init(numberOfKey: Int)
     {
-        super.init(sprite: sprite, size: size)
+        super.init(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
         self.sprite.name = "winBox"
 //        self.sprite.size = CGSize(width: 100, height: 100)
         

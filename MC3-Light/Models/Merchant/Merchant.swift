@@ -18,7 +18,7 @@ class Merchant: Trigger
         self.sprite.name = "merchant"
         setupPhyisics()
         self.bubbleDialogue.position.x = self.sprite.position.x - 50
-        self.bubbleDialogue.position.y = self.sprite.position.y + 100
+        self.bubbleDialogue.position.y = self.sprite.position.y + 80
         self.bubbleDialogue.zPosition = self.sprite.zPosition + 1
         self.bubbleDialogue.size = CGSize(width: 150, height: 150)
     }

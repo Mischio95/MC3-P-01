@@ -69,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
 //    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
 //    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
-    var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
+    var winBox = WinBox(numberOfKey: 3)
     var winBoxTriggerLevettaSpown: SKNode!
     // GROUND
     var groundGameScene1 = SetupMap()
@@ -154,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         
         merchant.sprite.position.x = player.sprite.position.x + 700
-        merchant.sprite.position.y = player.sprite.position.y + 50
+        merchant.sprite.position.y = player.sprite.position.y + 10
         
         invisibleWall.sprite.position.x = player.sprite.position.x + 400
         invisibleWall.sprite.position.y = player.sprite.position.y
@@ -719,7 +719,7 @@ extension GameScene
         
         
         //SETUP GATE
-        winBox.setNumberOkKey(numberOfKey: 1)
+//        winBox.setNumberOkKey(numberOfKey: 1)
         questItem.setGUID(GUID: winBox.GUID)
         winBoxSpown = self.childNode(withName: "winBox")
         winBoxTriggerLevettaSpown = self.childNode(withName: "levetta")
