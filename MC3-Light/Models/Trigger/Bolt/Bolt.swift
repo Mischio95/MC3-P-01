@@ -16,8 +16,16 @@ class Bolt: Item
    {
        super.init(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 20, height: 20), quantity: quantity)
        self.sprite.name = "bolt"
-       startboltAnimation()
+       setupPhyisics()
    }
+    
+    override func setupPhyisics() {
+        sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
+        sprite.physicsBody?.isDynamic = false
+        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.gateCategory
+        sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.lightingBitMask = 1
+    }
 }
 
 

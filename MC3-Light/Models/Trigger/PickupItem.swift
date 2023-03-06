@@ -15,7 +15,7 @@ class Item
     var size: CGSize
     var quantity: Int
     var isStackable: Bool = false
-    
+                                                                                    
     init(sprite: SKSpriteNode, size: CGSize, quantity: Int)
     {
         self.sprite = sprite

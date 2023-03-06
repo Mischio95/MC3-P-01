@@ -32,7 +32,6 @@ class FloppyDisk: Item
         sprite.physicsBody?.isDynamic = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.soundTriggerCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-        sprite.zPosition = 1
         sprite.lightingBitMask = 1
     }
     

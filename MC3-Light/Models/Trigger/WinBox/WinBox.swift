@@ -54,7 +54,6 @@ class WinBox: Trigger
             {
                 if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
                 {
-                    print("OpenGate")
                     startOpengateAnimation()
                     gate.startOpengateAnimation()
 //                    startEndAnimation()

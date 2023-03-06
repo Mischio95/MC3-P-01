@@ -41,6 +41,8 @@ struct Utilities
         static let pickupItemCategory: UInt32 = 11
         static let merchantCategory: UInt32 = 12
         static let gateCategory: UInt32 = 13
+        static let boltCategory: UInt32 = 14
+        
     }
     
     struct ZIndex
