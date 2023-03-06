@@ -13,6 +13,7 @@
 		830A92C529B5398C00929DBF /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92C429B5398C00929DBF /* Merchant.swift */; };
 		830A92C729B54D3E00929DBF /* InvisibleWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92C629B54D3E00929DBF /* InvisibleWall.swift */; };
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
+		8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA5D29B62AF300186F28 /* fulmine.mov */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
 		83A6AA2029B22FB8007B1716 /* Comp-1_4.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */; };
@@ -101,6 +102,7 @@
 		830A92C429B5398C00929DBF /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		830A92C629B54D3E00929DBF /* InvisibleWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleWall.swift; sourceTree = "<group>"; };
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
+		8363CA5D29B62AF300186F28 /* fulmine.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = fulmine.mov; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Comp-1_4.mov"; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 		A7ED434E29AE855900EDA732 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				8363CA5D29B62AF300186F28 /* fulmine.mov */,
 				A7919A7529B14EA60089C118 /* glitch4.mov */,
 				A7919A7329B14A100089C118 /* glitch3.mov */,
 				A7919A7129B1487E0089C118 /* glitch2.mov */,
@@ -579,6 +582,7 @@
 				A7919A6329B109E30089C118 /* charge.wav in Resources */,
 				A7919A6B29B113830089C118 /* angoloDestro.png in Resources */,
 				A79D516229AF50B800DB59A5 /* HorrorTension.wav in Resources */,
+				8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */,
 				A7919A6929B113830089C118 /* angoloSinistro.png in Resources */,
 				A7919A7229B1487E0089C118 /* glitch2.mov in Resources */,
 				A797539029AB8DC60017F34E /* groundNormal.png in Resources */,
@@ -817,7 +821,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = U2Y4UHZS79;
+				DEVELOPMENT_TEAM = W76A7456VL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "P-01";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -846,7 +850,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = U2Y4UHZS79;
+				DEVELOPMENT_TEAM = W76A7456VL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "P-01";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -22,7 +22,7 @@ class ProgressBar: SKNode
     private let progressTexture = SKTexture(imageNamed: "progressResize")
     private let progressTextureContainer = SKTexture(imageNamed: "hud vuoto")
     
-    private var video = SKVideoNode(fileNamed: "Comp-1_4.mov")
+    private var video = SKVideoNode(fileNamed: "fulmine.mov")
     
     private var sceneFrame = CGRect()
     
@@ -107,15 +107,15 @@ class ProgressBar: SKNode
         {
             videoIsPlaying = true
             
-            video = SKVideoNode(fileNamed: "Comp-1_4.mov")
+            video = SKVideoNode(fileNamed: "fulmine.mov")
             video.size.width = progressBar.size.width
             video.size.height = progressBar.size.height
             video.anchorPoint = CGPoint(x: 0, y: 0.5)
             video.zPosition = progressBar.zPosition + 1
             progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
             video.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
-//            progressBar.addChild(video)
-//            video.play()
+            progressBar.addChild(video)
+            video.play()
            
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1)
