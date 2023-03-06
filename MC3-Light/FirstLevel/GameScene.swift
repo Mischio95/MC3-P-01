@@ -375,11 +375,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if !player.lightIsOn
         {
-            questItem.sprite.isHidden = true
+            if(questItem.isInLife)
+            {
+                questItem.isInLife = false
+                questItem.sprite.removeFromParent()
+            }
         }
         else
         {
-            questItem.sprite.isHidden = false
+            if(!questItem.isInLife)
+            {
+                questItem.isInLife = true
+                addChild(questItem.sprite)
+            }
         }
     }
     
@@ -478,7 +486,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
         {
-            player.inventory.addItemInInventory(itemToAdd: questItem)
+            secondBody.collisionBitMask = 0
+            if(player.lightIsOn)
+            {
+                player.inventory.addItemInInventory(itemToAdd: questItem)
+            }
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "bolt")
         {
@@ -553,6 +565,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")
         {
             player.nearGate = false
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
+        {
+            secondBody.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
         }
     }
 }

@@ -46,7 +46,7 @@ class Item
 class PickupItem: Item
 {
     var GUID: UUID = UUID()
-    
+    var isInLife: Bool = true
     var floppyAnimator = FloppyAnimator()
     
     func setGUID(GUID: UUID)
