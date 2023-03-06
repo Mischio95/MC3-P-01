@@ -32,7 +32,6 @@ import Foundation
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
     var deltaTime: Double!
-    let light = SKLightNode()
     let light2 = SKLightNode()
     var normalPlayerTexture : SKTexture?
     var playerTexture: SKTexture?
@@ -95,7 +94,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //    var _backgroundSprite1: SKSpriteNode?
 //    var _backgroundSprite2: SKSpriteNode?
 //    var _foregroundSprite2: SKSpriteNode?
-    var _ambientColor: UIColor?
     var lightSprite: SKSpriteNode?
     
     // INPUT
@@ -119,7 +117,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         joystickButtonClicked = false
         animRunning = false
-        player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar, light: light)
+        player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar)
         objectAnimator.setupAnimatorWaterFall(scene: self, player: player)
         enemySpownPosition = self.childNode(withName: "enemySpownPosition") // as? SKSpriteNode
         enemySpownPosition.isHidden = true
@@ -170,14 +168,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        _screenW = view.frame.width
        _scale = _screenW / 3800
         
-       _ambientColor = UIColor.darkGray
        initGround()
        initBackground()
-       initLight()
        initGasObjectScene()
        initWaterGreenScene()
-       lightSprite?.position.y = player.sprite.position.y + 50
-       lightSprite?.position.x = player.sprite.position.x
+        player.light.lightSprite.position.y = player.sprite.position.y + 50
+        player.light.lightSprite.position.x = player.sprite.position.x
         
         if(player.lightIsOn)
         {
@@ -194,8 +190,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(progressBar)
         
         enemy.setupSprite(scene: self)
-        
-        
+              
         //pickup
         addChild(questItem.sprite)
         questItem.floppyAnimator.startFloppyAnimation(sprite: questItem.sprite)
@@ -276,7 +271,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     player.lightIsOn = false
                     player.timerNode.isPaused = true
                 }
-                checkLightIsOnOff()
+                player.light.checkLightIsOnOff(player: player)
             }
 //        }
     }
@@ -322,7 +317,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         playerController.touchLightOnOff?.position.x = cameraNode.position.x + 550
         playerController.touchLightOnOff?.position.y = cameraNode.position.y - 150
         
-        lightSprite?.position.x = player.sprite.position.x
+        player.light.lightSprite.position.x = player.sprite.position.x
 
 //        light2.falloff = light.falloff
         
@@ -416,7 +411,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //            player.sprite.removeAllActions()
         }
         
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "ground")
+        if(firstBody.node?.physicsBody?.categoryBitMask == Utilities.CollisionBitMask.playerCategory || secondBody.node?.physicsBody?.categoryBitMask == Utilities.CollisionBitMask.groundCategory)
         {
             player.isFalling = false
             if joystickButtonClicked
@@ -619,42 +614,6 @@ extension GameScene
         }
     }
     
-    //MARK: Light
-    fileprivate func initLight() {
-        lightSprite = SKSpriteNode(imageNamed: "lightbulb.png")
-        lightSprite?.setScale(_scale * 50)
-        lightSprite?.position = CGPoint(x: _screenW - 100, y: _screenH - 100)
-        lightSprite?.size = CGSize(width: 0.1, height: 0.1)
-        addChild(lightSprite!)
-
-        light.position = .zero
-        light.falloff = 0.1
-        light.ambientColor = _ambientColor!
-        light.lightColor = .white
-        
-        // ADD OTHER LIFE FOR UPGRADE INTENSITY LIGHT
-        light2.position = .zero
-        light2.falloff = 1
-        light2.ambientColor = _ambientColor!
-        light2.lightColor = .red
-        
-        lightSprite?.addChild(light)
-//        lightSprite?.addChild(light2)
-    }
-    
-    func checkLightIsOnOff()
-    {
-        if(player.lightIsOn)
-        {
-            self.lightSprite?.position.y = self.player.sprite.position.y + 50
-        }
-        else
-        {
-            self.lightSprite?.position.y = self.player.sprite.position.y + 3000
-
-        }
-    }
-    
     func EnemyShoot()
     {
         let bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 0.5, height: 0.5))
@@ -684,21 +643,6 @@ extension GameScene
         chargingBox.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         addChild(chargingBox.sprite)
     }
-    
-    //MARK: - setup ITEM
-//    func setupItem()
-//    {
-//        item.sprite.size = CGSize(width: 200, height: 200)
-//        item.sprite.zPosition = player.sprite.zPosition + 6
-//        item.sprite.physicsBody!.isDynamic = true
-//        item.sprite.position.y = player.sprite.position.y
-//        item.sprite.position.x = player.sprite.position.x + 400
-//        item.sprite.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.itemCatecory
-//        item.sprite.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-//        item.sprite.physicsBody?.affectedByGravity = false
-//        item.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-////        addChild(item.sprite)
-//    }
     
     //MARK: - setup WINBOX
     func setupWinBox()

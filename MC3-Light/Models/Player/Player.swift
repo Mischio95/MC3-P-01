@@ -23,7 +23,7 @@ class Player
     var size: CGSize
     var normalTexture: SKTexture!
     var newPosition = CGPoint.zero
-    
+    var light = Light()
     var inventory = PlayerInventory()
     
    //Life
@@ -74,21 +74,21 @@ class Player
     }
     
     var scene = SKScene()
-    var light = SKLightNode()
     var progressBar = ProgressBar()
     var lightRed = SKLightNode()
     
     
-    init(sprite: SKSpriteNode, size: CGSize, scene: SKScene, progressBar: ProgressBar, light: SKLightNode)
+    init(sprite: SKSpriteNode, size: CGSize, scene: SKScene, progressBar: ProgressBar)
     {
         self.sprite = sprite
         self.size = size
         self.sprite.position = CGPoint(x: -960, y: -176)
         self.scene = scene
         self.progressBar = progressBar
-        self.light = light
         setup()
+        light.initLight(scene: scene)
 //        setupNewLight()
+        
     }
    
     
@@ -118,13 +118,13 @@ class Player
         self.sprite.physicsBody?.angularDamping = 0.0;
         scene.addChild(sprite)
     }
-    
-    func setupNewLight()
-    {
-        lightRed.position = light.position
-        lightRed.falloff = light.falloff
-        lightRed.lightColor = .red
-    }
+//
+//    func setupNewLight()
+//    {
+//        lightRed.position = light.position
+//        lightRed.falloff = light.falloff
+//        lightRed.lightColor = .red
+//    }
     
     func hitAnimation(progressBar : ProgressBar)
     {
@@ -143,7 +143,7 @@ class Player
     {
         if lightButtonClicked
         {
-            removeLife(light: light)
+            removeLife(light: light.light)
             lightButtonClicked = false
             playerHit = true
             hitAnimation(progressBar: self.progressBar)
@@ -163,12 +163,12 @@ class Player
             }
 //            if(time % 1 == 0)
 //            {
-                light.falloff = light.falloff + 0.2
+                light.light.falloff = light.light.falloff + 0.2
                 progressBar.updateProgressBar(time: CGFloat(time))
                 if time <= 10
                 {
 //                    light.lightColor = UIColor(red: 112, green: 23, blue: 4, alpha: 0.02)
-                      light.lightColor = UIColor(red: 60, green: 1, blue: 1, alpha: 0.013)
+                    light.light.lightColor = UIColor(red: 60, green: 1, blue: 1, alpha: 0.013)
 
                     if time % 3 == 0
                     {
@@ -265,8 +265,8 @@ class Player
                 self.chargingBite.run(SKAction.stop())
                 self.isCharging = false
                 self.chargingBite.removeFromParent()
-                self.light.falloff = 0.1
-                self.light.lightColor = .white
+                self.light.light.falloff = 0.1
+                self.light.light.lightColor = .white
                 self.isCharging = false
                 
                 if(joystickButtonClicked)

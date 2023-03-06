@@ -27,6 +27,7 @@
 		A7393D3D29A6723300C47229 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3A29A6723300C47229 /* lightbulb.png */; };
 		A7393D3E29A6723300C47229 /* cicciobello.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3B29A6723300C47229 /* cicciobello.png */; };
 		A7393D3F29A6723300C47229 /* ciccio.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3C29A6723300C47229 /* ciccio.png */; };
+		A751464C29B6893B00BA7B00 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751464B29B6893B00BA7B00 /* Light.swift */; };
 		A76EF63229B25A190051B693 /* WinGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EF63129B25A190051B693 /* WinGame.swift */; };
 		A76EF63429B25A700051B693 /* WinGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = A76EF63329B25A700051B693 /* WinGame.sks */; };
 		A76F4E2E29AA4257008F9A05 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F4E2D29AA4257008F9A05 /* PlayerController.swift */; };
@@ -117,6 +118,7 @@
 		A7393D3A29A6723300C47229 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
 		A7393D3B29A6723300C47229 /* cicciobello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cicciobello.png; sourceTree = "<group>"; };
 		A7393D3C29A6723300C47229 /* ciccio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciccio.png; sourceTree = "<group>"; };
+		A751464B29B6893B00BA7B00 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		A76EF63129B25A190051B693 /* WinGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinGame.swift; sourceTree = "<group>"; };
 		A76EF63329B25A700051B693 /* WinGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WinGame.sks; sourceTree = "<group>"; };
 		A76F4E2D29AA4257008F9A05 /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				A7C223B229A4DA2500439545 /* Player.swift */,
+				A751464B29B6893B00BA7B00 /* Light.swift */,
 				A7ACB0D529AD4FD400A5000D /* PlayerAnimator.swift */,
 				A76F4E2D29AA4257008F9A05 /* PlayerController.swift */,
 				83A6AA2C29B391D8007B1716 /* Inventory.swift */,
@@ -641,6 +644,7 @@
 				830A92C029B536EC00929DBF /* Bolt.swift in Sources */,
 				833785C229A5854D00DE5263 /* Trigger.swift in Sources */,
 				83E44A6829ACFE0F00D3BD73 /* FloppyDisk.swift in Sources */,
+				A751464C29B6893B00BA7B00 /* Light.swift in Sources */,
 				A7919A6E29B119E30089C118 /* SetupMap.swift in Sources */,
 				A76F4E3829AA6B46008F9A05 /* GameOver.swift in Sources */,
 				A7C223B329A4DA2500439545 /* Player.swift in Sources */,
