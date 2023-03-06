@@ -226,7 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                         }
                     }
                     // Quando effettivamente effettua il salto
-                    if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy && !player.nearWinBox)
+                    if(!player.isFalling && !player.nearBoxCharge && player.canJump && !player.nearFloppy && !player.nearWinBox && !player.nearGate && !winBox.opened)
                     {
                         player.isJumping = true
                         player.isFalling = true

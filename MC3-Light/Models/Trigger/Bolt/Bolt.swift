@@ -17,6 +17,7 @@ class Bolt: Item
        super.init(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 20, height: 20), quantity: quantity)
        self.sprite.name = "bolt"
        setupPhyisics()
+       startboltAnimation()
    }
     
     override func setupPhyisics() {

@@ -29,7 +29,7 @@ class WinBox: Trigger
     {
         self.gate = gate
         
-        let gateBoxCollision = gate.sprite.size
+        let gateBoxCollision = CGSize(width: -50, height: 500)
         self.gate.sprite.physicsBody = SKPhysicsBody(rectangleOf: gateBoxCollision)
         self.gate.sprite.position = position
         self.gate.sprite.size = CGSize(width: 230, height: 230)
