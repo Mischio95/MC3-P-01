@@ -7,9 +7,14 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class Tutorial: SKScene, SKPhysicsContactDelegate
 {
+    var avPlayer = AVPlayer()
+    
+    private var video = SKVideoNode(fileNamed: "glitch.mov")
+    var blackBackground: SKNode!
     private var updatables = [Updatable]()
     private var lastUpdateTime : TimeInterval = 0
     var groundGameScene1 = SetupMap()
@@ -75,10 +80,35 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
        _screenW = view.frame.width
        _scale = _screenW / 3800
         initGround()
-        if(player.lightIsOn)
-        {
-            player.timerNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(player.countdownPlayerPointLightBattery),SKAction.wait(forDuration: 1)])))
-        }
+        
+        blackBackground = self.childNode(withName: "blackBackground")
+        blackBackground.zPosition = Utilities.ZIndex.background
+        // VIDEO LOOP
+       
+        let videoNode: SKVideoNode? = {
+                    let urlString = Bundle.main.path(forResource: "glitch", ofType: "mov")
+                    let url = URL(fileURLWithPath: urlString!)
+                    let item = AVPlayerItem(url: url)
+                    avPlayer = AVPlayer(playerItem: item)
+                    return SKVideoNode(avPlayer: avPlayer)
+                }()
+
+                videoNode?.position = CGPoint( x: frame.midX,
+                                               y: frame.midY)
+                videoNode?.zPosition = 0
+                addChild((videoNode)!)
+
+                avPlayer.play()
+
+                NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                       object: avPlayer.currentItem, queue: nil)
+                { notification in
+                    self.avPlayer.seek(to: CMTime.zero)
+                    self.avPlayer.play()
+                    print("reset Video")
+                }
+        videoNode?.position = blackBackground.position
+        videoNode?.size = blackBackground.frame.size
         
         // Joystick
         setupJoystick()
@@ -89,6 +119,10 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         addChild(playerController.touchJump)
         addChild(playerController.touchLightOnOff)
         
+//        addChild(video)
+        video.position = blackBackground.position
+        video.zPosition = Utilities.ZIndex.layer1
+        video.size = blackBackground.frame.size
 
     }
     

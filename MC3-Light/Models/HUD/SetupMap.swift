@@ -22,7 +22,7 @@ class SetupMap
         background.lightingBitMask = 1
         background.color = .darkGray
         background.colorBlendFactor = 1
-        background.zPosition = -1
+        background.zPosition = Utilities.ZIndex.background
         background.anchorPoint = CGPoint(x:0.5, y:0.5)
         background.zPosition = -100
     }
@@ -40,6 +40,7 @@ class SetupMap
         ground.physicsBody?.isDynamic = false
         ground.lightingBitMask = 1
         ground.color = .black
+        ground.zPosition = Utilities.ZIndex.ground
     }
     
     //MARK: - setup MURO INVISIBILE PER PERDERE QUANDO CADI

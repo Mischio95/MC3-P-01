@@ -31,6 +31,7 @@
 		A751465129B69B4000BA7B00 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751465029B69B4000BA7B00 /* Tutorial.swift */; };
 		A751465329B69B4700BA7B00 /* Tutorial.sks in Resources */ = {isa = PBXBuildFile; fileRef = A751465229B69B4700BA7B00 /* Tutorial.sks */; };
 		A751465529B6A13600BA7B00 /* glitch.png in Resources */ = {isa = PBXBuildFile; fileRef = A751465429B6A13600BA7B00 /* glitch.png */; };
+		A751465729B6A2EA00BA7B00 /* blackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = A751465629B6A2EA00BA7B00 /* blackBackground.png */; };
 		A76EF63229B25A190051B693 /* WinGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76EF63129B25A190051B693 /* WinGame.swift */; };
 		A76EF63429B25A700051B693 /* WinGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = A76EF63329B25A700051B693 /* WinGame.sks */; };
 		A76F4E2E29AA4257008F9A05 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F4E2D29AA4257008F9A05 /* PlayerController.swift */; };
@@ -125,6 +126,7 @@
 		A751465029B69B4000BA7B00 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		A751465229B69B4700BA7B00 /* Tutorial.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial.sks; sourceTree = "<group>"; };
 		A751465429B6A13600BA7B00 /* glitch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glitch.png; sourceTree = "<group>"; };
+		A751465629B6A2EA00BA7B00 /* blackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackBackground.png; sourceTree = "<group>"; };
 		A76EF63129B25A190051B693 /* WinGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinGame.swift; sourceTree = "<group>"; };
 		A76EF63329B25A700051B693 /* WinGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WinGame.sks; sourceTree = "<group>"; };
 		A76F4E2D29AA4257008F9A05 /* PlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		839D259F29A8203600D47B57 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				A751465629B6A2EA00BA7B00 /* blackBackground.png */,
 				A751465429B6A13600BA7B00 /* glitch.png */,
 				A7919A7D29B182BA0089C118 /* grata_sfondo.png */,
 				A7919A7B29B1828A0089C118 /* Tubo_solo_angolo.png */,
@@ -578,6 +581,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A751465729B6A2EA00BA7B00 /* blackBackground.png in Resources */,
 				A7AE5C5629A3C2F6002FDAEB /* Main.storyboard in Resources */,
 				A7919A7629B14EA70089C118 /* glitch4.mov in Resources */,
 				A7DF152429A6743E00FDDBF9 /* background.png in Resources */,

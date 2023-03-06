@@ -30,7 +30,7 @@ import Foundation
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate
-{
+{    
     var deltaTime: Double!
     let light2 = SKLightNode()
     var normalPlayerTexture : SKTexture?
