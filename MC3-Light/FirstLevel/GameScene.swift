@@ -70,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var chargingBox: ChargingBox?
 //    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
 //    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
-    var winBox = WinBox(numberOfKey: 3)
+    var winBox = WinBox(numberOfKey: 1)
     var winBoxTriggerLevettaSpown: SKNode!
     // GROUND
     var groundGameScene1 = SetupMap()
@@ -570,7 +570,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 extension GameScene
 {
-    
     fileprivate func initBackground()
     {
         backgroundColor = SKColor.black
