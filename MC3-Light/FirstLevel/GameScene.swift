@@ -159,13 +159,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         invisibleWall.sprite.position.x = player.sprite.position.x + 400
         invisibleWall.sprite.position.y = player.sprite.position.y
-        addChild(invisibleWall.sprite)
+//        addChild(invisibleWall.sprite)
         
         // VIDEO TUTORIAL
         
         floppyDisk1.sprite.position.x = player.sprite.position.x - 100
         floppyDisk1.sprite.position.y = player.sprite.position.y 
-        addChild(floppyDisk1.sprite)
+//        addChild(floppyDisk1.sprite)
         
         // GESTIONE LUCI
        _screenH = view.frame.height
@@ -747,6 +747,8 @@ extension GameScene
         
         addChild(winBox.sprite)
         addChild(winBox.gate.sprite)
+        bolt.sprite.position.x = player.sprite.position.x + 1000
+        bolt.sprite.position.y = player.sprite.position.y
         addChild(bolt.sprite)
         
         

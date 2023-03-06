@@ -14,7 +14,7 @@ class Bolt: Item
     
     init(quantity: Int)
    {
-       super.init(sprite: SKSpriteNode(imageNamed: "bolt"), size: CGSize(width: 20, height: 20), quantity: quantity)
+       super.init(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 20, height: 20), quantity: quantity)
        self.sprite.name = "bolt"
    }
 }
