@@ -150,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // Camera
         camera = cameraNode
         addChild(cameraNode)
-//        addChild(merchant.sprite)
+        addChild(merchant.sprite)
         
         
         merchant.sprite.position.x = player.sprite.position.x + 700
@@ -476,13 +476,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             secondBody.collisionBitMask = 0
         }
-        
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
-        {
-            player.playerDeath()
-            
-        }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "pickup")
         {
             player.inventory.addItemInInventory(itemToAdd: questItem)
         }
@@ -492,7 +486,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
         {
-            merchant.sprite.physicsBody?.collisionBitMask = 0
+            merchant.Talking(scene: self)
+            print("ciao")
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "invisibleWall")
         {
@@ -551,8 +546,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
         {
-            print("ciao")
-            merchant.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
+            print("end")
+            merchant.Talking(scene: self)
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")

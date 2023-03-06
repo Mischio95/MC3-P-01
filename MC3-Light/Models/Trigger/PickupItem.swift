@@ -29,11 +29,16 @@ class Item
     
     func setupPhyisics()
     {
+//        sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
+//        sprite.physicsBody?.isDynamic = false
+//        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.pickupItemCategory
+//        sprite.physicsBody?.allowsRotation = false
+//        sprite.lightingBitMask = 1
         sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
-        sprite.physicsBody?.isDynamic = true
-        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.pickupItemCategory
-        sprite.physicsBody?.allowsRotation = false
         sprite.lightingBitMask = 1
+        sprite.physicsBody?.isDynamic = false
+        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.pickupItemCategory
+        sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
     }
 }
 
@@ -47,5 +52,6 @@ class PickupItem: Item
     func setGUID(GUID: UUID)
     {
         self.GUID = GUID
+        self.sprite.name = "questItem"
     }
 }
