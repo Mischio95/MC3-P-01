@@ -11,7 +11,7 @@ import SpriteKit
 class ObjectAnimator
 {
     
-    var winGame: SKSpriteNode!
+    var winGame: SKNode!
     var winGameAnimation: SKAction!
     
     var waterNode: SKSpriteNode!
@@ -49,7 +49,7 @@ class ObjectAnimator
     
     func setupWinGameAnimation(scene : SKScene)
     {
-        winGame = (scene.childNode(withName: "WinGame") as? SKSpriteNode)!
+        winGame = (scene.childNode(withName: "winGameNode"))
         winGameAnimation = SKAction(named: "WinGame")
         winGame.run(winGameAnimation)
         
@@ -140,6 +140,7 @@ class WaterPipe: ObjectAnimator
         scene.addChild(soundTriggerOut.sprite)
 //        handlerPlaySound(scene: scene)
     }
+    
     
     func handlerPlaySound(scene : SKScene)
     {

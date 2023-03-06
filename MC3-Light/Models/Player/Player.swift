@@ -17,6 +17,7 @@ class Player
     var videoGlitchIsPlaying: Bool = false
     var videoFloppyIsPlaying: Bool = false
     var damageLight: Bool = false
+    var nearGate: Bool = false
     
     var sprite: SKSpriteNode
     var size: CGSize
@@ -197,7 +198,6 @@ class Player
         let restartScene = SKScene(fileNamed: "GameOver") as! GameOver
         restartScene.scaleMode = .aspectFill
         self.scene.view?.presentScene(restartScene, transition: transition)
-        
     }
     
     func playGlitchVideo()
@@ -290,12 +290,12 @@ class Player
         self.playerAnimator.startJumpAnimation(player: self)
     }
     
-//    func playerWin()
-//    {
-//        let transition = SKTransition.fade(with: .black, duration: 1)
-//        let restartScene = SKScene(fileNamed: "WinGame") as! WinGame
-//        restartScene.scaleMode = .aspectFill
-//        self.scene.view?.presentScene(restartScene, transition: transition)
-//
-//    }
+    func playerWin()
+    {
+        let transition = SKTransition.fade(with: .black, duration: 1)
+        let restartScene = SKScene(fileNamed: "WinGame") as! WinGame
+        restartScene.scaleMode = .aspectFill
+        self.scene.view?.presentScene(restartScene, transition: transition)
+
+    }
 }

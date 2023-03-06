@@ -69,9 +69,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
 //    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
 //    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
-    
-
-    var winBox = WinBox(sprite:SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
+    var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
+    var winBoxTriggerLevettaSpown: SKNode!
     // GROUND
     var groundGameScene1 = SetupMap()
     var invisibleGroundGameScene1 = SetupMap()
@@ -246,6 +245,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     {
                         winBox.openGate(player: player)
                     }
+                    
+                    if(player.nearGate && winBox.opened == true)
+                    {
+                        player.playerWin()
+                    }
                 }
                 
                 else
@@ -358,17 +362,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerAnimator.startIdleAnimation(player: player)
         }
         
-//        if(player.isJumping)
-//        {
-////            player.maxJump = 220
-//            player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
-//            player.playerAnimator.startJumpAnimation(player: player)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
-//            {
-//                self.player.isJumping = false
-//            }
-//        }
-        
         if(player.time <= 0)
         {
             player.playerDeath()
@@ -378,6 +371,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             print("sto morendo")
             player.playerAnimator.startDeathAnimation(player: player)
+        }
+        
+        if !player.lightIsOn
+        {
+            questItem.sprite.isHidden = true
+        }
+        else
+        {
+            questItem.sprite.isHidden = false
         }
     }
     
@@ -447,8 +449,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
-//            secondBody.collisionBitMask = 0
-//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             player.canJump = false
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
@@ -474,7 +474,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "enemyView")
         {
             secondBody.collisionBitMask = 0
-//            enemy.isChasingPlayer = true
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
@@ -737,10 +736,10 @@ extension GameScene
         winBox.setNumberOkKey(numberOfKey: 1)
         questItem.setGUID(GUID: winBox.GUID)
         winBoxSpown = self.childNode(withName: "winBox")
+        winBoxTriggerLevettaSpown = self.childNode(withName: "levetta")
+        winBox.sprite.position = winBoxTriggerLevettaSpown.position
+        winBoxTriggerLevettaSpown.isHidden = true
         winBox.setGate(gate: gate, position: winBoxSpown.position)
-        
-//        gate.sprite.position.x = winBox.sprite.position.x - 20
-//        gate.sprite.position.y = winBox.sprite.position.y
         
         //Secondo te è meglio winBox.AddChild(gate.sprite)
 //        addChild(gate.sprite)
