@@ -27,7 +27,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     var groundBoxCollision = CGSize.zero
     var cameraNode = SKCameraNode()
     var chargingBox: ChargingBox?
-    var winBox = WinBox(numberOfKey: 3)
+    var winBox = WinBox(numberOfKey: 0)
     var winBoxTriggerLevettaSpown: SKNode!
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
     // LIGHT && color
@@ -215,7 +215,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                     }
                     if(!player.nearBoxCharge && !player.nearFloppy && player.nearWinBox)
                     {
-                        winBox.openGate(player: player)
+                        winBox.chekOpenGate(player: player)
                     }
                     
                     if(player.nearGate && winBox.opened == true)

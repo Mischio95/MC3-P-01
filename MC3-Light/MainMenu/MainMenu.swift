@@ -44,7 +44,7 @@ class MainMenu: SKScene
                 soundToPlay.removeFromParent()
                 newGameButtonNode.alpha = 0.3
                 let transition = SKTransition.fade(with: .black, duration: 0.2)
-                let gameScene = SKScene(fileNamed: "Tutorial") as! Tutorial
+                let gameScene = SKScene(fileNamed: "GameScene") as! GameScene
                 gameScene.scaleMode = .aspectFill
 
                 self.view?.presentScene(gameScene, transition: transition)

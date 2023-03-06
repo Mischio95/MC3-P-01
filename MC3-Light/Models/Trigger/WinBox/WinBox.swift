@@ -46,28 +46,39 @@ class WinBox: Trigger
         self.numberOfKey = numberOfKey
     }
 
-    func openGate(player: Player)
+    func openGate()
     {
-        for index in 0..<player.inventory.playerInventory.count
+        startOpengateAnimation()
+        gate.startOpengateAnimation()
+        opened = true
+    }
+    
+    func chekOpenGate(player: Player)
+    {
+        if(numberOfKey == 0)
         {
-            if(player.inventory.playerInventory[index].GUID == self.GUID)
+            openGate()
+        }
+        else
+        {
+            for index in 0..<player.inventory.playerInventory.count
             {
-                if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
+                if(player.inventory.playerInventory[index].GUID == self.GUID)
                 {
-                    startOpengateAnimation()
-                    gate.startOpengateAnimation()
-//                    startEndAnimation()
-                    opened = true
-                }
-                else
-                {
-                    print("non ne hai abbastanza")
+                    if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
+                    {
+                       openGate()
+                    }
+                    else
+                    {
+                        print("non ne hai abbastanza")
+                    }
                 }
             }
-        }
-        if(!opened)
-        {
-            print("non hai la chiave")
+            if(!opened)// se il for non ha trovato la chiave non la hai
+            {
+                print("non hai la chiave")
+            }
         }
     }
 

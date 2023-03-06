@@ -238,7 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     }
                     if(!player.nearBoxCharge && !player.nearFloppy && player.nearWinBox)
                     {
-                        winBox.openGate(player: player)
+                        winBox.chekOpenGate(player: player)
                     }
                     
                     if(player.nearGate && winBox.opened == true)
