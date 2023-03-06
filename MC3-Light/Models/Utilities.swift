@@ -40,6 +40,7 @@ struct Utilities
         static let soundTriggerCategory: UInt32 = 10
         static let pickupItemCategory: UInt32 = 11
         static let merchantCategory: UInt32 = 12
+        static let gateCategory: UInt32 = 13
     }
     
     struct ZIndex

@@ -69,9 +69,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
 //    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
 //    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
-    
-
-    var winBox = WinBox(sprite:SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
+    var winBox = WinBox(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
+    var winBoxTriggerLevettaSpown: SKNode!
     // GROUND
     var groundGameScene1 = SetupMap()
     var invisibleGroundGameScene1 = SetupMap()
@@ -151,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // Camera
         camera = cameraNode
         addChild(cameraNode)
-        addChild(merchant.sprite)
+//        addChild(merchant.sprite)
         
         
         merchant.sprite.position.x = player.sprite.position.x + 700
@@ -245,6 +244,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     if(!player.nearBoxCharge && !player.nearFloppy && player.nearWinBox)
                     {
                         winBox.openGate(player: player)
+                    }
+                    
+                    if(player.nearGate && winBox.opened == true)
+                    {
+                        player.playerWin()
                     }
                 }
                 
@@ -358,17 +362,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             player.playerAnimator.startIdleAnimation(player: player)
         }
         
-//        if(player.isJumping)
-//        {
-////            player.maxJump = 220
-//            player.sprite.physicsBody?.applyImpulse(CGVector(dx: 0, dy: Int(player.maxJump)))
-//            player.playerAnimator.startJumpAnimation(player: player)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + deltaTime)
-//            {
-//                self.player.isJumping = false
-//            }
-//        }
-        
         if(player.time <= 0)
         {
             player.playerDeath()
@@ -378,6 +371,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             print("sto morendo")
             player.playerAnimator.startDeathAnimation(player: player)
+        }
+        
+        if !player.lightIsOn
+        {
+            questItem.sprite.isHidden = true
+        }
+        else
+        {
+            questItem.sprite.isHidden = false
         }
     }
     
@@ -447,8 +449,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
-//            secondBody.collisionBitMask = 0
-//            firstBody.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
             player.canJump = false
             playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
             player.nearFloppy = true
@@ -471,10 +471,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             print("esco")
             objectAnimator.handlerPlaySound(scene: self)
         }
+        
         if(firstBody.node?.name == "player" && secondBody.node?.name == "enemyView")
         {
             secondBody.collisionBitMask = 0
-//            enemy.isChasingPlayer = true
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
@@ -499,6 +499,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             print("Invisibile")
             invisibleWall.sprite.physicsBody?.collisionBitMask = 0
             invisibleWall.playerActiveWall(player: player)
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")
+        {
+            player.nearGate = true
         }
     }
     
@@ -549,6 +553,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             print("ciao")
             merchant.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
+        }
+        
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")
+        {
+            player.nearGate = false
         }
     }
 }
@@ -645,41 +654,6 @@ extension GameScene
         addChild(bullet.sprite)
         rangedEnemy.shooting(bullet: bullet, player: player.sprite)
     }
-    
-    
-    /*
-        fileprivate func addBackgroundTile(spriteFile: String) -> SKSpriteNode
-        {
-            var background:SKSpriteNode
-
-            background = SKSpriteNode(imageNamed:spriteFile);
-            background.color = _ambientColor!
-            background.colorBlendFactor = 1
-            background.zPosition = -1
-            background.alpha = 1
-            background.anchorPoint = CGPoint(x:0, y:0.5)
-            background.setScale(_scale)
-            addChild(background);
-
-            return background;
-        }
-        
-        fileprivate func addForegroundTile(spriteFile: String, normalsFile: String) -> SKSpriteNode
-        {
-            var foreground:SKSpriteNode
-            
-            foreground = SKSpriteNode(texture: SKTexture(imageNamed:spriteFile), normalMap: SKTexture(imageNamed:normalsFile));
-            foreground.lightingBitMask = 1
-            foreground.color = _ambientColor!
-            foreground.colorBlendFactor = 1
-            foreground.zPosition = -1
-            foreground.anchorPoint = CGPoint(x:0.5, y:0.5)
-            foreground.setScale(_scale * 2)
-            foreground.zPosition = player.sprite.zPosition - 10
-            addChild(foreground)
-            return foreground
-        }
-    */
 }
 
 // ------------------------------------------ MARK: - EXTENSION PER I VARI SETUP ----------------------------------------------------------------
@@ -737,10 +711,10 @@ extension GameScene
         winBox.setNumberOkKey(numberOfKey: 1)
         questItem.setGUID(GUID: winBox.GUID)
         winBoxSpown = self.childNode(withName: "winBox")
+        winBoxTriggerLevettaSpown = self.childNode(withName: "levetta")
+        winBox.sprite.position = winBoxTriggerLevettaSpown.position
+        winBoxTriggerLevettaSpown.isHidden = true
         winBox.setGate(gate: gate, position: winBoxSpown.position)
-        
-//        gate.sprite.position.x = winBox.sprite.position.x - 20
-//        gate.sprite.position.y = winBox.sprite.position.y
         
         //Secondo te è meglio winBox.AddChild(gate.sprite)
 //        addChild(gate.sprite)
@@ -790,3 +764,36 @@ extension GameScene
         }
     }
 
+/*
+    fileprivate func addBackgroundTile(spriteFile: String) -> SKSpriteNode
+    {
+        var background:SKSpriteNode
+
+        background = SKSpriteNode(imageNamed:spriteFile);
+        background.color = _ambientColor!
+        background.colorBlendFactor = 1
+        background.zPosition = -1
+        background.alpha = 1
+        background.anchorPoint = CGPoint(x:0, y:0.5)
+        background.setScale(_scale)
+        addChild(background);
+
+        return background;
+    }
+    
+    fileprivate func addForegroundTile(spriteFile: String, normalsFile: String) -> SKSpriteNode
+    {
+        var foreground:SKSpriteNode
+        
+        foreground = SKSpriteNode(texture: SKTexture(imageNamed:spriteFile), normalMap: SKTexture(imageNamed:normalsFile));
+        foreground.lightingBitMask = 1
+        foreground.color = _ambientColor!
+        foreground.colorBlendFactor = 1
+        foreground.zPosition = -1
+        foreground.anchorPoint = CGPoint(x:0.5, y:0.5)
+        foreground.setScale(_scale * 2)
+        foreground.zPosition = player.sprite.zPosition - 10
+        addChild(foreground)
+        return foreground
+    }
+*/

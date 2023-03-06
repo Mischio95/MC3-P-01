@@ -13,7 +13,7 @@ class WinBox: Trigger
     var numberOfKey: Int = 0
     let GUID: UUID = UUID()
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
-
+    var opened: Bool = false
 
     override init(sprite: SKSpriteNode, size: CGSize)
     {
@@ -28,9 +28,17 @@ class WinBox: Trigger
     func setGate(gate: Gate, position: CGPoint)
     {
         self.gate = gate
+        
+        let gateBoxCollision = gate.sprite.size
+        self.gate.sprite.physicsBody = SKPhysicsBody(rectangleOf: gateBoxCollision)
         self.gate.sprite.position = position
         self.gate.sprite.size = CGSize(width: 230, height: 230)
         self.gate.sprite.zPosition = self.sprite.zPosition
+        self.gate.sprite.physicsBody?.isDynamic = false
+        self.gate.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.gateCategory
+        self.gate.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        self.gate.sprite.lightingBitMask = 1
+        self.gate.sprite.name = "gate"
     }
     
     func setNumberOkKey(numberOfKey: Int)
@@ -40,8 +48,6 @@ class WinBox: Trigger
 
     func openGate(player: Player)
     {
-        var opened: Bool = false
-        
         for index in 0..<player.inventory.playerInventory.count
         {
             if(player.inventory.playerInventory[index].GUID == self.GUID)
