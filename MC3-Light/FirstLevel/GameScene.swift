@@ -67,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     // TRIGGER
 //    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
-    var chargingBox = ChargingBox(sprite: SKSpriteNode(imageNamed: "base_ricarica"), size: CGSize(width: 18, height: 18))
+    var chargingBox: ChargingBox?
 //    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
 //    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
     var winBox = WinBox(numberOfKey: 3)
@@ -125,7 +125,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         // setup - Ground and Invisible Ground
 
-        setupChargingBox()
 //        setupItem()
         setupWinBox()
        
@@ -196,6 +195,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         questItem.floppyAnimator.startFloppyAnimation(sprite: questItem.sprite)
         questItem.sprite.position.x = player.sprite.position.x + 400
         questItem.sprite.position.y = player.sprite.position.y + 50
+        
+        chargingBox = ChargingBox(scene: self, player: player)
     }
 
     //MARK: - touchesBegan
@@ -628,21 +629,7 @@ extension GameScene
 extension GameScene
 {
     
-    //MARK: - setup CHARGING BOX
-    func setupChargingBox()
-    {
-        chargingBox.sprite.size = CGSize(width: 220, height: 60)
-        chargingBox.sprite.zPosition = player.sprite.zPosition - 1
-        chargingBox.sprite.physicsBody!.isDynamic = true
-        chargingBox.sprite.position.y = player.sprite.position.y - 100
-        chargingBox.sprite.position.x = player.sprite.position.x - 300
-        chargingBox.sprite.lightingBitMask = 1
-        chargingBox.sprite.physicsBody!.categoryBitMask = Utilities.CollisionBitMask.chargingBoxCategory
-        chargingBox.sprite.physicsBody!.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-        chargingBox.sprite.physicsBody?.affectedByGravity = false
-        chargingBox.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-        addChild(chargingBox.sprite)
-    }
+
     
     //MARK: - setup WINBOX
     func setupWinBox()
@@ -676,8 +663,6 @@ extension GameScene
         bolt.sprite.position.x = player.sprite.position.x + 1000
         bolt.sprite.position.y = player.sprite.position.y
         addChild(bolt.sprite)
-        
-        
     }
     
     //MARK: - setup JOYSTICK
