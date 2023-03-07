@@ -29,19 +29,7 @@ class FloppyAnimator
                floppyAtlas.textureNamed("00010"),
                floppyAtlas.textureNamed("00011"),
                floppyAtlas.textureNamed("00012"),
-               floppyAtlas.textureNamed("00013"),
-               floppyAtlas.textureNamed("00014"),
-               floppyAtlas.textureNamed("00015"),
-               floppyAtlas.textureNamed("00016"),
-               floppyAtlas.textureNamed("00017"),
-               floppyAtlas.textureNamed("00018"),
-               floppyAtlas.textureNamed("00019"),
-               floppyAtlas.textureNamed("00020"),
-               floppyAtlas.textureNamed("00021"),
-               floppyAtlas.textureNamed("00022"),
-               floppyAtlas.textureNamed("00023"),
-               floppyAtlas.textureNamed("00024"),
-               floppyAtlas.textureNamed("00025")]
+               floppyAtlas.textureNamed("00013")]
     }
     
     func startFloppyAnimation(sprite: SKSpriteNode)
