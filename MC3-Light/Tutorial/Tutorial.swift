@@ -21,7 +21,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     private var lastUpdateTime : TimeInterval = 0
     var groundGameScene1 = SetupMap()
     var progressBar = ProgressBar()
-    var floppyDisk1 = FloppyDisk(videoName: "floppy-1.mov")
+    var floppyDisk1 = FloppyDisk(videoName: "firstVideoTutorial.mov")
     var player: Player!
     var deltaTime: Double!
     var playerStart : SKSpriteNode!

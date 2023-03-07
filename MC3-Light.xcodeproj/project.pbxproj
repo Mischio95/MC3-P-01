@@ -15,6 +15,7 @@
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
 		8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA5D29B62AF300186F28 /* fulmine.mov */; };
 		8363CA6829B689B300186F28 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363CA6729B689B300186F28 /* GameMode.swift */; };
+		8363CA6C29B7789F00186F28 /* firstVideoTutorial.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
 		83A6AA2029B22FB8007B1716 /* Comp-1_4.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */; };
@@ -110,7 +111,7 @@
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		8363CA5D29B62AF300186F28 /* fulmine.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = fulmine.mov; sourceTree = "<group>"; };
 		8363CA6729B689B300186F28 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
-		8363CA6A29B7734400186F28 /* firstTutorialVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = firstTutorialVideo.mp4; sourceTree = "<group>"; };
+		8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = firstVideoTutorial.mov; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Comp-1_4.mov"; sourceTree = "<group>"; };
@@ -237,7 +238,7 @@
 		8363CA6929B7733500186F28 /* VideoTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				8363CA6A29B7734400186F28 /* firstTutorialVideo.mp4 */,
+				8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */,
 			);
 			path = VideoTutorial;
 			sourceTree = "<group>";
@@ -593,6 +594,7 @@
 			files = (
 				A751465729B6A2EA00BA7B00 /* blackBackground.png in Resources */,
 				A7AE5C5629A3C2F6002FDAEB /* Main.storyboard in Resources */,
+				8363CA6C29B7789F00186F28 /* firstVideoTutorial.mov in Resources */,
 				A7919A7629B14EA70089C118 /* glitch4.mov in Resources */,
 				A7DF152429A6743E00FDDBF9 /* background.png in Resources */,
 				A7393D3D29A6723300C47229 /* lightbulb.png in Resources */,

@@ -24,9 +24,10 @@ class FloppyDisk: Item
         self.quantity = quantity
         self.itemType = Utilities.ItemType.floppy
         setupPhyisics()
-        floppyAnimator.startFloppyAnimation(sprite: self.sprite)
-        videoToPlay = SKVideoNode(fileNamed: videoName)
-        videoToPlay.zPosition = 100
+        self.floppyAnimator.startFloppyAnimation(sprite: self.sprite)
+        self.videoToPlay = SKVideoNode(fileNamed: videoName)
+        self.videoToPlay.zPosition = Utilities.ZIndex.layer10
+        self.videoToPlay.size = CGSize(width: 1200, height: 900)
     }
     
     override func setupPhyisics()
@@ -44,7 +45,7 @@ class FloppyDisk: Item
         self.videoIsPlaying = true
         self.videoToPlay.play()
         player.videoFloppyIsPlaying = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15)
         {
             self.stopFloppyVideo(player: player)
         }
