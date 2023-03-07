@@ -33,12 +33,12 @@ class PlayerController
         touchLeft?.size = CGSize(width: 110, height: 110)
         touchLeft?.name = "left"
         touchLeft?.zRotation = 1.5708
-        touchLeft?.zPosition = 100
+        touchLeft?.zPosition = Utilities.ZIndex.HUD
 
         touchRight?.size = CGSize(width: 110, height: 110)
         touchRight?.name = "right"
         touchRight?.zRotation = -1.5708
-        touchRight?.zPosition = 100
+        touchRight?.zPosition = Utilities.ZIndex.HUD
         
         touchJump?.size = CGSize(width: 90, height: 90)
         touchJump?.name = "jump"
@@ -46,7 +46,7 @@ class PlayerController
         
         touchLightOnOff?.size = CGSize(width: 90, height: 90)
         touchLightOnOff?.name = "lightOnOff"
-        touchLightOnOff?.zPosition = 100
+        touchLightOnOff?.zPosition = Utilities.ZIndex.HUD
     }
     
     

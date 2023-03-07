@@ -58,7 +58,8 @@ struct Utilities
         static let layer8: CGFloat = CGFloat(8)
         static let layer9: CGFloat = CGFloat(9)
         static let layer10: CGFloat = CGFloat(10)
-        static let HUD: CGFloat = CGFloat(100)
+        static let HUD: CGFloat = CGFloat(90)
+        static let videoFloppy: CGFloat = CGFloat(100)
     }
     
     enum ItemType

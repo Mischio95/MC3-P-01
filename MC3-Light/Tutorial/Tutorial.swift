@@ -21,7 +21,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     private var lastUpdateTime : TimeInterval = 0
     var groundGameScene1 = SetupMap()
     var progressBar = ProgressBar()
-    var floppyDisk1 = FloppyDisk(videoName: "firstVideoTutorial.mov")
+    var floppyDisk1 = FloppyDisk(videoName:["firstVideoTutorial.mov"])
     var player: Player!
     var deltaTime: Double!
     var playerStart : SKSpriteNode!
@@ -108,7 +108,6 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                 { notification in
                     self.avPlayer.seek(to: CMTime.zero)
                     self.avPlayer.play()
-                    print("reset Video")
                 }
         videoNode?.position = blackBackground.position
         videoNode?.size = blackBackground.frame.size
@@ -119,6 +118,8 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         progressBar.buildProgressBar()
         addChild(progressBar)
         chargingBox = ChargingBox(scene: self, player: player)
+        chargingBox?.sprite.position.x = player.sprite.position.x + 300
+        chargingBox?.sprite.position.y = player.sprite.position.y - 50
         addChild(playerController.touchJump)
         addChild(playerController.touchLightOnOff)
         
@@ -187,10 +188,11 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         }
         let touch = touches.first!
         let location = touch.location(in: self)
-            if(atPoint(location).name == "jump")
-            {
+           
                 if(!player.isCharging && !player.videoFloppyIsPlaying)
                 {
+                    if(atPoint(location).name == "jump")
+                    {
 //                    player.sprite.removeAllActions()
                     // Caso in cui premo il bottone jump vicino alla boxCharge
                     if(player.nearBoxCharge && !player.videoFloppyIsPlaying && !player.nearFloppy)
@@ -226,6 +228,25 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                         player.playerWin()
                     }
                 }
+                    else if(atPoint(location).name == "lightOnOff")
+                    {
+                        if(player.lightIsOn == false)
+                        {
+                            player.lightButtonClicked = true
+                            player.lightIsOn = true
+                            player.timerNode.isPaused = false
+        //                    player.playerAnimator.resetAnimationAfterTurnOnLight(player: player)
+                            player.hitAfterTurnOnLight()
+                        }
+                        else
+                        {
+                            player.lightButtonClicked = false
+                            player.lightIsOn = false
+                            player.timerNode.isPaused = true
+                        }
+                        player.light.checkLightIsOnOff(player: player)
+                    }
+
                 
                 else
                 {
@@ -235,25 +256,11 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                     }
                 }
             }
+        else if(player.videoFloppyIsPlaying)
+        {
             
-            if(atPoint(location).name == "lightOnOff")
-            {
-                if(player.lightIsOn == false)
-                {
-                    player.lightButtonClicked = true
-                    player.lightIsOn = true
-                    player.timerNode.isPaused = false
-//                    player.playerAnimator.resetAnimationAfterTurnOnLight(player: player)
-                    player.hitAfterTurnOnLight()
-                }
-                else
-                {
-                    player.lightButtonClicked = false
-                    player.lightIsOn = false
-                    player.timerNode.isPaused = true
-                }
-                player.light.checkLightIsOnOff(player: player)
-            }
+        }
+        
     }
     
     //MARK: - didBegin
@@ -321,7 +328,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
             player.canJump = false
-            playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
+            playerController.touchJump.texture = SKTexture(imageNamed: "mano")
             player.nearFloppy = true
             print(player.nearFloppy)
         }

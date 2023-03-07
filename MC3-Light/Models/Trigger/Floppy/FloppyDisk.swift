@@ -13,9 +13,10 @@ class FloppyDisk: Item
     var videoToPlay = SKVideoNode()
     var videoIsPlaying: Bool = false
     var floppyAnimator = FloppyAnimator()
-    var videoName: String = ""
+    var videoName: [String] = []
+    var currentvideo: Int = 0
     
-    init(videoName: String)
+    init(videoName: [String])
     {
         super .init(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
         self.sprite.name = "floppy"
@@ -25,8 +26,6 @@ class FloppyDisk: Item
         self.itemType = Utilities.ItemType.floppy
         setupPhyisics()
         self.floppyAnimator.startFloppyAnimation(sprite: self.sprite)
-        self.videoToPlay = SKVideoNode(fileNamed: videoName)
-        self.videoToPlay.zPosition = Utilities.ZIndex.layer10
         self.videoToPlay.size = CGSize(width: 1200, height: 900)
     }
     
@@ -43,11 +42,28 @@ class FloppyDisk: Item
     {
         player.canMove = false
         self.videoIsPlaying = true
+        player.videoPlay = self.videoToPlay
+        self.videoToPlay = SKVideoNode(fileNamed: self.videoName[currentvideo])
+        self.videoToPlay.zPosition = Utilities.ZIndex.videoFloppy
+        self.videoToPlay.size = CGSize(width: 1200, height: 900)
+        self.videoToPlay.position = player.sprite.position
+        scene.addChild(videoToPlay)
         self.videoToPlay.play()
         player.videoFloppyIsPlaying = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 15)
         {
-            self.stopFloppyVideo(player: player)
+            if(self.videoName.count > 1)
+            {
+                print("if")
+                self.videoName.remove(at: self.currentvideo)
+                self.currentvideo += 1
+                self.playFloppyVideo(scene: scene, player: player, playerController: playerController)
+            }
+            else
+            {
+                print("else")
+                self.stopFloppyVideo(player: player)
+            }
         }
         playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
         

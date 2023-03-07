@@ -26,6 +26,8 @@ class Player
     var light = Light()
     var inventory = PlayerInventory()
     
+    var videoPlay = SKVideoNode()
+    
    //Life
     var maxCharge: Float = 100
     var currentCharge: Float = 30

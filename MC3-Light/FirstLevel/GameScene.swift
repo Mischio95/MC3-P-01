@@ -54,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var cameraNode = SKCameraNode()
     
-    var floppyDisk1 = FloppyDisk(videoName: "floppy-1.mov")
+    var floppyDisk1 = FloppyDisk(videoName: ["floppy-1.mov"])
     
     var gameBackground = SetupMap()
     
@@ -66,10 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         var bolt = Bolt(quantity: 1)
     
     // TRIGGER
-//    var bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 15, height: 15))
+
     var chargingBox: ChargingBox?
-//    var item = Item(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50))
-//    var floppy = FloppyDisk(sprite: SKSpriteNode(imageNamed: "item"), size: CGSize(width: 50, height: 50), videoToPlay: <#T##SKVideoNode#>)
     var winBox = WinBox(numberOfKey: 1)
     var winBoxTriggerLevettaSpown: SKNode!
     // GROUND
@@ -453,7 +451,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
         {
             player.canJump = false
-            playerController.touchJump.texture = SKTexture(imageNamed: "ChargeButton")
+            playerController.touchJump.texture = SKTexture(imageNamed: "mano")
             player.nearFloppy = true
             print(player.nearFloppy)
         }
