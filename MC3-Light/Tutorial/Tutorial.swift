@@ -45,6 +45,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     var nearWinBox = false
     var winBoxSpown: SKNode!
     
+    var invisibleGroundGameScene1 = SetupMap()
+
+    
     // INPUT
     var playerController: PlayerController = PlayerController(touchLeft: SKSpriteNode(imageNamed: "freccia"), touchRight: SKSpriteNode(imageNamed: "freccia"), touchJump: SKSpriteNode(imageNamed: "Jump"), touchLightOnOff: SKSpriteNode(imageNamed: "LightButton"))
     
@@ -63,6 +66,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
 
     
     override func sceneDidLoad() {
+        tutorialOpen = true
         player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar)
         //        setupItem()
         setupWinBox()
@@ -128,6 +132,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         video.position = blackBackground.position
         video.zPosition = Utilities.ZIndex.layer1
         video.size = blackBackground.frame.size
+        
 
     }
     
@@ -173,6 +178,11 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         if(player.time <= 0)
         {
             player.playerDeath()
+        }
+        
+        if player.lightIsOn
+        {
+            lightSprite?.position.y = player.sprite.position.y + 50
         }
         
         if player.imDeathing
@@ -308,11 +318,6 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
             }
         }
         
-//        if(firstBody.node?.name == "player" && secondBody.node?.name == "item")
-//        {
-//            self.item.sprite.removeFromParent()
-//        }
-        
         if(firstBody.node?.name == "player" && secondBody.node?.name == "winBox")
         {
             player.nearWinBox = true
@@ -321,18 +326,8 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "invisibleGroundFalling")
         {
-//            player.sprite.removeAllActions()
-//            analogJoystick.removeFromParent()
+
             player.playerDeath()
-        }
-        
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "enemy")
-        {
-            player.time -= 5
-//            player.lightIsOn = false
-            player.playerHit = true
-            player.canMove = false
-            player.playerAnimator.startHitAnimation(player: player)
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "floppy")
@@ -342,12 +337,6 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
             player.nearFloppy = true
             print(player.nearFloppy)
         }
-        
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "enemyView")
-        {
-            secondBody.collisionBitMask = 0
-        }
-        
        
         if(firstBody.node?.name == "player" && secondBody.node?.name == "invisibleWall")
         {
@@ -421,7 +410,9 @@ extension Tutorial
     
     fileprivate func initGround()
     {
-        for index in 0..<2
+        invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
+        
+        for index in 0..<8
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }

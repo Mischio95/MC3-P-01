@@ -320,14 +320,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 //        light2.falloff = light.falloff
         
+        if player.lightIsOn
+        {
+            lightSprite?.position.y = player.sprite.position.y + 50
+        }
+        
+        
         if(player.lightIsOn && !player.videoFloppyIsPlaying && !player.isCharging)
         {
             if(!enemy.isInLife)
             {
                 enemy.spawnEnemy(scene: self)
             }
-            
-            lightSprite?.position.y = player.sprite.position.y + 50
             
             enemy.enemyFollowThePlayer(player: player)
         }
