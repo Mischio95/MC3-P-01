@@ -54,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var cameraNode = SKCameraNode()
     
-    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
+    var floppyDisk1 = FloppyDisk(videoName: "floppy-1.mov")
     
     var gameBackground = SetupMap()
     

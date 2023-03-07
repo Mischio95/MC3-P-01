@@ -23,7 +23,7 @@ class Item
         self.sprite.size = size
         self.quantity = quantity
         self.sprite.name = "pickup"
-//        self.sprite.zPosition = Utilities.ZIndex.sceneObject
+        self.sprite.zPosition = Utilities.ZIndex.sceneObject
         setupPhyisics()
     }
     

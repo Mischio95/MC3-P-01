@@ -13,17 +13,20 @@ class FloppyDisk: Item
     var videoToPlay = SKVideoNode()
     var videoIsPlaying: Bool = false
     var floppyAnimator = FloppyAnimator()
+    var videoName: String = ""
     
-    init(sprite: SKSpriteNode, size: CGSize, videoToPlay:SKVideoNode)
+    init(videoName: String)
     {
-        super .init(sprite: sprite, size: size, quantity: 1)
+        super .init(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
         self.sprite.name = "floppy"
         self.sprite.isHidden = false
-        self.videoToPlay = videoToPlay
+        self.videoName = videoName
         self.quantity = quantity
         self.itemType = Utilities.ItemType.floppy
         setupPhyisics()
         floppyAnimator.startFloppyAnimation(sprite: self.sprite)
+        videoToPlay = SKVideoNode(fileNamed: videoName)
+        videoToPlay.zPosition = 100
     }
     
     override func setupPhyisics()

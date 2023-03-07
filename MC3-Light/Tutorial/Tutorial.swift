@@ -13,13 +13,15 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
 {
     var avPlayer = AVPlayer()
     
+    //MARK: PICKUP ITEM
+    
     private var video = SKVideoNode(fileNamed: "glitch.mov")
     var blackBackground: SKNode!
     private var updatables = [Updatable]()
     private var lastUpdateTime : TimeInterval = 0
     var groundGameScene1 = SetupMap()
     var progressBar = ProgressBar()
-    var floppyDisk1 = FloppyDisk(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), videoToPlay: SKVideoNode(fileNamed: "floppy-1.mov"))
+    var floppyDisk1 = FloppyDisk(videoName: "floppy-1.mov")
     var player: Player!
     var deltaTime: Double!
     var playerStart : SKSpriteNode!
@@ -73,8 +75,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         // Camera
         camera = cameraNode
         addChild(cameraNode)
-        floppyDisk1.sprite.position.x = player.sprite.position.x - 100
+        floppyDisk1.sprite.position.x = player.sprite.position.x + 100
         floppyDisk1.sprite.position.y = player.sprite.position.y
+        addChild(floppyDisk1.sprite)
         // GESTIONE LUCI
        _screenH = view.frame.height
        _screenW = view.frame.width
