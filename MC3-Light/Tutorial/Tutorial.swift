@@ -86,6 +86,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         
         blackBackground = self.childNode(withName: "blackBackground")
         blackBackground.zPosition = Utilities.ZIndex.background
+        
         // VIDEO LOOP
        
         let videoNode: SKVideoNode? = {
