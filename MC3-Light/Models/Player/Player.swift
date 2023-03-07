@@ -109,7 +109,7 @@ class Player
         sprite.physicsBody?.allowsRotation = false
         sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
-        sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+        sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.groundCategory
         sprite.name = "player"
         sprite.zPosition = Utilities.ZIndex.player
 //        self.sprite.zRotation = -1.5708

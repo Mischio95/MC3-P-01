@@ -122,9 +122,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         progressBar.getSceneFrame(sceneFrame: frame)
         progressBar.buildProgressBar()
         addChild(progressBar)
-        chargingBox = ChargingBox(scene: self, player: player)
-        chargingBox?.sprite.position.x = player.sprite.position.x + 300
-        chargingBox?.sprite.position.y = player.sprite.position.y - 50
+//        chargingBox = ChargingBox(scene: self, player: player)
+//        chargingBox?.sprite.position.x = player.sprite.position.x + 300
+//        chargingBox?.sprite.position.y = player.sprite.position.y - 50
         addChild(playerController.touchJump)
         addChild(playerController.touchLightOnOff)
         
@@ -344,6 +344,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")
         {
+            print("Gate")
             player.nearGate = true
         }
     }
