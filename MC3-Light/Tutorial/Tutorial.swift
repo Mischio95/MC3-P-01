@@ -94,7 +94,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         // VIDEO LOOP
        
         let videoNode: SKVideoNode? = {
-                    let urlString = Bundle.main.path(forResource: "glitch", ofType: "mov")
+                    let urlString = Bundle.main.path(forResource: "glitch3", ofType: "mov")
                     let url = URL(fileURLWithPath: urlString!)
                     let item = AVPlayerItem(url: url)
                     avPlayer = AVPlayer(playerItem: item)
