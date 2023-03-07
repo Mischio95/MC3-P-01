@@ -40,6 +40,7 @@ class FloppyDisk: Item
     
     func playFloppyVideo(scene: SKScene, player: Player, playerController: PlayerController)
     {
+        self.videoToPlay.removeFromParent()
         player.canMove = false
         self.videoIsPlaying = true
         player.videoPlay = self.videoToPlay
@@ -50,12 +51,14 @@ class FloppyDisk: Item
         scene.addChild(videoToPlay)
         self.videoToPlay.play()
         player.videoFloppyIsPlaying = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 15)
+        print("Count")
+        print(videoName.count)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 20)
         {
-            if(self.videoName.count > 1)
+            if(self.currentvideo < self.videoName.count - 1)
             {
                 print("if")
-                self.videoName.remove(at: self.currentvideo)
+//                self.videoName.remove(at: self.currentvideo)
                 self.currentvideo += 1
                 self.playFloppyVideo(scene: scene, player: player, playerController: playerController)
             }

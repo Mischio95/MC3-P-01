@@ -16,6 +16,12 @@
 		8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA5D29B62AF300186F28 /* fulmine.mov */; };
 		8363CA6829B689B300186F28 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363CA6729B689B300186F28 /* GameMode.swift */; };
 		8363CA6C29B7789F00186F28 /* firstVideoTutorial.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */; };
+		8363CA7329B78BD200186F28 /* secondo-testo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA6D29B78BD100186F28 /* secondo-testo.mov */; };
+		8363CA7529B78BD200186F28 /* quarto-testo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA6F29B78BD200186F28 /* quarto-testo.mov */; };
+		8363CA7629B78BD200186F28 /* quinto-testo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA7029B78BD200186F28 /* quinto-testo.mov */; };
+		8363CA7729B78BD200186F28 /* settimo-testo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA7129B78BD200186F28 /* settimo-testo.mov */; };
+		8363CA7829B78BD200186F28 /* sesto-testo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA7229B78BD200186F28 /* sesto-testo.mov */; };
+		8363CA7A29B78BF800186F28 /* terzo-testo.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA7929B78BF800186F28 /* terzo-testo.mov */; };
 		839D25A429A8223000D47B57 /* Charging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 839D25A329A8223000D47B57 /* Charging.mp3 */; };
 		83A1574629A4002A009C0537 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1574529A4002A009C0537 /* Platform.swift */; };
 		83A6AA2029B22FB8007B1716 /* Comp-1_4.mov in Resources */ = {isa = PBXBuildFile; fileRef = 83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */; };
@@ -112,6 +118,12 @@
 		8363CA5D29B62AF300186F28 /* fulmine.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = fulmine.mov; sourceTree = "<group>"; };
 		8363CA6729B689B300186F28 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = firstVideoTutorial.mov; sourceTree = "<group>"; };
+		8363CA6D29B78BD100186F28 /* secondo-testo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "secondo-testo.mov"; sourceTree = "<group>"; };
+		8363CA6F29B78BD200186F28 /* quarto-testo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "quarto-testo.mov"; sourceTree = "<group>"; };
+		8363CA7029B78BD200186F28 /* quinto-testo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "quinto-testo.mov"; sourceTree = "<group>"; };
+		8363CA7129B78BD200186F28 /* settimo-testo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "settimo-testo.mov"; sourceTree = "<group>"; };
+		8363CA7229B78BD200186F28 /* sesto-testo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "sesto-testo.mov"; sourceTree = "<group>"; };
+		8363CA7929B78BF800186F28 /* terzo-testo.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "terzo-testo.mov"; sourceTree = "<group>"; };
 		839D25A329A8223000D47B57 /* Charging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Charging.mp3; sourceTree = "<group>"; };
 		83A1574529A4002A009C0537 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		83A6AA1F29B22FB8007B1716 /* Comp-1_4.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "Comp-1_4.mov"; sourceTree = "<group>"; };
@@ -238,6 +250,12 @@
 		8363CA6929B7733500186F28 /* VideoTutorial */ = {
 			isa = PBXGroup;
 			children = (
+				8363CA7929B78BF800186F28 /* terzo-testo.mov */,
+				8363CA6F29B78BD200186F28 /* quarto-testo.mov */,
+				8363CA7029B78BD200186F28 /* quinto-testo.mov */,
+				8363CA6D29B78BD100186F28 /* secondo-testo.mov */,
+				8363CA7229B78BD200186F28 /* sesto-testo.mov */,
+				8363CA7129B78BD200186F28 /* settimo-testo.mov */,
 				8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */,
 			);
 			path = VideoTutorial;
@@ -596,6 +614,7 @@
 				A7AE5C5629A3C2F6002FDAEB /* Main.storyboard in Resources */,
 				8363CA6C29B7789F00186F28 /* firstVideoTutorial.mov in Resources */,
 				A7919A7629B14EA70089C118 /* glitch4.mov in Resources */,
+				8363CA7329B78BD200186F28 /* secondo-testo.mov in Resources */,
 				A7DF152429A6743E00FDDBF9 /* background.png in Resources */,
 				A7393D3D29A6723300C47229 /* lightbulb.png in Resources */,
 				A7919A6C29B113830089C118 /* groundFinal.png in Resources */,
@@ -603,6 +622,7 @@
 				A7919A7029B144710089C118 /* glitch.mov in Resources */,
 				A7919A7E29B182BA0089C118 /* grata_sfondo.png in Resources */,
 				A798AD7629A8FDC600582B41 /* sfondo.png in Resources */,
+				8363CA7629B78BD200186F28 /* quinto-testo.mov in Resources */,
 				A7919A7C29B1828A0089C118 /* Tubo_solo_angolo.png in Resources */,
 				A7ED435C29AEA1B400EDA732 /* sfondoGrande.png in Resources */,
 				A7DF152229A6741B00FDDBF9 /* normalTest.png in Resources */,
@@ -615,14 +635,17 @@
 				83E44A6D29AD305C00D3BD73 /* floppy-1.mov in Resources */,
 				A7919A6A29B113830089C118 /* riempimento.png in Resources */,
 				A7FC2CC929AFCD68008C741B /* backgroundGrande.png in Resources */,
+				8363CA7A29B78BF800186F28 /* terzo-testo.mov in Resources */,
 				A76F4E3529AA56E4008F9A05 /* MainMenu.sks in Resources */,
 				A751465329B69B4700BA7B00 /* Tutorial.sks in Resources */,
 				839D25A429A8223000D47B57 /* Charging.mp3 in Resources */,
+				8363CA7529B78BD200186F28 /* quarto-testo.mov in Resources */,
 				A7AE5C5829A3C2F7002FDAEB /* Assets.xcassets in Resources */,
 				A798AD7429A8FDBF00582B41 /* sfondo_normale.png in Resources */,
 				A7919A6329B109E30089C118 /* charge.wav in Resources */,
 				A7919A6B29B113830089C118 /* angoloDestro.png in Resources */,
 				A79D516229AF50B800DB59A5 /* HorrorTension.wav in Resources */,
+				8363CA7829B78BD200186F28 /* sesto-testo.mov in Resources */,
 				8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */,
 				A7919A6929B113830089C118 /* angoloSinistro.png in Resources */,
 				A7919A7229B1487E0089C118 /* glitch2.mov in Resources */,
@@ -630,6 +653,7 @@
 				A7919A7429B14A100089C118 /* glitch3.mov in Resources */,
 				A76F4E3A29AA6B50008F9A05 /* GameOver.sks in Resources */,
 				A7AE5C5B29A3C2F7002FDAEB /* LaunchScreen.storyboard in Resources */,
+				8363CA7729B78BD200186F28 /* settimo-testo.mov in Resources */,
 				A7ACB0D229ACF14000A5000D /* GameScene.sks in Resources */,
 				A7AE5C4F29A3C2F6002FDAEB /* Actions.sks in Resources */,
 				83A6AA2029B22FB8007B1716 /* Comp-1_4.mov in Resources */,
