@@ -26,7 +26,7 @@ class Player
     var light = Light()
     var inventory = PlayerInventory()
     
-    var videoPlay = SKVideoNode()
+    var videoPlay = FloppyDisk(videoName: [])
     
    //Life
     var maxCharge: Float = 100

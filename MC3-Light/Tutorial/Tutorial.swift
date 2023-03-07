@@ -258,7 +258,15 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
             }
         else if(player.videoFloppyIsPlaying)
         {
-            
+            player.videoPlay.currentvideo += 1
+            if(player.videoPlay.currentvideo < self.player.videoPlay.videoName.count)
+            {
+                player.videoPlay.playFloppyVideo(scene: self, player: player, playerController: playerController)
+            }
+            else{
+                player.videoPlay.stopFloppyVideo(player: player)
+                player.videoPlay = FloppyDisk(videoName: [])
+            }
         }
         
     }

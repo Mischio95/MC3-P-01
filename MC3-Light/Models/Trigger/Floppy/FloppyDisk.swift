@@ -43,7 +43,7 @@ class FloppyDisk: Item
         self.videoToPlay.removeFromParent()
         player.canMove = false
         self.videoIsPlaying = true
-        player.videoPlay = self.videoToPlay
+        player.videoPlay = self
         self.videoToPlay = SKVideoNode(fileNamed: self.videoName[currentvideo])
         self.videoToPlay.zPosition = Utilities.ZIndex.videoFloppy
         self.videoToPlay.size = CGSize(width: 1200, height: 900)
@@ -57,9 +57,6 @@ class FloppyDisk: Item
         {
             if(self.currentvideo < self.videoName.count - 1)
             {
-                print("if")
-//                self.videoName.remove(at: self.currentvideo)
-                self.currentvideo += 1
                 self.playFloppyVideo(scene: scene, player: player, playerController: playerController)
             }
             else
