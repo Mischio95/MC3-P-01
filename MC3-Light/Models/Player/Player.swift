@@ -205,7 +205,7 @@ class Player
     func playGlitchVideo()
     {
         self.videoToPlay.play()
-        self.videoToPlay.zPosition = self.sprite.zPosition + 10
+        self.videoToPlay.zPosition = Utilities.ZIndex.videoFloppy
         self.videoToPlay.position = self.sprite.position
         self.videoGlitchIsPlaying = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)

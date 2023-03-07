@@ -18,6 +18,7 @@ class InvisibleWall: Trigger
         self.active = active
         self.sprite.isHidden = !active
         self.sprite.name = "invisibleWall"
+        self.sprite.zPosition = Utilities.ZIndex.frontSceneObject
         setup()
     }
     override func setup() {

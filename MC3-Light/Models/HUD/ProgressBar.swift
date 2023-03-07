@@ -60,7 +60,7 @@ class ProgressBar: SKNode
         self.playerImage.size = CGSize(width: 90, height: 90)
         self.playerImage.position.x = progressBar.position.x - 80
         self.playerImage.position.y = progressBar.position.y
-        self.playerImage.zPosition = 100
+        self.playerImage.zPosition = Utilities.ZIndex.HUD
 
     }
     
@@ -78,14 +78,14 @@ class ProgressBar: SKNode
         progressBarContainer.size.height = sceneFrame.height * 0.05
         progressBarContainer.anchorPoint = CGPoint(x: 0, y: 0.5)
 
-        progressBarContainer.zPosition = 99
+        progressBarContainer.zPosition = Utilities.ZIndex.HUD - 1
 
         progressBar = SKSpriteNode(texture: progressTexture, size: progressTexture.size())
         progressBar.size.width = sceneFrame.width * 0.2
         progressBar.size.height = sceneFrame.height * 0.047
         progressBar.position.x = -maxProgressBarWidth / 2
         progressBar.anchorPoint = CGPoint(x: 0, y: 0.5)
-        progressBar.zPosition = 100
+        progressBar.zPosition = Utilities.ZIndex.HUD
         
        
         
@@ -111,7 +111,7 @@ class ProgressBar: SKNode
             video.size.width = progressBar.size.width
             video.size.height = progressBar.size.height
             video.anchorPoint = CGPoint(x: 0, y: 0.5)
-            video.zPosition = progressBar.zPosition + 1
+            video.zPosition = Utilities.ZIndex.videoFloppy
             progressBar.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
             video.run(SKAction.resize(toWidth: CGFloat( time / maxProgress) * maxProgressBarWidth, duration: 0.2))
             progressBar.addChild(video)

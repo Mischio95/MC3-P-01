@@ -42,7 +42,7 @@ class PlayerController
         
         touchJump?.size = CGSize(width: 90, height: 90)
         touchJump?.name = "jump"
-        touchJump?.zPosition = 100
+        touchJump?.zPosition = Utilities.ZIndex.HUD
         
         touchLightOnOff?.size = CGSize(width: 90, height: 90)
         touchLightOnOff?.name = "lightOnOff"

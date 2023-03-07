@@ -15,6 +15,7 @@ class FloppyDisk: Item
     var floppyAnimator = FloppyAnimator()
     var videoName: [String] = []
     var currentvideo: Int = 0
+    var backgroundVideoImage = SKSpriteNode(imageNamed: "sfondoVideo")
     
     init(videoName: [String])
     {
@@ -27,6 +28,8 @@ class FloppyDisk: Item
         setupPhyisics()
         self.floppyAnimator.startFloppyAnimation(sprite: self.sprite)
         self.videoToPlay.size = CGSize(width: 1200, height: 900)
+        self.backgroundVideoImage.zPosition = Utilities.ZIndex.backgroundVideo
+        
     }
     
     override func setupPhyisics()
@@ -40,44 +43,34 @@ class FloppyDisk: Item
     
     func playFloppyVideo(scene: SKScene, player: Player, playerController: PlayerController)
     {
-        self.videoToPlay.removeFromParent()
+        if(player.videoPlay.currentvideo == 0)
+        {
+            player.videoPlay.sprite.addChild(player.videoPlay.backgroundVideoImage)
+        }
         player.canMove = false
         self.videoIsPlaying = true
         player.videoPlay = self
         self.videoToPlay = SKVideoNode(fileNamed: self.videoName[currentvideo])
         self.videoToPlay.zPosition = Utilities.ZIndex.videoFloppy
-        self.videoToPlay.size = CGSize(width: 1200, height: 900)
+        self.videoToPlay.size = CGSize(width: 1340, height: 610)
         self.videoToPlay.position = player.sprite.position
         scene.addChild(videoToPlay)
         self.videoToPlay.play()
         player.videoFloppyIsPlaying = true
         print("Count")
         print(videoName.count)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20)
-        {
-            if(self.currentvideo < self.videoName.count - 1)
-            {
-                self.playFloppyVideo(scene: scene, player: player, playerController: playerController)
-            }
-            else
-            {
-                print("else")
-                self.stopFloppyVideo(player: player)
-            }
-        }
-        playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
-        
-       
     }
     
-    func stopFloppyVideo(player: Player)
+func stopFloppyVideo(player: Player, playerController: PlayerController)
     {
-        videoIsPlaying = false
-        self.videoToPlay.removeFromParent()
-        sprite.removeFromParent()
+        player.videoPlay.videoIsPlaying = false
+        self.sprite.removeFromParent()
+        self.backgroundVideoImage.removeFromParent()
         player.videoFloppyIsPlaying = false
         player.canMove = true
         player.canJump = true
         player.nearFloppy = false
+        playerController.touchJump.texture = SKTexture(imageNamed: "Jump")
     }
 }
+

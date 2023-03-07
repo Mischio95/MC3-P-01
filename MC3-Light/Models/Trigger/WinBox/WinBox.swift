@@ -19,6 +19,7 @@ class WinBox: Trigger
     {
         super.init(sprite: SKSpriteNode(imageNamed: "WinBox"), size: CGSize(width: 50, height: 50))
         self.sprite.name = "winBox"
+        self.sprite.zPosition = Utilities.ZIndex.sceneObject
 //        self.sprite.size = CGSize(width: 100, height: 100)
         
         setup()
@@ -33,7 +34,7 @@ class WinBox: Trigger
         self.gate.sprite.physicsBody = SKPhysicsBody(rectangleOf: gateBoxCollision)
         self.gate.sprite.position = position
         self.gate.sprite.size = CGSize(width: 230, height: 230)
-        self.gate.sprite.zPosition = self.sprite.zPosition
+        self.gate.sprite.zPosition = Utilities.ZIndex.frontSceneObject
         self.gate.sprite.physicsBody?.isDynamic = false
         self.gate.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.gateCategory
         self.gate.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory

@@ -21,7 +21,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     private var lastUpdateTime : TimeInterval = 0
     var groundGameScene1 = SetupMap()
     var progressBar = ProgressBar()
-    var floppyDisk1 = FloppyDisk(videoName:["firstVideoTutorial.mov", "sesto-testo.mov","firstVideoTutorial.mov"])
+    var floppyDisk1 = FloppyDisk(videoName:["firstVideoTutorial.mov", "secondo-testo.mov","terzo-testo.mov", "quarto-testo.mov", "quinto-testo.mov", "sesto-testo.mov", "settimo-testo.mov"])
     var player: Player!
     var deltaTime: Double!
     var playerStart : SKSpriteNode!
@@ -98,7 +98,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
 
                 videoNode?.position = CGPoint( x: frame.midX,
                                                y: frame.midY)
-                videoNode?.zPosition = 0
+        videoNode?.zPosition = Utilities.ZIndex.layer1
                 addChild((videoNode)!)
 
                 avPlayer.play()
@@ -213,9 +213,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                     if(!player.nearBoxCharge && player.nearFloppy && !player.nearWinBox)
                     {
                         floppyDisk1.videoToPlay.position = CGPoint(x: player.sprite.position.x, y:player.sprite.position.y)
-                        floppyDisk1.videoToPlay.zPosition = 100
                         addChild(floppyDisk1.videoToPlay)
-    //                    floppyDisk1.videoToPlay.play()
                         floppyDisk1.playFloppyVideo(scene: self, player: player, playerController: playerController)
                     }
                     if(!player.nearBoxCharge && !player.nearFloppy && player.nearWinBox)
@@ -235,7 +233,6 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                             player.lightButtonClicked = true
                             player.lightIsOn = true
                             player.timerNode.isPaused = false
-        //                    player.playerAnimator.resetAnimationAfterTurnOnLight(player: player)
                             player.hitAfterTurnOnLight()
                         }
                         else
@@ -258,13 +255,17 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
             }
         else if(player.videoFloppyIsPlaying)
         {
-            player.videoPlay.currentvideo += 1
+            player.videoPlay.videoToPlay.removeFromParent()
             if(player.videoPlay.currentvideo < self.player.videoPlay.videoName.count)
             {
                 player.videoPlay.playFloppyVideo(scene: self, player: player, playerController: playerController)
+                player.videoPlay.currentvideo += 1
+                
             }
             else{
-                player.videoPlay.stopFloppyVideo(player: player)
+                player.videoPlay.backgroundVideoImage.removeFromParent()
+                player.videoPlay.videoToPlay.removeFromParent()
+                player.videoPlay.stopFloppyVideo(player: player, playerController: playerController)
                 player.videoPlay = FloppyDisk(videoName: [])
             }
         }
@@ -429,7 +430,7 @@ extension Tutorial
     func setupJoystick()
     {
         // probabilmente l'if player can move dentro l'handler fa buggare la prima volta e lo rende scattoso vedere meglio
-        analogJoystick.zPosition = 20
+        analogJoystick.zPosition = Utilities.ZIndex.HUD
         addChild(analogJoystick)
         playerSpeed = CGPoint.zero
         analogJoystick.trackingHandler =
@@ -464,7 +465,7 @@ extension Tutorial
     func setupWinBox()
     {
         winBox.sprite.size = CGSize(width: 50, height: 50)
-        winBox.sprite.zPosition = player.sprite.zPosition
+        winBox.sprite.zPosition = Utilities.ZIndex.sceneObject
         winBox.sprite.physicsBody!.isDynamic = false
         winBox.sprite.physicsBody?.affectedByGravity = false
         winBox.sprite.position.y = player.sprite.position.y - 70
@@ -472,7 +473,6 @@ extension Tutorial
         winBox.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.winBoxCategory
         winBox.sprite.physicsBody?.collisionBitMask = Utilities.CollisionBitMask.playerCategory
         winBox.sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
-        winBox.sprite.zPosition = player.sprite.zPosition - 1
         
         
         //SETUP GATE

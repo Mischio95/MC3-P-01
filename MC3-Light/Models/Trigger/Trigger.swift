@@ -57,7 +57,7 @@ class ChargingBox: Trigger {
     func setupChargingBox()
     {
         sprite.size = CGSize(width: 220, height: 60)
-        sprite.zPosition = player!.sprite.zPosition - 1
+        sprite.zPosition = Utilities.ZIndex.sceneObject
         sprite.physicsBody!.isDynamic = true
         sprite.position.y = player!.sprite.position.y - 100
         sprite.position.x = player!.sprite.position.x - 300

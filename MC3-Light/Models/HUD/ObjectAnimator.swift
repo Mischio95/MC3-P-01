@@ -129,12 +129,12 @@ class WaterPipe: ObjectAnimator
        
         soundTriggerIn.sprite.position.x = spriteToAnimate.position.x - 2000
         soundTriggerIn.sprite.position.y = spriteToAnimate.position.y - 100
-        soundTriggerIn.sprite.zPosition = 100
+        soundTriggerIn.sprite.zPosition = Utilities.ZIndex.layer3
         soundTriggerIn.sprite.size = CGSize(width: 30, height: 30)
         
         soundTriggerOut.sprite.position.x = spriteToAnimate.position.x + 2000
         soundTriggerOut.sprite.position.y = spriteToAnimate.position.y - 100
-        soundTriggerOut.sprite.zPosition = 100
+        soundTriggerOut.sprite.zPosition = Utilities.ZIndex.layer3
         soundTriggerOut.sprite.size = CGSize(width: 30, height: 30)
         scene.addChild(soundTriggerIn.sprite)
         scene.addChild(soundTriggerOut.sprite)
