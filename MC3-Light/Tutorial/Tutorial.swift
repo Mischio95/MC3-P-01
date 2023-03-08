@@ -66,7 +66,6 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
 
     
     override func sceneDidLoad() {
-        tutorialOpen = true
         player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar)
         //        setupItem()
         setupWinBox()
@@ -95,7 +94,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         // VIDEO LOOP
        
         let videoNode: SKVideoNode? = {
-                    let urlString = Bundle.main.path(forResource: "glitch3", ofType: "mov")
+                    let urlString = Bundle.main.path(forResource: "glitch4", ofType: "mov")
                     let url = URL(fileURLWithPath: urlString!)
                     let item = AVPlayerItem(url: url)
                     avPlayer = AVPlayer(playerItem: item)
@@ -247,6 +246,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
                     
                     if(player.nearGate && winBox.opened == true)
                     {
+                        finishTutorial = true
                         player.playerWin()
                     }
                 }
