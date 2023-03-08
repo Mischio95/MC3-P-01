@@ -548,7 +548,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
         {
-            merchant.Talking()
+            merchant.Talking(scene: self)
             print("ciao")
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "invisibleWall")
@@ -607,7 +607,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
         {
             print("end")
-            merchant.Talking()
+            merchant.Talking(scene: self)
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "gate")

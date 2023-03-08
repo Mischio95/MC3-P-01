@@ -20,6 +20,7 @@ class Merchant: Trigger
         self.sprite.name = "merchant"
         merchantSpown = scene.childNode(withName: "merchantSpown")
         self.sprite.position = merchantSpown.position
+        self.sprite.zPosition = Utilities.ZIndex.sceneObject
         setupPhyisics()
         self.bubbleDialogue.position.x = self.sprite.position.x - 50
         self.bubbleDialogue.position.y = self.sprite.position.y + 80
@@ -37,7 +38,7 @@ class Merchant: Trigger
 //        self.bubbileDialogue.physicsBody?.collisionBitMask = 0
     }
     
-    func Talking()
+    func Talking(scene: SKScene)
     {
         if(isTalking)
         {
@@ -46,8 +47,12 @@ class Merchant: Trigger
         }
         else
         {
+            scene.addChild(bubbleDialogue)
+            self.bubbleDialogue.position.x = self.sprite.position.x - 50
+            self.bubbleDialogue.position.y = self.sprite.position.y + 80
+            self.bubbleDialogue.zPosition = self.sprite.zPosition + 1
+            self.bubbleDialogue.size = CGSize(width: 150, height: 150)
             isTalking = true
-            self.sprite.addChild(bubbleDialogue)
         }
     }
 }
