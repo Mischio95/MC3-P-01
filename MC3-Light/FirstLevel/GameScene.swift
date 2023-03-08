@@ -15,13 +15,7 @@
 
 //MARK: BUG DA FIXARE
 
-// FIXARE CHE SE SUBISCO DANNO DA ACCENSIONE LUCE NON PARTE LA HITANIM DEL PLAYER SE STO FERMO MA SE CAMMINO SI, E POI FIN QUANDO NON MI FERMO NON SI STOPPA
-// CHARG BOX
-// AMBIENT DAMAGE
-// RIMETTERE MATERIALE DI FEDE PER HIT
-// FIXARE JUMP
-// INSERIRE ALTRI TRIGGER PER ALTRI SUONI ED OGETTI DI BACKGROUND
-// SPAWN POINT PER ENEMY
+// HUD Contatore
 
 import SpriteKit
 import GameplayKit
@@ -30,7 +24,9 @@ import Foundation
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate
-{    
+{
+    
+    var boltSpown = SetupMap()
     var deltaTime: Double!
     let light2 = SKLightNode()
     var normalPlayerTexture : SKTexture?
@@ -167,10 +163,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        _screenW = view.frame.width
        _scale = _screenW / 3800
         
-       initGround()
-       initBackground()
-       initGasObjectScene()
-       initWaterGreenScene()
+        initGround()
+        initBackground()
+        initGasObjectScene()
+        initWaterGreenScene()
+        initBoltSpown()
         player.light.lightSprite.position.y = player.sprite.position.y + 50
         player.light.lightSprite.position.x = player.sprite.position.x
         
@@ -576,6 +573,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 extension GameScene
 {
+    
+    fileprivate func initBoltSpown()
+    {
+        for index in 0...77
+        {
+            boltSpown.setupBolt(scene: self, nameBackground: "bolt\(index)")
+        }
+    }
+    
     fileprivate func initBackground()
     {
         backgroundColor = SKColor.black
@@ -598,18 +604,18 @@ extension GameScene
     
     fileprivate func initGasObjectScene()
     {
-//        for index in 0..<3
-//        {
-//            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
-//        }
+        for index in 0..<2
+        {
+            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
+        }
     }
     
     fileprivate func initWaterGreenScene()
     {
-//        for index in 0..<8
-//        {
-//            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
-//        }
+        for index in 0..<4
+        {
+            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
+        }
     }
     
     fileprivate func initWater()
