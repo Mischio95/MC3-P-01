@@ -598,23 +598,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem1")
         {
-            questItem1.isInLife = false
-            secondBody.node?.removeFromParent()
-            player.inventory.addKey()
+            if(player.lightIsOn)
+            {
+                questItem1.isInLife = false
+                player.inventory.addItemInInventory(itemToAdd: questItem1)
+            }
+//            questItem1.sprite.removeFromParent()
+
             keyCount.text = "\(player.inventory.keyAmount)"
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem2")
         {
-            questItem2.isInLife = false
-            secondBody.node?.removeFromParent()
-            player.inventory.addKey()
+            if(player.lightIsOn)
+            {
+                questItem1.isInLife = false
+                player.inventory.addItemInInventory(itemToAdd:  questItem2)
+            }
             keyCount.text = "\(player.inventory.keyAmount)"
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem3")
         {
-            questItem3.isInLife = false
-            secondBody.node?.removeFromParent()
-            player.inventory.addKey()
+            if(player.lightIsOn)
+            {
+                questItem1.isInLife = false
+                player.inventory.addItemInInventory(itemToAdd: questItem3)
+            }
             keyCount.text = "\(player.inventory.keyAmount)"
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "bolt")
