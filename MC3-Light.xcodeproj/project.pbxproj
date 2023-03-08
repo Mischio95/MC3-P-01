@@ -69,6 +69,7 @@
 		A79D515E29AF4CE200DB59A5 /* EndGameGlitch.wav in Resources */ = {isa = PBXBuildFile; fileRef = A79D515D29AF4CE200DB59A5 /* EndGameGlitch.wav */; };
 		A79D516029AF4CE800DB59A5 /* HitGlitch.wav in Resources */ = {isa = PBXBuildFile; fileRef = A79D515F29AF4CE800DB59A5 /* HitGlitch.wav */; };
 		A79D516229AF50B800DB59A5 /* HorrorTension.wav in Resources */ = {isa = PBXBuildFile; fileRef = A79D516129AF50B800DB59A5 /* HorrorTension.wav */; };
+		A7A6619D29B8D6A900B025A2 /* maschera.png in Resources */ = {isa = PBXBuildFile; fileRef = A7A6619C29B8D6A900B025A2 /* maschera.png */; };
 		A7ACB0D229ACF14000A5000D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7ACB0D129ACF14000A5000D /* GameScene.sks */; };
 		A7ACB0D429AD336100A5000D /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACB0D329AD336100A5000D /* ProgressBar.swift */; };
 		A7ACB0D629AD4FD400A5000D /* PlayerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ACB0D529AD4FD400A5000D /* PlayerAnimator.swift */; };
@@ -171,6 +172,7 @@
 		A79D515D29AF4CE200DB59A5 /* EndGameGlitch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = EndGameGlitch.wav; sourceTree = "<group>"; };
 		A79D515F29AF4CE800DB59A5 /* HitGlitch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HitGlitch.wav; sourceTree = "<group>"; };
 		A79D516129AF50B800DB59A5 /* HorrorTension.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HorrorTension.wav; sourceTree = "<group>"; };
+		A7A6619C29B8D6A900B025A2 /* maschera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maschera.png; sourceTree = "<group>"; };
 		A7ACB0D129ACF14000A5000D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		A7ACB0D329AD336100A5000D /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A7ACB0D529AD4FD400A5000D /* PlayerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerAnimator.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				8363CA6929B7733500186F28 /* VideoTutorial */,
+				A7A6619C29B8D6A900B025A2 /* maschera.png */,
 				A751465629B6A2EA00BA7B00 /* blackBackground.png */,
 				A751465429B6A13600BA7B00 /* glitch.png */,
 				A7919A7D29B182BA0089C118 /* grata_sfondo.png */,
@@ -649,6 +652,7 @@
 				8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */,
 				A7919A6929B113830089C118 /* angoloSinistro.png in Resources */,
 				A7919A7229B1487E0089C118 /* glitch2.mov in Resources */,
+				A7A6619D29B8D6A900B025A2 /* maschera.png in Resources */,
 				A797539029AB8DC60017F34E /* groundNormal.png in Resources */,
 				A7919A7429B14A100089C118 /* glitch3.mov in Resources */,
 				A76F4E3A29AA6B50008F9A05 /* GameOver.sks in Resources */,

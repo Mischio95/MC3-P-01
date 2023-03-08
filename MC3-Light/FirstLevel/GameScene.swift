@@ -25,8 +25,8 @@ import Foundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
-    
-    var boltSpown = SetupMap()
+    var maschera: SKSpriteNode!
+    var boltSpown  = SetupMap()
     var deltaTime: Double!
     let light2 = SKLightNode()
     var normalPlayerTexture : SKTexture?
@@ -68,9 +68,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     // TRIGGER
 
-    var chargingBox: ChargingBox?
+    var chargingBox: ChargingBox!
     var winBox = WinBox(numberOfKey: 1)
     var winBoxTriggerLevettaSpown: SKNode!
+    var chargingBoxSpown1: SKNode!
+    var chargingBoxSpown2: SKNode!
+    var chargingBoxSpownVector: [SKNode] = []
+    
+    
     // GROUND
     var groundGameScene1 = SetupMap()
     var invisibleGroundGameScene1 = SetupMap()
@@ -82,6 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
     var merchant: Merchant!
+    var merchantSpown: SKNode!
     
     
     // LIGHT && color
@@ -114,11 +120,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     //MARK: - sceneDidLoad
     override func sceneDidLoad()
     {
-        
+        maschera = SKSpriteNode(imageNamed: "maschera.png")
+//        addChild(maschera)
+        maschera.size = CGSize(width: 1920, height: 1080)
         merchant = Merchant(scene: self)
         joystickButtonClicked = false
         animRunning = false
         player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar)
+        maschera.zPosition = player.sprite.zPosition + 1
         objectAnimator.setupAnimatorWaterFall(scene: self, player: player)
         enemySpownPosition = self.childNode(withName: "enemySpownPosition") // as? SKSpriteNode
         enemySpownPosition.isHidden = true
@@ -179,8 +188,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(merchant.sprite)
         
         
-        merchant.sprite.position.x = player.sprite.position.x + 700
-        merchant.sprite.position.y = player.sprite.position.y + 10
+//        merchant.sprite.position.x = player.sprite.position.x + 700
+//        merchant.sprite.position.y = player.sprite.position.y + 10
         
         // VIDEO TUTORIAL
         
@@ -198,6 +207,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         initGasObjectScene()
         initWaterGreenScene()
         initBoltSpown()
+//        initChargeBox()
+        
         player.light.lightSprite.position.y = player.sprite.position.y + 50
         player.light.lightSprite.position.x = player.sprite.position.x
         
@@ -223,7 +234,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         questItem.sprite.position.x = player.sprite.position.x + 200
         questItem.sprite.position.y = player.sprite.position.y + 50
         
+        chargingBoxSpown1 = self.childNode(withName: "chargeBoxSpown0")
+        chargingBoxSpown1.isHidden = true
         chargingBox = ChargingBox(scene: self, player: player)
+        chargingBox.sprite.position = chargingBoxSpown1.position
         addChild(boltScore)
         addChild(boltHUDImage)
         addChild(keyCountHUDImage)
@@ -353,6 +367,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         cameraNode.position.x = player.sprite.position.x
         cameraNode.position.y = player.sprite.position.y
         
+        maschera.position = cameraNode.position
+        
         progressBar.progressFollowPlayer(player: player)
         playerController.touchJump?.position.x = cameraNode.position.x + 450
         playerController.touchJump?.position.y = cameraNode.position.y - 200
@@ -370,6 +386,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if player.lightIsOn
         {
             lightSprite?.position.y = player.sprite.position.y + 50
+            maschera.isHidden = true
+        }
+        else
+        {
+            maschera.isHidden = false
         }
         
         
@@ -633,6 +654,7 @@ extension GameScene
         for index in 0...77
         {
             boltSpown.setupBolt(scene: self, nameBackground: "bolt\(index)")
+           
         }
     }
     
@@ -650,7 +672,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<22
+        for index in 0..<25
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
@@ -687,6 +709,22 @@ extension GameScene
         addChild(bullet.sprite)
         rangedEnemy.shooting(bullet: bullet, player: player.sprite)
     }
+    // fa index out of range
+    
+//   fileprivate func initChargeBox()
+//    {
+//        chargingBoxSpown1 = scene?.childNode(withName: "chargeBoxSpown1")
+//        chargingBoxSpown2 = scene?.childNode(withName: "chargeBoxSpown2")
+//
+//        chargingBoxSpownVector.append(chargingBoxSpown1)
+//        chargingBoxSpownVector.append(chargingBoxSpown2)
+//
+//        for index in 0..<chargingBoxSpownVector.count
+//        {
+//            chargingBoxSpownVector[index].isHidden = true
+//            chargingBox[index].sprite.position = chargingBoxSpownVector[index].position
+//        }
+//    }
 }
 
 // ------------------------------------------ MARK: - EXTENSION PER I VARI SETUP ----------------------------------------------------------------

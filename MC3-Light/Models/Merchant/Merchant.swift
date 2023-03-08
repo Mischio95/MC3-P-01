@@ -19,6 +19,7 @@ class Merchant: Trigger
         super.init(sprite: SKSpriteNode(imageNamed: "mercante"), size: CGSize(width: 250, height: 250))
         self.sprite.name = "merchant"
         merchantSpown = scene.childNode(withName: "merchantSpown")
+        merchantSpown.isHidden = true
         self.sprite.position = merchantSpown.position
         self.sprite.zPosition = Utilities.ZIndex.sceneObject
         setupPhyisics()
