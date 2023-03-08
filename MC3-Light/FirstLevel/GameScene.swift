@@ -237,6 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         chargingBoxSpown1 = self.childNode(withName: "chargeBoxSpown0")
         chargingBoxSpown1.isHidden = true
         chargingBox = ChargingBox(scene: self, player: player)
+        chargingBox.sprite.position = chargingBoxSpown1.position
         addChild(boltScore)
         addChild(boltHUDImage)
         addChild(keyCountHUDImage)
@@ -671,7 +672,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<22
+        for index in 0..<25
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
