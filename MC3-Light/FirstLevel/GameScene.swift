@@ -157,7 +157,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         boltHUDImage.zPosition = Utilities.ZIndex.HUD
         boltHUDImage.size = CGSize(width: 50, height: 50)
-       
+    
         
         boltScore.fontSize = 30
         boltScore.fontColor = .white
