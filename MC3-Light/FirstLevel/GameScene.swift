@@ -25,6 +25,11 @@ import Foundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
+    var questItemSpown1:SKNode!
+    var questItemSpown2:SKNode!
+    var questItemSpown3:SKNode!
+    
+    
     var maschera: SKSpriteNode!
     var boltSpown  = SetupMap()
     var deltaTime: Double!
@@ -233,20 +238,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate
               
         //pickup
         questItem1.floppyAnimator.startFloppyAnimation(sprite: questItem1.sprite)
-        questItem1.sprite.position.x = player.sprite.position.x + 200
-        questItem1.sprite.position.y = player.sprite.position.y + 50
         addChild(questItem1.sprite)
         
         questItem2.floppyAnimator.startFloppyAnimation(sprite: questItem2.sprite)
-        questItem2.sprite.position.x = player.sprite.position.x + 250
-        questItem2.sprite.position.y = player.sprite.position.y + 50
         addChild(questItem2.sprite)
         
         questItem3.floppyAnimator.startFloppyAnimation(sprite: questItem3.sprite)
-        questItem3.sprite.position.x = player.sprite.position.x + 300
-        questItem3.sprite.position.y = player.sprite.position.y + 50
         addChild(questItem3.sprite)
         
+        
+        questItemSpown1 = self.childNode(withName: "keySpown1")
+        questItemSpown2 = self.childNode(withName: "keySpown2")
+        questItemSpown3 = self.childNode(withName: "keySpown3")
+        questItemSpown1.isHidden = true
+        questItemSpown2.isHidden = true
+        questItemSpown3.isHidden = true
+
+        questItem1.sprite.position = questItemSpown1.position
+        questItem2.sprite.position = questItemSpown2.position
+        questItem3.sprite.position = questItemSpown3.position
+
         chargingBoxSpown1 = self.childNode(withName: "chargeBoxSpown0")
         chargingBoxSpown1.isHidden = true
         chargingBox = ChargingBox(scene: self, player: player)
@@ -797,6 +808,8 @@ extension GameScene
         questItem1.setGUID(GUID: winBox.GUID)
         questItem2.setGUID(GUID: winBox.GUID)
         questItem3.setGUID(GUID: winBox.GUID)
+        
+        
         
         winBoxSpown = self.childNode(withName: "winBox")
         winBoxTriggerLevettaSpown = self.childNode(withName: "levetta")
