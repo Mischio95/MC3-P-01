@@ -14,7 +14,7 @@ class Bolt: Item
     
     init(quantity: Int)
    {
-       super.init(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 35, height: 35), quantity: quantity)
+       super.init(sprite: SKSpriteNode(imageNamed: "bolt1"), size: CGSize(width: 35, height: 35), quantity: quantity)
        self.sprite.name = "bolt"
        setupPhyisics()
        startboltAnimation()
@@ -23,7 +23,7 @@ class Bolt: Item
     override func setupPhyisics() {
         sprite.physicsBody = SKPhysicsBody(rectangleOf: size)
         sprite.physicsBody?.isDynamic = false
-        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.gateCategory
+        sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.boltCategory
         sprite.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
         sprite.lightingBitMask = 1
     }

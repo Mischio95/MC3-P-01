@@ -594,6 +594,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             player.nearGate = true
         }
+        if(firstBody.node?.name == "player" && secondBody.categoryBitMask == Utilities.CollisionBitMask.boltCategory)
+        {
+            gameManager?.addBoltInPlayerInventory(player: player, nameOfItemToRemove: (secondBody.node?.name)!)
+            boltScore.text = "\(player.inventory.boltAmount)"
+        }
     }
     
     //MARK: - didEnd
