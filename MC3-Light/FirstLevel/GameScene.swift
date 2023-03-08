@@ -160,7 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         keyCount.position.y = frame.midY + 50
         keyCount.text = "\(player.inventory.keyAmount)"
         keyCount.zPosition = Utilities.ZIndex.HUD
-        addChild(keyCount)
+        
         
         
         joystickButtonClicked = false
