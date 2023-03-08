@@ -63,6 +63,6 @@ class SetupMap
         bolt = ((scene.childNode(withName: nameBackground) as? SKSpriteNode)!)
         bolt.lightingBitMask = 1
         bolt.isHidden = true
-        bolt.addChild(boltSprite.sprite)
+//        bolt.addChild(boltSprite.sprite)
     }
 }

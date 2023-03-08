@@ -347,7 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         boltScore.position.y = boltHUDImage.position.y - 10
         
         keyCountHUDImage.position.x =  boltScore.position.x + 60
-        keyCountHUDImage.position.y = boltScore.position.y
+        keyCountHUDImage.position.y = boltScore.position.y + 10
         
         keyCount.position.x =  boltScore.position.x + 100
         keyCount.position.y = boltScore.position.y
