@@ -56,7 +56,7 @@ class SetupMap
         invisibleGround.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
     }
     
-    func setupBolt(scene: SKScene, nameBackground: String, boltPick: Bolt)
+    func setupBolt(scene: SKScene, nameBackground: String)
     {
         bolt = (scene.childNode(withName: nameBackground) as? SKSpriteNode)
         bolt.lightingBitMask = 1

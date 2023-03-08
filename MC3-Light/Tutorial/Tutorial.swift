@@ -91,6 +91,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         blackBackground = self.childNode(withName: "blackBackground")
         blackBackground.zPosition = Utilities.ZIndex.background
         
+
         // VIDEO LOOP
        
         let videoNode: SKVideoNode? = {
@@ -119,12 +120,16 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         
         // Joystick
         setupJoystick()
+        
+        // Progress Bar
         progressBar.getSceneFrame(sceneFrame: frame)
         progressBar.buildProgressBar()
         addChild(progressBar)
-//        chargingBox = ChargingBox(scene: self, player: player)
-//        chargingBox?.sprite.position.x = player.sprite.position.x + 300
-//        chargingBox?.sprite.position.y = player.sprite.position.y - 50
+        
+        if(player.lightIsOn)
+        {
+            player.timerNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.run(player.countdownPlayerPointLightBattery),SKAction.wait(forDuration: 1)])))
+        }
         addChild(playerController.touchJump)
         addChild(playerController.touchLightOnOff)
         
@@ -182,7 +187,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         
         if player.lightIsOn
         {
-            lightSprite?.position.y = player.sprite.position.y + 50
+            player.light.lightSprite.position.y = player.sprite.position.y + 50
         }
         
         if player.imDeathing
