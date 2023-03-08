@@ -60,7 +60,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     private var lastUpdateTime : TimeInterval = 0
   
-    var questItem = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
+    var questItem1 = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
+    var questItem2 = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
+    var questItem3 = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
+    
     
         var bolt = Bolt(quantity: 1)
     
@@ -229,10 +232,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         enemy.setupSprite(scene: self)
               
         //pickup
-        addChild(questItem.sprite)
-        questItem.floppyAnimator.startFloppyAnimation(sprite: questItem.sprite)
-        questItem.sprite.position.x = player.sprite.position.x + 200
-        questItem.sprite.position.y = player.sprite.position.y + 50
+        questItem1.floppyAnimator.startFloppyAnimation(sprite: questItem1.sprite)
+        questItem1.sprite.position.x = player.sprite.position.x + 200
+        questItem1.sprite.position.y = player.sprite.position.y + 50
+        addChild(questItem1.sprite)
+        
+        questItem2.floppyAnimator.startFloppyAnimation(sprite: questItem2.sprite)
+        questItem2.sprite.position.x = player.sprite.position.x + 250
+        questItem2.sprite.position.y = player.sprite.position.y + 50
+        addChild(questItem2.sprite)
+        
+        questItem3.floppyAnimator.startFloppyAnimation(sprite: questItem3.sprite)
+        questItem3.sprite.position.x = player.sprite.position.x + 300
+        questItem3.sprite.position.y = player.sprite.position.y + 50
+        addChild(questItem3.sprite)
         
         chargingBoxSpown1 = self.childNode(withName: "chargeBoxSpown0")
         chargingBoxSpown1.isHidden = true
@@ -440,18 +453,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if !player.lightIsOn
         {
-            if(questItem.isInLife)
+            if(questItem1.isInLife)
             {
-                questItem.isInLife = false
-                questItem.sprite.removeFromParent()
+                questItem1.isInLife = false
+                questItem1.sprite.removeFromParent()
+            }
+            if(questItem2.isInLife)
+            {
+                questItem2.isInLife = false
+                questItem2.sprite.removeFromParent()
+            }
+            if(questItem3.isInLife)
+            {
+                questItem3.isInLife = false
+                questItem3.sprite.removeFromParent()
             }
         }
         else
         {
-            if(!questItem.isInLife)
+            if(!questItem1.isInLife)
             {
-                questItem.isInLife = true
-                addChild(questItem.sprite)
+                questItem1.isInLife = true
+                addChild(questItem1.sprite)
+            }
+            if(!questItem2.isInLife)
+            {
+                questItem2.isInLife = true
+                addChild(questItem2.sprite)
+            }
+            if(!questItem3.isInLife)
+            {
+                questItem3.isInLife = true
+                addChild(questItem3.sprite)
             }
         }
     }
@@ -751,7 +784,10 @@ extension GameScene
         
         //SETUP GATE
 //        winBox.setNumberOkKey(numberOfKey: 1)
-        questItem.setGUID(GUID: winBox.GUID)
+        questItem1.setGUID(GUID: winBox.GUID)
+        questItem2.setGUID(GUID: winBox.GUID)
+        questItem3.setGUID(GUID: winBox.GUID)
+        
         winBoxSpown = self.childNode(withName: "winBox")
         winBoxTriggerLevettaSpown = self.childNode(withName: "levetta")
         winBox.sprite.position = winBoxTriggerLevettaSpown.position
