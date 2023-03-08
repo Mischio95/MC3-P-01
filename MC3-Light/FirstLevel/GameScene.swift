@@ -14,14 +14,10 @@
 // Creare scena per winBox
 
 //MARK: BUG DA FIXARE
-
-// FIXARE CHE SE SUBISCO DANNO DA ACCENSIONE LUCE NON PARTE LA HITANIM DEL PLAYER SE STO FERMO MA SE CAMMINO SI, E POI FIN QUANDO NON MI FERMO NON SI STOPPA
-// CHARG BOX
-// AMBIENT DAMAGE
-// RIMETTERE MATERIALE DI FEDE PER HIT
-// FIXARE JUMP
-// INSERIRE ALTRI TRIGGER PER ALTRI SUONI ED OGETTI DI BACKGROUND
-// SPAWN POINT PER ENEMY
+// controllare tutte le chiamate alla tutorial e gamescene
+// aggiungere chiavi se non so messe
+// aggiustare tutorial
+// finire hud
 
 import SpriteKit
 import GameplayKit
@@ -30,7 +26,15 @@ import Foundation
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate
-{    
+{
+    
+    //MARK: - SPOWN
+    var winBoxSpown: SKNode!
+    var chargingBoxSpown: [SKNode] = []
+    var boltSpown = SetupMap()
+    var chargingBoxSpownElement0: SKNode!
+    var chargingBoxSpownElement1: SKNode!
+    
     var deltaTime: Double!
     let light2 = SKLightNode()
     var normalPlayerTexture : SKTexture?
@@ -46,7 +50,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var objectAnimatorScene = ObjectAnimator()
     var bottonClicked = true
     var nearWinBox = false
-    var winBoxSpown: SKNode!
     
     var gameMode: GameMode?
     
@@ -63,11 +66,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
   
     var questItem = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
     
-        var bolt = Bolt(quantity: 1)
+    var bolt = Bolt(quantity: 1)
     
     // TRIGGER
 
-    var chargingBox: ChargingBox?
+    var chargingBox: [ChargingBox]!
     var winBox = WinBox(numberOfKey: 1)
     var winBoxTriggerLevettaSpown: SKNode!
     // GROUND
@@ -80,7 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var enemySpownPosition : SKNode!
     
     var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
-    var merchant = Merchant()
+    var merchant: Merchant!
     
     
     // LIGHT && color
@@ -113,6 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     //MARK: - sceneDidLoad
     override func sceneDidLoad()
     {
+        merchant = Merchant(scene: self)
         joystickButtonClicked = false
         animRunning = false
         player = Player(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 100, height: 100), scene: self, progressBar: progressBar)
@@ -141,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         self.physicsWorld.contactDelegate = self
         
         gameMode = GameMode(scene: self)
-        
+        chargingBox = [ChargingBox(scene: self, player: player),ChargingBox(scene: self, player: player)]
         joystickButtonClicked = false
         animRunning = false
         
@@ -149,10 +153,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         camera = cameraNode
         addChild(cameraNode)
         addChild(merchant.sprite)
-        
-        
-        merchant.sprite.position.x = player.sprite.position.x + 700
-        merchant.sprite.position.y = player.sprite.position.y + 10
         
         // VIDEO TUTORIAL
         
@@ -164,11 +164,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        _screenH = view.frame.height
        _screenW = view.frame.width
        _scale = _screenW / 3800
+        initBoltSpown()
+        initGround()
+        initBackground()
+        initGasObjectScene()
+        initWaterGreenScene()
+        initChargingBoxPosition()
         
-       initGround()
-       initBackground()
-       initGasObjectScene()
-       initWaterGreenScene()
+        
+        
         player.light.lightSprite.position.y = player.sprite.position.y + 50
         player.light.lightSprite.position.x = player.sprite.position.x
         
@@ -194,7 +198,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         questItem.sprite.position.x = player.sprite.position.x + 400
         questItem.sprite.position.y = player.sprite.position.y + 50
         
-        chargingBox = ChargingBox(scene: self, player: player)
     }
 
     //MARK: - touchesBegan
@@ -572,6 +575,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 extension GameScene
 {
+    fileprivate func initBoltSpown()
+    {
+        for index in 0..<78
+        {
+            boltSpown.setupBolt(scene: self, nameBackground: "bolt\(index)",boltPick: bolt)
+        }
+    }
+
+    
     fileprivate func initBackground()
     {
         backgroundColor = SKColor.black
@@ -586,7 +598,7 @@ extension GameScene
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<22
+        for index in 0..<24
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
@@ -594,7 +606,7 @@ extension GameScene
     
     fileprivate func initGasObjectScene()
     {
-        for index in 0..<3
+        for index in 0..<2
         {
             objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
         }
@@ -602,7 +614,7 @@ extension GameScene
     
     fileprivate func initWaterGreenScene()
     {
-        for index in 0..<8
+        for index in 0..<4
         {
             objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
         }
@@ -616,12 +628,27 @@ extension GameScene
         }
     }
     
-    func EnemyShoot()
+//    func EnemyShoot()
+//    {
+//        let bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 0.5, height: 0.5))
+//        bullet.sprite.size = CGSize(width: 5, height: 5)
+//        addChild(bullet.sprite)
+//        rangedEnemy.shooting(bullet: bullet, player: player.sprite)
+//    }
+    
+    fileprivate func initChargingBoxPosition()
     {
-        let bullet = Bullet(sprite: SKSpriteNode(imageNamed: "Player"), size: CGSize(width: 0.5, height: 0.5))
-        bullet.sprite.size = CGSize(width: 5, height: 5)
-        addChild(bullet.sprite)
-        rangedEnemy.shooting(bullet: bullet, player: player.sprite)
+        chargingBoxSpownElement0 = self.childNode(withName: "chargeBoxSpown1")
+        chargingBoxSpownElement1 = self.childNode(withName: "chargeBoxSpown2")
+        
+        chargingBoxSpown.append(chargingBoxSpownElement0)
+        chargingBoxSpown.append(chargingBoxSpownElement1)
+        
+        for index in 0..<chargingBoxSpown.count
+        {
+            chargingBoxSpown[index].isHidden = true
+            chargingBox[index].sprite.position = chargingBoxSpown[index].position
+        }
     }
 }
 
@@ -663,7 +690,6 @@ extension GameScene
         addChild(winBox.gate.sprite)
         bolt.sprite.position.x = player.sprite.position.x + 1000
         bolt.sprite.position.y = player.sprite.position.y
-        addChild(bolt.sprite)
     }
     
     //MARK: - setup JOYSTICK

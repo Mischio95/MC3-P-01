@@ -10,6 +10,7 @@ import SpriteKit
 
 class SetupMap
 {
+    var bolt: SKSpriteNode!
     var background: SKSpriteNode!
     var ground: SKSpriteNode!
     var invisibleGround: SKSpriteNode!
@@ -53,5 +54,12 @@ class SetupMap
         invisibleGround.physicsBody?.affectedByGravity = false
         invisibleGround.alpha = 0
         invisibleGround.physicsBody?.contactTestBitMask = Utilities.CollisionBitMask.playerCategory
+    }
+    
+    func setupBolt(scene: SKScene, nameBackground: String, boltPick: Bolt)
+    {
+        bolt = (scene.childNode(withName: nameBackground) as? SKSpriteNode)
+        bolt.lightingBitMask = 1
+        bolt.isHidden = true
     }
 }
