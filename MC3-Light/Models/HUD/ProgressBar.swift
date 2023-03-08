@@ -53,6 +53,12 @@ class ProgressBar: SKNode
     
     var playerImage = SKSpriteNode(imageNamed: "PlayerProgressBarFace0")
     
+    
+    var boltHUDImage = SKSpriteNode(imageNamed: "bolt")
+    var keyHUDImage = SKSpriteNode(imageNamed: "CardCounterHUD")
+    
+   
+    
     override init() {
         super.init()
         self.progressBar.size = CGSize(width: 10, height: 10)
@@ -61,7 +67,6 @@ class ProgressBar: SKNode
         self.playerImage.position.x = progressBar.position.x - 80
         self.playerImage.position.y = progressBar.position.y
         self.playerImage.zPosition = Utilities.ZIndex.HUD
-
     }
     
     func getSceneFrame(sceneFrame: CGRect)
@@ -86,8 +91,6 @@ class ProgressBar: SKNode
         progressBar.position.x = -maxProgressBarWidth / 2
         progressBar.anchorPoint = CGPoint(x: 0, y: 0.5)
         progressBar.zPosition = Utilities.ZIndex.HUD
-        
-       
         
 //        progressBar.addChild(video)
         //        updateColorBar()

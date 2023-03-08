@@ -11,7 +11,36 @@ class PlayerInventory
 {
     var playerInventory: [PickupItem] = []
     var boltAmount: Int = 0
+    var keyAmount: Int = 0
     
+}
+
+
+//BOLT
+extension PlayerInventory
+{
+    func addBoltsInInventory()
+    {
+        let quantity = Int.random(in: 1..<6)
+        
+        boltAmount += quantity
+    }
+}
+
+
+//Key
+extension PlayerInventory
+{
+    func addKey()
+    {
+        keyAmount += 1
+    }
+}
+
+
+    //For multiple key
+extension PlayerInventory
+{
     func addItemInInventory(itemToAdd: PickupItem)
     {
         if(!itemToAdd.isStackable)
@@ -52,18 +81,19 @@ class PlayerInventory
             }
         }
     }
-}
-
-
-//BOLT
-extension PlayerInventory
-{
-    func addBoltsInInventory()
+    
+    func numberOfKey(pickupItem: PickupItem) -> Int
     {
-        let quantity = Int.random(in: 1..<6)
-        
-        boltAmount += quantity
-        print("Numero Bolt")
-        print(boltAmount)
+        if(playerInventory.count > 0)
+        {
+            for index in 0..<playerInventory.count
+            {
+                if(playerInventory[index].GUID == pickupItem.GUID)
+                {
+                    return playerInventory[index].quantity
+                   
+                }
+            }
+        }
     }
 }

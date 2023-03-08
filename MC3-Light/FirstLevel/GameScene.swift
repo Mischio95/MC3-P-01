@@ -48,7 +48,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var nearWinBox = false
     var winBoxSpown: SKNode!
     
-    var gameMode: GameMode?
+    let boltScore = SKLabelNode (fontNamed:"Copperplate-Bold")
+    let boltHUDImage = SKSpriteNode(imageNamed: "bolt1")
+    let keyCount = SKLabelNode (fontNamed:"Copperplate-Bold")
+    let keyCountHUDImage = SKSpriteNode(imageNamed: "CardCounterHUD")
     
     private var updatables = [Updatable]()
     
@@ -142,7 +145,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //        self.physicsWorld.gravity = CGVectorMake(0, -30)
         self.physicsWorld.contactDelegate = self
         
-        gameMode = GameMode(scene: self)
+        boltHUDImage.zPosition = Utilities.ZIndex.HUD
+        boltHUDImage.size = CGSize(width: 50, height: 50)
+        addChild(boltHUDImage)
+        
+        boltScore.fontSize = 30
+        boltScore.fontColor = .white
+        boltScore.zPosition = 1
+        boltScore.position.x = frame.midX
+        boltScore.position.y = frame.midY + 50
+        boltScore.text = "\(player.inventory.boltAmount)"
+        boltScore.zPosition = Utilities.ZIndex.HUD
+        
+        keyCount.fontSize = 30
+        keyCount.fontColor = .white
+        keyCount.zPosition = 1
+        keyCount.position.x = frame.midX
+        keyCount.position.y = frame.midY + 50
+        keyCount.text = "\(player.inventory.keyAmount)"
+        keyCount.zPosition = Utilities.ZIndex.HUD
+        
         
         joystickButtonClicked = false
         animRunning = false
@@ -197,6 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         questItem.sprite.position.y = player.sprite.position.y + 50
         
         chargingBox = ChargingBox(scene: self, player: player)
+        addChild(scoreNode)
     }
 
     //MARK: - touchesBegan
@@ -293,6 +316,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         // Called before each frame is rendered
         updatables.forEach{$0.update(currentTime: currentTime)}
+        
+        
+//        boltHUDImage.position.x = player.sprite.position.x + 400
+//        boltHUDImage.position.y = player.sprite.position.y + 250
+//        scoreNode.position.x = boltHUDImage.position.x + 30
+//        scoreNode.position.y =  boltHUDImage.position.y - 10
+        
+        
+        boltHUDImage.position.x = player.sprite.position.x + 450
+        boltHUDImage.position.y = player.sprite.position.y + 230
+        
+//        boltHUDImage.position.x = progressBar.position.x + 100
+//        boltHUDImage.position.y = progressBar.position.y
+        scoreNode.position.x = boltHUDImage.position.x + 40
+        scoreNode.position.y = boltHUDImage.position.y - 10
+        
         
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
@@ -495,6 +534,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             secondBody.node?.removeFromParent()
             player.inventory.addBoltsInInventory()
+            boltScore.text = "\(player.inventory.boltAmount)"
             
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
