@@ -21,9 +21,9 @@ extension PlayerInventory
 {
     func addBoltsInInventory()
     {
-        let quantity = Int.random(in: 1..<6)
+//        let quantity = Int.random(in: 1..<6)
         
-        boltAmount += quantity
+        boltAmount += 1
     }
 }
 
