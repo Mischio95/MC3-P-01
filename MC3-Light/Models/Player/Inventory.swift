@@ -95,5 +95,6 @@ extension PlayerInventory
                 }
             }
         }
+        return 0
     }
 }

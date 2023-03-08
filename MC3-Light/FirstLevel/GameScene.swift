@@ -160,6 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         keyCount.position.y = frame.midY + 50
         keyCount.text = "\(player.inventory.keyAmount)"
         keyCount.zPosition = Utilities.ZIndex.HUD
+        addChild(keyCount)
         
         
         joystickButtonClicked = false
@@ -212,11 +213,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         //pickup
         addChild(questItem.sprite)
         questItem.floppyAnimator.startFloppyAnimation(sprite: questItem.sprite)
-        questItem.sprite.position.x = player.sprite.position.x + 400
+        questItem.sprite.position.x = player.sprite.position.x + 100
         questItem.sprite.position.y = player.sprite.position.y + 50
         
         chargingBox = ChargingBox(scene: self, player: player)
-        addChild(scoreNode)
+        addChild(boltScore)
     }
 
     //MARK: - touchesBegan
@@ -326,8 +327,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
 //        boltHUDImage.position.x = progressBar.position.x + 100
 //        boltHUDImage.position.y = progressBar.position.y
-        scoreNode.position.x = boltHUDImage.position.x + 40
-        scoreNode.position.y = boltHUDImage.position.y - 10
+        boltScore.position.x = boltHUDImage.position.x + 40
+        boltScore.position.y = boltHUDImage.position.y - 10
         
         
         // Initialize _lastUpdateTime if it has not already been
@@ -604,7 +605,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
         {
-            secondBody.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
+//            secondBody.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
+            player.inventory.addKey()
+            secondBody.node?.removeFromParent()
         }
     }
 }
@@ -644,18 +647,18 @@ extension GameScene
     
     fileprivate func initGasObjectScene()
     {
-        for index in 0..<2
-        {
-            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
-        }
+//        for index in 0..<2
+//        {
+//            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
+//        }
     }
     
     fileprivate func initWaterGreenScene()
     {
-        for index in 0..<4
-        {
-            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
-        }
+//        for index in 0..<4
+//        {
+//            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
+//        }
     }
     
     fileprivate func initWater()
