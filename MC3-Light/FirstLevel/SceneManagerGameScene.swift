@@ -114,7 +114,7 @@ extension GameSceneManager
             {
                 player.inventory.addItemInInventory(itemToAdd: questItemsRef[index])
                 questItemsRef[index].sprite.removeFromParent()
-                questItemsRef.remove(at: index)
+//                questItemsRef.remove(at: index)
                 found = true
             }
             index += 1
@@ -260,7 +260,7 @@ extension GameSceneManager
             {
                 player.inventory.addBoltsInInventory()
                 boltsRef[index].sprite.removeFromParent()
-                questItemsRef.remove(at: index)
+//                questItemsRef.remove(at: index)
                 found = true
             }
             index += 1

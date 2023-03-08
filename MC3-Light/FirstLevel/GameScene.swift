@@ -73,7 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     // TRIGGER
 
     var chargingBox: ChargingBox!
-    var winBox = WinBox(numberOfKey: 1)
+    var winBox = WinBox(numberOfKey: 3)
     var winBoxTriggerLevettaSpown: SKNode!
     var chargingBoxSpown1: SKNode!
     var chargingBoxSpown2: SKNode!

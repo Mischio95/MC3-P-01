@@ -86,3 +86,8 @@ extension PlayerInventory
         }
     }
 }
+
+extension PlayerInventory
+{
+    
+}

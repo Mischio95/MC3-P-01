@@ -21,8 +21,7 @@ class WinBox: Trigger
         self.sprite.name = "winBox"
         self.sprite.zPosition = Utilities.ZIndex.sceneObject
 //        self.sprite.size = CGSize(width: 100, height: 100)
-        
-        setup()
+        self.numberOfKey = numberOfKey
         startIdleAnimation()
     }
 
@@ -41,11 +40,6 @@ class WinBox: Trigger
         self.gate.sprite.lightingBitMask = 1
         self.gate.sprite.name = "gate"
     }
-    
-    func setNumberOkKey(numberOfKey: Int)
-    {
-        self.numberOfKey = numberOfKey
-    }
 
     func openGate()
     {
@@ -56,31 +50,46 @@ class WinBox: Trigger
     
     func chekOpenGate(player: Player)
     {
-        if(numberOfKey == 0)
-        {
-            openGate()
-        }
-        else
-        {
-            for index in 0..<player.inventory.playerInventory.count
-            {
-                if(player.inventory.playerInventory[index].GUID == self.GUID)
+                if(!opened)
                 {
-                    if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
+                    if(numberOfKey == 0)
                     {
-                       openGate()
+                        openGate()
                     }
                     else
                     {
-                        print("non ne hai abbastanza")
+                        for index in 0..<player.inventory.playerInventory.count
+                        {
+                            if(player.inventory.playerInventory[index].GUID == self.GUID)
+                            {
+                                if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
+                                {
+                                   openGate()
+                                }
+                                else
+                                {
+                                    print("non ne hai abbastanza")
+                                }
+                            }
+                        }
+                        if(!opened)// se il for non ha trovato la chiave non la hai
+                        {
+                            print("non hai la chiave")
+                        }
                     }
                 }
-            }
-            if(!opened)// se il for non ha trovato la chiave non la hai
-            {
-                print("non hai la chiave")
-            }
-        }
+            
+//        if(!opened)
+//        {
+//            if(numberOfKey == 0)
+//            {
+//                openGate()
+//            }
+//            else if(player.inventory.keyAmount >= numberOfKey)
+//            {
+//                openGate()
+//            }
+//        }
     }
 
 //ANIMATION
