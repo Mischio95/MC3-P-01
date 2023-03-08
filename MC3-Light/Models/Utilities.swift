@@ -14,7 +14,7 @@ var animRunning = false
 var gameOverControlFlag = false
 var playerLightIsOnGlobal = false
 var playerSpeed = CGPoint.zero
-var tutorialOpen = false
+var finishTutorial = false
 
 var chooseSound = true
 var chooseVibration = true

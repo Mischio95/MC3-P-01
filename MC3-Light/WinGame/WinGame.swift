@@ -26,14 +26,25 @@ class WinGame: SKScene
         
         if let location = touch?.location (in: self) {
             let nodesArray = self.nodes(at: location)
-            if (nodesArray.first?.name == "newGameButton")
+            
+            
+            if finishTutorial == false
+            {
+                newGameButtonNode.alpha = 0.3
+                let transition = SKTransition.fade(with: .black, duration: 0.2)
+                let gameScene = SKScene(fileNamed: "Tutorial") as! Tutorial
+                gameScene.scaleMode = .aspectFill
+
+                self.view?.presentScene(gameScene, transition: transition)
+            }
+            
+            else
             {
                 newGameButtonNode.alpha = 0.3
                 let transition = SKTransition.fade(with: .black, duration: 0.2)
                 let gameScene = SKScene(fileNamed: "GameScene") as! GameScene
                 gameScene.scaleMode = .aspectFill
 
-//                let gameScene = GameScene(size:self.size)
                 self.view?.presentScene(gameScene, transition: transition)
             }
         }

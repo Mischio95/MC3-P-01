@@ -41,7 +41,7 @@ class MainMenu: SKScene
             let nodesArray = self.nodes(at: location)
             if (nodesArray.first?.name == "newGameButton")
             {
-                if tutorialOpen == false
+                if finishTutorial == false
                 {
                     soundToPlay.removeFromParent()
                     newGameButtonNode.alpha = 0.3
