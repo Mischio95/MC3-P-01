@@ -62,21 +62,21 @@ class ObjectAnimator
         endGameSceneNode.run(animationEndGameSceneNode)
     }
     
-//    func setupAnimatorGas(scene: SKScene, nodeNameInTheScene: String)
-//    {
-//        gasNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
-//        gasNode.lightingBitMask = 1
-//        gasNodeAnimation = SKAction(named: "TuboConFumo")
-//        gasNode.run(gasNodeAnimation)
-//    }
+    func setupAnimatorGas(scene: SKScene, nodeNameInTheScene: String)
+    {
+        gasNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
+        gasNode.lightingBitMask = 1
+        gasNodeAnimation = SKAction(named: "TuboConFumo")
+        gasNode.run(gasNodeAnimation)
+    }
     
-//    func setupAnimatorWaterGreen(scene: SKScene, nodeNameInTheScene: String)
-//    {
-//        waterGreenNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
-//        waterGreenNode.lightingBitMask = 1
-//        waterGreenNodeAnimation = SKAction(named: "WaterGreen")
-//        waterGreenNode.run(waterGreenNodeAnimation)
-//    }
+    func setupAnimatorWaterGreen(scene: SKScene, nodeNameInTheScene: String)
+    {
+        waterGreenNode = (scene.childNode(withName: nodeNameInTheScene) as? SKSpriteNode)!
+        waterGreenNode.lightingBitMask = 1
+        waterGreenNodeAnimation = SKAction(named: "WaterGreen")
+        waterGreenNode.run(waterGreenNodeAnimation)
+    }
     
     func setupWater(scene: SKScene, nodeNameInTheScene: String)
     {

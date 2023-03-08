@@ -58,8 +58,10 @@ class SetupMap
     
     func setupBolt(scene: SKScene, nameBackground: String)
     {
-        bolt = (scene.childNode(withName: nameBackground) as? SKSpriteNode)
+        var boltSprite = Bolt(quantity: 3)
+        bolt = ((scene.childNode(withName: nameBackground) as? SKSpriteNode)!)
         bolt.lightingBitMask = 1
         bolt.isHidden = true
+        bolt.addChild(boltSprite.sprite)
     }
 }

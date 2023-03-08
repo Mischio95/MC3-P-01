@@ -14,7 +14,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     var avPlayer = AVPlayer()
     
     //MARK: PICKUP ITEM
-    
+    var maschera = SKSpriteNode(imageNamed: "maschera.png")
     private var video = SKVideoNode(fileNamed: "glitch.mov")
     var blackBackground: SKNode!
     private var updatables = [Updatable]()
@@ -161,6 +161,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         cameraNode.position.x = player.sprite.position.x
         cameraNode.position.y = player.sprite.position.y
         
+        maschera.position = cameraNode.position
+        
+        
         progressBar.progressFollowPlayer(player: player)
         
         playerController.touchJump?.position.x = cameraNode.position.x + 450
@@ -188,6 +191,11 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         if player.lightIsOn
         {
             player.light.lightSprite.position.y = player.sprite.position.y + 50
+            maschera.isHidden = true
+        }
+        else
+        {
+            maschera.isHidden = false
         }
         
         if player.imDeathing

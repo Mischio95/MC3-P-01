@@ -19,7 +19,9 @@ class Merchant: Trigger
         super.init(sprite: SKSpriteNode(imageNamed: "mercante"), size: CGSize(width: 250, height: 250))
         self.sprite.name = "merchant"
         merchantSpown = scene.childNode(withName: "merchantSpown")
+        merchantSpown.isHidden = true
         self.sprite.position = merchantSpown.position
+        self.sprite.zPosition = Utilities.ZIndex.sceneObject
         setupPhyisics()
         self.bubbleDialogue.position.x = self.sprite.position.x - 50
         self.bubbleDialogue.position.y = self.sprite.position.y + 80
