@@ -582,13 +582,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             secondBody.collisionBitMask = 0
         }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem1")
         {
-//            secondBody.collisionBitMask = 0
-//            if(player.lightIsOn)
-//            {
-//                player.inventory.addItemInInventory(itemToAdd: questItem)
-//            }
+            questItem1.isInLife = false
+            secondBody.node?.removeFromParent()
+            player.inventory.addKey()
+            keyCount.text = "\(player.inventory.keyAmount)"
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem2")
+        {
+            questItem2.isInLife = false
+            secondBody.node?.removeFromParent()
+            player.inventory.addKey()
+            keyCount.text = "\(player.inventory.keyAmount)"
+        }
+        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem3")
+        {
+            questItem3.isInLife = false
             secondBody.node?.removeFromParent()
             player.inventory.addKey()
             keyCount.text = "\(player.inventory.keyAmount)"
