@@ -145,7 +145,7 @@ class Player
     {
         if lightButtonClicked
         {
-            removeLife(light: light.light)
+            removeLife(damage: 5)
             lightButtonClicked = false
             playerHit = true
             hitAnimation(progressBar: self.progressBar)
@@ -186,11 +186,11 @@ class Player
         }
     }
     
-    func removeLife(light: SKLightNode)
+    func removeLife(damage: Int)
     {
         if(!videoFloppyIsPlaying && !isCharging)
         {
-            time -= 5
+            time -= damage
         }
     }
     

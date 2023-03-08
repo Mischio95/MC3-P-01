@@ -156,6 +156,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //        self.physicsWorld.gravity = CGVectorMake(0, -30)
         self.physicsWorld.contactDelegate = self
         
+//        var triggerDamage = TriggerDamage(sprite: SKSpriteNode(imageNamed: "AcquaVerde1"), damageToApply: 3)
+//        triggerDamage.sprite?.position.x = player.sprite.position.x + 100
+//        triggerDamage.sprite?.position.y = player.sprite.position.y
+//        addChild(triggerDamage.sprite)
+        
         gameManager = GameSceneManager(scene: self)
         
         boltHUDImage.zPosition = Utilities.ZIndex.HUD
@@ -577,7 +582,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.categoryBitMask == Utilities.CollisionBitMask.pickupItemCategory)
         {
-            gameManager?.addItemInPlayerInventory(player: player, nameOfItemToRemove: (secondBody.node?.name)!)
+            player.inventory.addKey()
+            secondBody.node?.removeFromParent()
             keyCount.text = "\(player.inventory.keyAmount)"
             
         }
@@ -596,7 +602,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.categoryBitMask == Utilities.CollisionBitMask.boltCategory)
         {
-            gameManager?.addBoltInPlayerInventory(player: player, nameOfItemToRemove: (secondBody.node?.name)!)
+            player.inventory.addBoltsInInventory()
+            secondBody.node?.removeFromParent()
             boltScore.text = "\(player.inventory.boltAmount)"
         }
     }

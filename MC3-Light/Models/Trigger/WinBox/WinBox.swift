@@ -78,18 +78,6 @@ class WinBox: Trigger
                         }
                     }
                 }
-            
-//        if(!opened)
-//        {
-//            if(numberOfKey == 0)
-//            {
-//                openGate()
-//            }
-//            else if(player.inventory.keyAmount >= numberOfKey)
-//            {
-//                openGate()
-//            }
-//        }
     }
 
 //ANIMATION

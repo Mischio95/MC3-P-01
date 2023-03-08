@@ -43,6 +43,7 @@ struct Utilities
         static let merchantCategory: UInt32 = 12
         static let gateCategory: UInt32 = 13
         static let boltCategory: UInt32 = 14
+        static let triggerDamageCategory: UInt32 = 15
         
     }
     
