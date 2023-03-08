@@ -238,12 +238,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
               
         //pickup
         questItem1.floppyAnimator.startFloppyAnimation(sprite: questItem1.sprite)
+        questItem1.sprite.name = "questItem1"
         addChild(questItem1.sprite)
         
         questItem2.floppyAnimator.startFloppyAnimation(sprite: questItem2.sprite)
+        questItem2.sprite.name = "questItem2"
         addChild(questItem2.sprite)
         
         questItem3.floppyAnimator.startFloppyAnimation(sprite: questItem3.sprite)
+        questItem3.sprite.name = "questItem3"
         addChild(questItem3.sprite)
         
         
