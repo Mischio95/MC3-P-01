@@ -64,6 +64,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
         var bolt = Bolt(quantity: 1)
     
+    
+    
     // TRIGGER
 
     var chargingBox: ChargingBox?
@@ -143,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         boltHUDImage.zPosition = Utilities.ZIndex.HUD
         boltHUDImage.size = CGSize(width: 50, height: 50)
-        addChild(boltHUDImage)
+       
         
         boltScore.fontSize = 30
         boltScore.fontColor = .white
@@ -153,6 +155,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         boltScore.text = "\(player.inventory.boltAmount)"
         boltScore.zPosition = Utilities.ZIndex.HUD
         
+        
+        keyCountHUDImage.zPosition = Utilities.ZIndex.HUD
+        keyCountHUDImage.size = CGSize(width: 30, height: 30)
+       
+        
         keyCount.fontSize = 30
         keyCount.fontColor = .white
         keyCount.zPosition = 1
@@ -160,7 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         keyCount.position.y = frame.midY + 50
         keyCount.text = "\(player.inventory.keyAmount)"
         keyCount.zPosition = Utilities.ZIndex.HUD
-        
+       
         
         
         joystickButtonClicked = false
@@ -213,11 +220,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         //pickup
         addChild(questItem.sprite)
         questItem.floppyAnimator.startFloppyAnimation(sprite: questItem.sprite)
-        questItem.sprite.position.x = player.sprite.position.x + 100
+        questItem.sprite.position.x = player.sprite.position.x + 200
         questItem.sprite.position.y = player.sprite.position.y + 50
         
         chargingBox = ChargingBox(scene: self, player: player)
         addChild(boltScore)
+        addChild(boltHUDImage)
+        addChild(keyCountHUDImage)
+        addChild(keyCount)
+        
     }
 
     //MARK: - touchesBegan
@@ -315,20 +326,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         // Called before each frame is rendered
         updatables.forEach{$0.update(currentTime: currentTime)}
         
-        
-//        boltHUDImage.position.x = player.sprite.position.x + 400
-//        boltHUDImage.position.y = player.sprite.position.y + 250
-//        scoreNode.position.x = boltHUDImage.position.x + 30
-//        scoreNode.position.y =  boltHUDImage.position.y - 10
-        
-        
         boltHUDImage.position.x = player.sprite.position.x + 450
         boltHUDImage.position.y = player.sprite.position.y + 230
         
-//        boltHUDImage.position.x = progressBar.position.x + 100
-//        boltHUDImage.position.y = progressBar.position.y
         boltScore.position.x = boltHUDImage.position.x + 40
         boltScore.position.y = boltHUDImage.position.y - 10
+        
+        keyCountHUDImage.position.x =  boltScore.position.x + 60
+        keyCountHUDImage.position.y = boltScore.position.y
+        
+        keyCount.position.x =  boltScore.position.x + 100
+        keyCount.position.y = boltScore.position.y
         
         
         // Initialize _lastUpdateTime if it has not already been
@@ -522,11 +530,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
         {
-            secondBody.collisionBitMask = 0
-            if(player.lightIsOn)
-            {
-                player.inventory.addItemInInventory(itemToAdd: questItem)
-            }
+//            secondBody.collisionBitMask = 0
+//            if(player.lightIsOn)
+//            {
+//                player.inventory.addItemInInventory(itemToAdd: questItem)
+//            }
+            secondBody.node?.removeFromParent()
+            player.inventory.addKey()
+            keyCount.text = "\(player.inventory.keyAmount)"
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "bolt")
         {
