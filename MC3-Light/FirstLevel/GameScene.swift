@@ -611,7 +611,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             if(player.lightIsOn)
             {
-                questItem1.isInLife = false
+                questItem2.isInLife = false
                 player.inventory.addItemInInventory(itemToAdd:  questItem2)
             }
             keyCount.text = "\(player.inventory.keyAmount)"
@@ -620,7 +620,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             if(player.lightIsOn)
             {
-                questItem1.isInLife = false
+                questItem3.isInLife = false
                 player.inventory.addItemInInventory(itemToAdd: questItem3)
             }
             keyCount.text = "\(player.inventory.keyAmount)"
