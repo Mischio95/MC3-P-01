@@ -54,13 +54,16 @@ class PlayerInventory
     }
 }
 
+
+//BOLT
 extension PlayerInventory
 {
-    func addBolts(bolt: Bolt)
+    func addBoltsInInventory()
     {
-        boltAmount += bolt.quantity
+        let quantity = Int.random(in: 1..<6)
+        
+        boltAmount += quantity
         print("Numero Bolt")
         print(boltAmount)
-        bolt.sprite.removeFromParent()
     }
 }

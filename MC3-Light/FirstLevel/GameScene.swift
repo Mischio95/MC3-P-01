@@ -493,7 +493,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "bolt")
         {
-            player.inventory.addBolts(bolt: bolt)
+            secondBody.node?.removeFromParent()
+            player.inventory.addBoltsInInventory()
+            
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
         {
@@ -596,26 +598,26 @@ extension GameScene
     
     fileprivate func initGasObjectScene()
     {
-        for index in 0..<3
-        {
-            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
-        }
+//        for index in 0..<3
+//        {
+//            objectAnimatorScene.setupAnimatorGas(scene: self, nodeNameInTheScene: "gas\(index)")
+//        }
     }
     
     fileprivate func initWaterGreenScene()
     {
-        for index in 0..<8
-        {
-            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
-        }
+//        for index in 0..<8
+//        {
+//            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "acquaVerde\(index)")
+//        }
     }
     
     fileprivate func initWater()
     {
-        for index in 0..<5
-        {
-            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "water\(index)")
-        }
+//        for index in 0..<5
+//        {
+//            objectAnimatorScene.setupAnimatorWaterGreen(scene: self, nodeNameInTheScene: "water\(index)")
+//        }
     }
     
     func EnemyShoot()
@@ -663,7 +665,7 @@ extension GameScene
         
         addChild(winBox.sprite)
         addChild(winBox.gate.sprite)
-        bolt.sprite.position.x = player.sprite.position.x + 1000
+        bolt.sprite.position.x = player.sprite.position.x + 100
         bolt.sprite.position.y = player.sprite.position.y
         addChild(bolt.sprite)
     }

@@ -433,6 +433,7 @@ extension Tutorial
                 {
                     let newPosition = CGPoint(x: self.player.sprite.position.x + (data.velocity.x * self.player.velocityMultiplier),y: self.player.sprite.position.y)
                     self.player.sprite.position = newPosition
+                    self.player.newPosition = newPosition
             
                     if joystickButtonClicked && !animRunning && !player.playerHit && !player.videoFloppyIsPlaying && !player.isCharging
                     {
