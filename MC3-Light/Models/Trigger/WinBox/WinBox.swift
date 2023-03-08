@@ -12,7 +12,7 @@ class WinBox: Trigger
 {
     var numberOfKey: Int = 0
     let GUID: UUID = UUID()
-    var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
+    var gate = Gate()
     var opened: Bool = false
 
     init(numberOfKey: Int)

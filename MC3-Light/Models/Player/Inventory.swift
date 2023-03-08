@@ -45,6 +45,7 @@ extension PlayerInventory
     {
         if(!itemToAdd.isStackable)
         {
+            keyAmount += 1
             playerInventory.append(itemToAdd)
         }
         else
@@ -56,11 +57,13 @@ extension PlayerInventory
                 if(playerInventory[index].GUID == itemToAdd.GUID)
                 {
                     playerInventory[index].quantity += 1
+                    keyAmount += 1
                     itemIsInInventory = true
                 }
             }
             if(!itemIsInInventory)
             {
+                keyAmount += 1
                 playerInventory.append(itemToAdd)
             }
         }
@@ -78,23 +81,8 @@ extension PlayerInventory
             if(playerInventory[index].GUID == itemToRemove.GUID)
             {
                 playerInventory.remove(at: index)
+                keyAmount = 0
             }
         }
-    }
-    
-    func numberOfKey(pickupItem: PickupItem) -> Int
-    {
-        if(playerInventory.count > 0)
-        {
-            for index in 0..<playerInventory.count
-            {
-                if(playerInventory[index].GUID == pickupItem.GUID)
-                {
-                    return playerInventory[index].quantity
-                   
-                }
-            }
-        }
-        return 0
     }
 }

@@ -13,6 +13,7 @@
 		830A92C529B5398C00929DBF /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92C429B5398C00929DBF /* Merchant.swift */; };
 		830A92C729B54D3E00929DBF /* InvisibleWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830A92C629B54D3E00929DBF /* InvisibleWall.swift */; };
 		833785C229A5854D00DE5263 /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833785C129A5854D00DE5263 /* Trigger.swift */; };
+		8355D9C629B9121F00FB17F0 /* SceneManagerGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8355D9C529B9121F00FB17F0 /* SceneManagerGameScene.swift */; };
 		8363CA5E29B62AF300186F28 /* fulmine.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA5D29B62AF300186F28 /* fulmine.mov */; };
 		8363CA6829B689B300186F28 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8363CA6729B689B300186F28 /* GameMode.swift */; };
 		8363CA6C29B7789F00186F28 /* firstVideoTutorial.mov in Resources */ = {isa = PBXBuildFile; fileRef = 8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */; };
@@ -116,6 +117,7 @@
 		830A92C429B5398C00929DBF /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		830A92C629B54D3E00929DBF /* InvisibleWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleWall.swift; sourceTree = "<group>"; };
 		833785C129A5854D00DE5263 /* Trigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
+		8355D9C529B9121F00FB17F0 /* SceneManagerGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManagerGameScene.swift; sourceTree = "<group>"; };
 		8363CA5D29B62AF300186F28 /* fulmine.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = fulmine.mov; sourceTree = "<group>"; };
 		8363CA6729B689B300186F28 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		8363CA6B29B7789F00186F28 /* firstVideoTutorial.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = firstVideoTutorial.mov; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			children = (
 				A7AE5C5029A3C2F6002FDAEB /* GameScene.swift */,
 				A7ACB0D129ACF14000A5000D /* GameScene.sks */,
+				8355D9C529B9121F00FB17F0 /* SceneManagerGameScene.swift */,
 			);
 			path = FirstLevel;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				A76F4E4029AAA093008F9A05 /* Utilities.swift in Sources */,
 				A7ED434B29AE795200EDA732 /* ObjectAnimator.swift in Sources */,
 				A751465129B69B4000BA7B00 /* Tutorial.swift in Sources */,
+				8355D9C629B9121F00FB17F0 /* SceneManagerGameScene.swift in Sources */,
 				83A6AA2329B24B36007B1716 /* FloppyAnimator.swift in Sources */,
 				83A1574629A4002A009C0537 /* Platform.swift in Sources */,
 				83A6AA2D29B391D8007B1716 /* Inventory.swift in Sources */,
@@ -893,7 +897,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = U2Y4UHZS79;
+				DEVELOPMENT_TEAM = W76A7456VL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "P-01";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -922,7 +926,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_TEAM = U2Y4UHZS79;
+				DEVELOPMENT_TEAM = W76A7456VL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "P-01";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

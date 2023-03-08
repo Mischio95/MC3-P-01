@@ -10,10 +10,9 @@ import SpriteKit
 
 class Gate
 {
-    var sprite: SKSpriteNode
+    var sprite: SKSpriteNode = SKSpriteNode(imageNamed: "")
     
-    init(sprite: SKSpriteNode) {
-        self.sprite = sprite
+    init() {
         self.startIdleAnimation()
     }
     

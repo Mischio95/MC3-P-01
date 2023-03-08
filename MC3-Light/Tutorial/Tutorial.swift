@@ -31,7 +31,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     var chargingBox: ChargingBox?
     var winBox = WinBox(numberOfKey: 0)
     var winBoxTriggerLevettaSpown: SKNode!
-    var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
+    var gate = Gate()
     // LIGHT && color
     var _scale: CGFloat = 1.0
     var _screenH: CGFloat = 640.0

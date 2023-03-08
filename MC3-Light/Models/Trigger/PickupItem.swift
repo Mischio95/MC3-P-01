@@ -49,9 +49,10 @@ class PickupItem: Item
     var isInLife: Bool = true
     var floppyAnimator = FloppyAnimator()
     
-    func setGUID(GUID: UUID)
+    init(GUID: UUID)
     {
-        self.GUID = GUID
-        self.sprite.name = "questItem"
+        super.init(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
+        floppyAnimator.startFloppyAnimation(sprite: self.sprite)
+        self.sprite.physicsBody?.categoryBitMask = Utilities.CollisionBitMask.pickupItemCategory
     }
 }

@@ -25,7 +25,6 @@ import Foundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
-    var questItemSpown1:SKNode!
     var questItemSpown2:SKNode!
     var questItemSpown3:SKNode!
     
@@ -65,10 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     
     private var lastUpdateTime : TimeInterval = 0
   
-    var questItem1 = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
-    var questItem2 = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
-    var questItem3 = PickupItem(sprite: SKSpriteNode(imageNamed: "Floppy_disk"), size: CGSize(width: 50, height: 50), quantity: 1)
-    
+    var gameManager: GameSceneManager?
     
         var bolt = Bolt(quantity: 1)
     
@@ -93,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var rangedEnemy = RangedEnemy(sprite: SKSpriteNode(imageNamed: "enemyAnim1"), size: CGSize(width: 50, height: 50))
     var enemySpownPosition : SKNode!
     
-    var gate = Gate(sprite: SKSpriteNode(imageNamed: ""))
+    var gate = Gate()
     var merchant: Merchant!
     var merchantSpown: SKNode!
     
@@ -159,6 +155,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
        
 //        self.physicsWorld.gravity = CGVectorMake(0, -30)
         self.physicsWorld.contactDelegate = self
+        
+        gameManager = GameSceneManager(scene: self)
         
         boltHUDImage.zPosition = Utilities.ZIndex.HUD
         boltHUDImage.size = CGSize(width: 50, height: 50)
@@ -237,29 +235,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         enemy.setupSprite(scene: self)
               
         //pickup
-        questItem1.floppyAnimator.startFloppyAnimation(sprite: questItem1.sprite)
-        questItem1.sprite.name = "questItem1"
-        addChild(questItem1.sprite)
+//        questItem1.floppyAnimator.startFloppyAnimation(sprite: questItem1.sprite)
+//        questItem1.sprite.name = "questItem1"
+//        addChild(questItem1.sprite)
         
-        questItem2.floppyAnimator.startFloppyAnimation(sprite: questItem2.sprite)
-        questItem2.sprite.name = "questItem2"
-        addChild(questItem2.sprite)
+//        questItem2.floppyAnimator.startFloppyAnimation(sprite: questItem2.sprite)
+//        questItem2.sprite.name = "questItem2"
+//        addChild(questItem2.sprite)
+//
+//        questItem3.floppyAnimator.startFloppyAnimation(sprite: questItem3.sprite)
+//        questItem3.sprite.name = "questItem3"
+//        addChild(questItem3.sprite)
         
-        questItem3.floppyAnimator.startFloppyAnimation(sprite: questItem3.sprite)
-        questItem3.sprite.name = "questItem3"
-        addChild(questItem3.sprite)
-        
-        
-        questItemSpown1 = self.childNode(withName: "keySpown1")
-        questItemSpown2 = self.childNode(withName: "keySpown2")
-        questItemSpown3 = self.childNode(withName: "keySpown3")
-        questItemSpown1.isHidden = true
-        questItemSpown2.isHidden = true
-        questItemSpown3.isHidden = true
-
-        questItem1.sprite.position = questItemSpown1.position
-        questItem2.sprite.position = questItemSpown2.position
-        questItem3.sprite.position = questItemSpown3.position
+       
+      
+//        questItem1.sprite.position = questItemSpown1.position
+//        questItem1.sprite.position.x = player.sprite.position.x + 100
+//        questItem1.sprite.position.y = player.sprite.position.y
+//
+//        questItem2.sprite.position = questItemSpown2.position
+//        questItem3.sprite.position = questItemSpown3.position
 
         chargingBoxSpown1 = self.childNode(withName: "chargeBoxSpown0")
         chargingBoxSpown1.isHidden = true
@@ -331,6 +326,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             
             if(atPoint(location).name == "lightOnOff")
             {
+
                 if(player.lightIsOn == false)
                 {
                     player.lightButtonClicked = true
@@ -345,6 +341,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                     player.lightIsOn = false
                     player.timerNode.isPaused = true
                 }
+                gameManager?.toggleVisibilityQuestItems(lightIsOn: player.lightIsOn)
                 player.light.checkLightIsOnOff(player: player)
             }
 //        }
@@ -467,39 +464,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if !player.lightIsOn
         {
-            if(questItem1.isInLife)
-            {
-                questItem1.isInLife = false
-                questItem1.sprite.removeFromParent()
-            }
-            if(questItem2.isInLife)
-            {
-                questItem2.isInLife = false
-                questItem2.sprite.removeFromParent()
-            }
-            if(questItem3.isInLife)
-            {
-                questItem3.isInLife = false
-                questItem3.sprite.removeFromParent()
-            }
+//            if(questItem1.isInLife)
+//            {
+//                questItem1.isInLife = false
+//                questItem1.sprite.removeFromParent()
+//            }
+//            if(questItem2.isInLife)
+//            {
+//                questItem2.isInLife = false
+//                questItem2.sprite.removeFromParent()
+//            }
+//            if(questItem3.isInLife)
+//            {
+//                questItem3.isInLife = false
+//                questItem3.sprite.removeFromParent()
+//            }
         }
         else
         {
-            if(!questItem1.isInLife)
-            {
-                questItem1.isInLife = true
-                addChild(questItem1.sprite)
-            }
-            if(!questItem2.isInLife)
-            {
-                questItem2.isInLife = true
-                addChild(questItem2.sprite)
-            }
-            if(!questItem3.isInLife)
-            {
-                questItem3.isInLife = true
-                addChild(questItem3.sprite)
-            }
+//            if(!questItem1.isInLife)
+//            {
+//                questItem1.isInLife = true
+//                addChild(questItem1.sprite)
+//            }
+//            if(!questItem2.isInLife)
+//            {
+//                questItem2.isInLife = true
+//                addChild(questItem2.sprite)
+//            }
+//            if(!questItem3.isInLife)
+//            {
+//                questItem3.isInLife = true
+//                addChild(questItem3.sprite)
+//            }
         }
     }
     
@@ -537,12 +534,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                 player.playerAnimator.startRunningAnimation(player: player)
             }
         }
-        
-//        if(firstBody.node?.name == "player" && secondBody.node?.name == "item")
-//        {
-//            self.item.sprite.removeFromParent()
-//        }
-        
         if(firstBody.node?.name == "player" && secondBody.node?.name == "winBox")
         {
             player.nearWinBox = true
@@ -551,15 +542,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "invisibleGroundFalling")
         {
-//            player.sprite.removeAllActions()
-//            analogJoystick.removeFromParent()
             player.playerDeath()
         }
         
         if(firstBody.node?.name == "player" && secondBody.node?.name == "enemy")
         {
             player.time -= 5
-//            player.lightIsOn = false
             enemy.isAtacking = true
             player.playerHit = true
             player.canMove = false
@@ -576,60 +564,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "soundTrigger")
         {
-            print("contact")
             if(objectAnimator.isPlaying)
             {
-                print("if")
                 objectAnimator.soundToPlay.removeFromParent()
             }
             else
             {
-                print("else")
                 addChild(objectAnimator.soundToPlay)
                 
             }
-            print("esco")
             objectAnimator.handlerPlaySound(scene: self)
         }
-        
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "enemyView")
+        if(firstBody.node?.name == "player" && secondBody.categoryBitMask == Utilities.CollisionBitMask.pickupItemCategory)
         {
-            secondBody.collisionBitMask = 0
-        }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem1")
-        {
-            if(player.lightIsOn)
-            {
-                questItem1.isInLife = false
-                player.inventory.addItemInInventory(itemToAdd: questItem1)
-            }
-//            questItem1.sprite.removeFromParent()
-
+            gameManager?.addItemInPlayerInventory(player: player, nameOfItemToRemove: (secondBody.node?.name)!)
             keyCount.text = "\(player.inventory.keyAmount)"
-        }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem2")
-        {
-            if(player.lightIsOn)
-            {
-                questItem2.isInLife = false
-                player.inventory.addItemInInventory(itemToAdd:  questItem2)
-            }
-            keyCount.text = "\(player.inventory.keyAmount)"
-        }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem3")
-        {
-            if(player.lightIsOn)
-            {
-                questItem3.isInLife = false
-                player.inventory.addItemInInventory(itemToAdd: questItem3)
-            }
-            keyCount.text = "\(player.inventory.keyAmount)"
-        }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "bolt")
-        {
-            secondBody.node?.removeFromParent()
-            player.inventory.addBoltsInInventory()
-            boltScore.text = "\(player.inventory.boltAmount)"
             
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
@@ -816,9 +765,9 @@ extension GameScene
         
         //SETUP GATE
 //        winBox.setNumberOkKey(numberOfKey: 1)
-        questItem1.setGUID(GUID: winBox.GUID)
-        questItem2.setGUID(GUID: winBox.GUID)
-        questItem3.setGUID(GUID: winBox.GUID)
+//        questItem1.setGUID(GUID: winBox.GUID)
+//        questItem2.setGUID(GUID: winBox.GUID)
+//        questItem3.setGUID(GUID: winBox.GUID)
         
         
         
@@ -835,7 +784,7 @@ extension GameScene
         addChild(winBox.gate.sprite)
         bolt.sprite.position.x = player.sprite.position.x + 100
         bolt.sprite.position.y = player.sprite.position.y
-        addChild(bolt.sprite)
+//        addChild(bolt.sprite)
     }
     
     //MARK: - setup JOYSTICK

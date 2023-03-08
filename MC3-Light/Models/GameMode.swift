@@ -12,6 +12,8 @@ class GameMode
 {
     var scene: SKScene
    
+    var keyCardsInScene: [PickupItem] = []
+
     
     
     init(scene: SKScene)
