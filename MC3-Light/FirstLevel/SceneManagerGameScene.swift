@@ -112,7 +112,8 @@ extension GameSceneManager
         {
             if(questItemsRef[index].sprite.name == nameOfItemToRemove)
             {
-                player.inventory.addItemInInventory(itemToAdd: questItemsRef[index])
+//                player.inventory.addItemInInventory(itemToAdd: questItemsRef[index])
+                player.inventory.addKey()
                 questItemsRef[index].sprite.removeFromParent()
                 questItemsRef.remove(at: index)
                 found = true

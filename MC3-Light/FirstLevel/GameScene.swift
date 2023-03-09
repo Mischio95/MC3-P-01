@@ -579,7 +579,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
         if(firstBody.node?.name == "player" && secondBody.categoryBitMask == Utilities.CollisionBitMask.pickupItemCategory)
         {
-            player.inventory.addKey()
+            gameManager?.addItemInPlayerInventory(player: player, nameOfItemToRemove: (secondBody.node?.name)!)
             keyCount.text = "\(player.inventory.keyAmount)"
             secondBody.node?.removeFromParent()
             
