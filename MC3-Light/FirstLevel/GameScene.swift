@@ -411,12 +411,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         if player.lightIsOn
         {
-            lightSprite?.position.y = player.sprite.position.y + 50
-            maschera.isHidden = true
-        }
-        else
-        {
-            maschera.isHidden = false
+            player.light.lightSprite.position.y = player.sprite.position.y + 50
         }
         
         
