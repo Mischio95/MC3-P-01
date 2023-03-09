@@ -46,7 +46,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
     var winBoxSpown: SKNode!
     
     var invisibleGroundGameScene1 = SetupMap()
-
+    var chargingBoxSpown1: SKNode!
     
     // INPUT
     var playerController: PlayerController = PlayerController(touchLeft: SKSpriteNode(imageNamed: "freccia"), touchRight: SKSpriteNode(imageNamed: "freccia"), touchJump: SKSpriteNode(imageNamed: "Jump"), touchLightOnOff: SKSpriteNode(imageNamed: "LightButton"))
@@ -137,6 +137,10 @@ class Tutorial: SKScene, SKPhysicsContactDelegate
         video.zPosition = Utilities.ZIndex.layer1
         video.size = blackBackground.frame.size
         
+        chargingBoxSpown1 = self.childNode(withName: "chargeBoxSpown0")
+        chargingBoxSpown1.isHidden = true
+        chargingBox = ChargingBox(scene: self, player: player)
+        chargingBox!.sprite.position = chargingBoxSpown1.position
 
     }
     
@@ -426,7 +430,7 @@ extension Tutorial
     {
         invisibleGroundGameScene1.setupInvisibleGroundForFalling(scene: self, nameGround: "invisibleFallingCollision")
         
-        for index in 0..<8
+        for index in 0..<7
         {
             groundGameScene1.setupGround(scene: self, nameGround: "ground\(index)")
         }
