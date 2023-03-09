@@ -35,6 +35,7 @@
 		A7393D3D29A6723300C47229 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3A29A6723300C47229 /* lightbulb.png */; };
 		A7393D3E29A6723300C47229 /* cicciobello.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3B29A6723300C47229 /* cicciobello.png */; };
 		A7393D3F29A6723300C47229 /* ciccio.png in Resources */ = {isa = PBXBuildFile; fileRef = A7393D3C29A6723300C47229 /* ciccio.png */; };
+		A7453A6F29B9EE0D009E6A6E /* glitch6.mov in Resources */ = {isa = PBXBuildFile; fileRef = A7453A6E29B9EE0D009E6A6E /* glitch6.mov */; };
 		A751464C29B6893B00BA7B00 /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751464B29B6893B00BA7B00 /* Light.swift */; };
 		A751465129B69B4000BA7B00 /* Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A751465029B69B4000BA7B00 /* Tutorial.swift */; };
 		A751465329B69B4700BA7B00 /* Tutorial.sks in Resources */ = {isa = PBXBuildFile; fileRef = A751465229B69B4700BA7B00 /* Tutorial.sks */; };
@@ -139,6 +140,7 @@
 		A7393D3A29A6723300C47229 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
 		A7393D3B29A6723300C47229 /* cicciobello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cicciobello.png; sourceTree = "<group>"; };
 		A7393D3C29A6723300C47229 /* ciccio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ciccio.png; sourceTree = "<group>"; };
+		A7453A6E29B9EE0D009E6A6E /* glitch6.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = glitch6.mov; sourceTree = "<group>"; };
 		A751464B29B6893B00BA7B00 /* Light.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
 		A751465029B69B4000BA7B00 /* Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tutorial.swift; sourceTree = "<group>"; };
 		A751465229B69B4700BA7B00 /* Tutorial.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Tutorial.sks; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				8363CA5D29B62AF300186F28 /* fulmine.mov */,
+				A7453A6E29B9EE0D009E6A6E /* glitch6.mov */,
 				A7919A7529B14EA60089C118 /* glitch4.mov */,
 				A7919A7329B14A100089C118 /* glitch3.mov */,
 				A7919A7129B1487E0089C118 /* glitch2.mov */,
@@ -660,6 +663,7 @@
 				A7919A7429B14A100089C118 /* glitch3.mov in Resources */,
 				A76F4E3A29AA6B50008F9A05 /* GameOver.sks in Resources */,
 				A7AE5C5B29A3C2F7002FDAEB /* LaunchScreen.storyboard in Resources */,
+				A7453A6F29B9EE0D009E6A6E /* glitch6.mov in Resources */,
 				8363CA7729B78BD200186F28 /* settimo-testo.mov in Resources */,
 				A7ACB0D229ACF14000A5000D /* GameScene.sks in Resources */,
 				A7AE5C4F29A3C2F6002FDAEB /* Actions.sks in Resources */,
