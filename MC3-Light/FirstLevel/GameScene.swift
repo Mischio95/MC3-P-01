@@ -156,10 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //        self.physicsWorld.gravity = CGVectorMake(0, -30)
         self.physicsWorld.contactDelegate = self
         
-//        var triggerDamage = TriggerDamage(sprite: SKSpriteNode(imageNamed: "AcquaVerde1"), damageToApply: 3)
-//        triggerDamage.sprite?.position.x = player.sprite.position.x + 100
-//        triggerDamage.sprite?.position.y = player.sprite.position.y
-//        addChild(triggerDamage.sprite)
+        
         
         gameManager = GameSceneManager(scene: self)
         
@@ -583,8 +580,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         if(firstBody.node?.name == "player" && secondBody.categoryBitMask == Utilities.CollisionBitMask.pickupItemCategory)
         {
             player.inventory.addKey()
-            secondBody.node?.removeFromParent()
             keyCount.text = "\(player.inventory.keyAmount)"
+            secondBody.node?.removeFromParent()
             
         }
         if(firstBody.node?.name == "player" && secondBody.node?.name == "merchant")
@@ -661,12 +658,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             player.nearGate = false
         }
-        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
-        {
-//            secondBody.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
-            player.inventory.addKey()
-            secondBody.node?.removeFromParent()
-        }
+//        if(firstBody.node?.name == "player" && secondBody.node?.name == "questItem")
+//        {
+////            secondBody.collisionBitMask = Utilities.CollisionBitMask.pickupItemCategory
+//            player.inventory.addKey()
+//            secondBody.node?.removeFromParent()
+//        }
     }
 }
 

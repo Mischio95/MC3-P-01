@@ -50,34 +50,54 @@ class WinBox: Trigger
     
     func chekOpenGate(player: Player)
     {
-                if(!opened)
-                {
-                    if(numberOfKey == 0)
-                    {
-                        openGate()
-                    }
-                    else
-                    {
-                        for index in 0..<player.inventory.playerInventory.count
-                        {
-                            if(player.inventory.playerInventory[index].GUID == self.GUID)
-                            {
-                                if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
-                                {
-                                   openGate()
-                                }
-                                else
-                                {
-                                    print("non ne hai abbastanza")
-                                }
-                            }
-                        }
-                        if(!opened)// se il for non ha trovato la chiave non la hai
-                        {
-                            print("non hai la chiave")
-                        }
-                    }
-                }
+//                if(!opened)
+//                {
+//                    if(numberOfKey == 0)
+//                    {
+//                        openGate()
+//                    }
+//                    else
+//                    {
+//                        for index in 0..<player.inventory.playerInventory.count
+//                        {
+//                            if(player.inventory.playerInventory[index].GUID == self.GUID)
+//                            {
+//                                if(player.inventory.playerInventory[index].quantity == self.numberOfKey)
+//                                {
+//                                   openGate()
+//                                }
+//                                else
+//                                {
+//                                    print("non ne hai abbastanza")
+//                                }
+//                            }
+//                        }
+//                        if(!opened)// se il for non ha trovato la chiave non la hai
+//                        {
+//                            print("non hai la chiave")
+//                        }
+//                    }
+//                }
+        
+        if(!opened)
+        {
+            if(numberOfKey <= 0)
+            {
+                openGate()
+            }
+            else if(player.inventory.keyAmount >= numberOfKey)
+            {
+                openGate()
+            }
+            else
+            {
+                print("non hai abbastanza chiavi")
+            }
+        }
+        else
+        {
+            print("gia aperto")
+        }
     }
 
 //ANIMATION
