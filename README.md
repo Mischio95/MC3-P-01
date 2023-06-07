@@ -12,6 +12,6 @@ Will you be able to help him reach the surface?
 
 https://github.com/Mischio95/MC3-P-01/assets/65983947/2615ebbb-94cc-494e-a627-4306375895c6
 
-# ASSETS
+# Assets and Animation
 
 ![P-01 Assets](https://github.com/Mischio95/MC3-P-01/assets/65983947/735acc5d-3872-4e61-af37-336cebc28ca3)
